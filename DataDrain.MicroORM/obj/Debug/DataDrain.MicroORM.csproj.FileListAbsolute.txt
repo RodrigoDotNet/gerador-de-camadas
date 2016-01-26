@@ -1,0 +1,5 @@
+X:\gerador-camadas-master\DataDrain.MicroORM\bin\Debug\DataDrain.MicroORM.dll
+X:\gerador-camadas-master\DataDrain.MicroORM\bin\Debug\DataDrain.MicroORM.pdb
+X:\gerador-camadas-master\DataDrain.MicroORM\obj\Debug\DataDrain.MicroORM.dll
+X:\gerador-camadas-master\DataDrain.MicroORM\obj\Debug\DataDrain.MicroORM.pdb
+X:\gerador-camadas-master\DataDrain.MicroORM\obj\Debug\DataDrain.MicroORM.csprojResolveAssemblyReference.cache

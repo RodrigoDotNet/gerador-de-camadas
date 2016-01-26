@@ -1,0 +1,87 @@
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.dll
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.dll
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.pdb
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csprojResolveAssemblyReference.cache
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.Resource1.resources
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csproj.GenerateResource.Cache
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.dll
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.dll
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.dll
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.pdb
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csprojResolveAssemblyReference.cache
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.Resource1.resources
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csproj.GenerateResource.Cache
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.dll
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.dll
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.dll
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.pdb
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.Resource1.resources
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.dll
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.dll
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.dll
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.pdb
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csprojResolveAssemblyReference.cache
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.Resource1.resources
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csproj.GenerateResource.Cache
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.dll
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csprojResolveAssemblyReference.cache
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csproj.GenerateResource.Cache
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.dll
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.dll
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.dll
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.pdb
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csprojResolveAssemblyReference.cache
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.Resource1.resources
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csproj.GenerateResource.Cache
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.dll
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.dll
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.pdb
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csprojResolveAssemblyReference.cache
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.Resource1.resources
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csproj.GenerateResource.Cache
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.dll
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.dll
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.dll
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.pdb
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csprojResolveAssemblyReference.cache
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.Resource1.resources
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csproj.GenerateResource.Cache
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.dll
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.dll
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.pdb
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.dll
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.dll
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.dll
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.pdb
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.pdb
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csprojResolveAssemblyReference.cache
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.Resource1.resources
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csproj.GenerateResource.Cache
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.dll
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+X:\gerador-camadas-master\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csprojResolveAssemblyReference.cache
+X:\gerador-camadas-master\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.Resource1.resources
+X:\gerador-camadas-master\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csproj.GenerateResource.Cache
+X:\gerador-camadas-master\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.dll
+X:\gerador-camadas-master\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.dll
+X:\gerador-camadas-master\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+X:\gerador-camadas-master\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.dll
+X:\gerador-camadas-master\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.dll
+X:\gerador-camadas-master\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.pdb
+X:\gerador-camadas-master\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.pdb
+X:\gerador-camadas-master\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.pdb

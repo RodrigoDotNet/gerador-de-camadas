@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4DF6A0CA-2417-458B-95DE-D3728DDD2CC8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataDrain.ORM.DAL</RootNamespace>
+    <AssemblyName>DataDrain.ORM.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArquivoAppConfig.cs" />
+    <Compile Include="ArquivosObjetos.cs" />
+    <Compile Include="ArquivosORM.cs" />
+    <Compile Include="ArquivosProjeto.cs" />
+    <Compile Include="DiretoriosBase.cs" />
+    <Compile Include="Gerador.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <None Include="Resources\Transaction.cs" />
+    <None Include="Resources\CmdMap.cs" />
+    <None Include="Resources\ICachingProvider.cs" />
+    <None Include="Resources\CacheChangedEventHandler.cs" />
+    <None Include="Resources\CacheChangedEventArgs.cs" />
+    <None Include="Resources\ECacheAcao.cs" />
+    <None Include="Resources\CachingMannager.cs" />
+    <None Include="Resources\MapExtension.cs" />
+    <None Include="Resources\FastInvoke.cs" />
+    <None Include="Resources\ISqlFormatter.cs" />
+    <None Include="Resources\StrongNamePermission.cs" />
+    <None Include="Resources\IEntity.cs" />
+    <None Include="Resources\Map.cs" />
+    <None Include="Resources\OpcoesParametro.cs" />
+    <None Include="Resources\ObjectMap.cs" />
+    <None Include="Resources\ETipoConsulta.cs" />
+    <None Include="Resources\Singleton.cs" />
+    <None Include="Resources\ExpiringValueHolder.cs" />
+    <None Include="Resources\ExpiringDictionary.cs" />
+    <None Include="Resources\CrudBase.cs" />
+    <None Include="Resources\QueryTypeSystem.cs" />
+    <None Include="Resources\QueryMapping.cs" />
+    <None Include="Resources\QueryLanguage.cs" />
+    <None Include="Resources\QueryExecutor.cs" />
+    <None Include="Resources\ExpressionVisitor.cs" />
+    <None Include="Resources\DbExpressionVisitor.cs" />
+    <None Include="Resources\DbExpressions.cs" />
+    <None Include="Resources\SqlFormatter.cs" />
+    <None Include="Resources\SqlServerFormatter.cs" />
+    <None Include="Resources\SqlLiteFormatter.cs" />
+    <None Include="Resources\PostgresFormatter.cs" />
+    <None Include="Resources\MySqlFormatter.cs" />
+    <None Include="Resources\FireBirdFormatter.cs" />
+    <None Include="Resources\SqlLanguage.cs" />
+    <None Include="Resources\FuncoesCrud.cs" />
+    <None Include="Resources\DomainValidator.cs" />
+    <None Include="Resources\Validar.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataDrain.ORM.Interfaces\DataDrain.ORM.Interfaces.csproj">
+      <Project>{5c237444-36e4-4b22-aaf9-87331f429ae4}</Project>
+      <Name>DataDrain.ORM.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

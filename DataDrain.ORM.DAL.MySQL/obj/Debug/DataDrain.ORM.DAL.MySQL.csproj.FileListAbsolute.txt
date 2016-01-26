@@ -1,0 +1,130 @@
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.dll
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.pdb
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.dll
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\MySql.Data.dll
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.pdb
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.Resource1.resources
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.dll
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.pdb
+E:\Projetos\pessoais\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.dll
+E:\Projetos\pessoais\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.pdb
+E:\Projetos\pessoais\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.dll
+E:\Projetos\pessoais\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\MySql.Data.dll
+E:\Projetos\pessoais\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.pdb
+E:\Projetos\pessoais\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csprojResolveAssemblyReference.cache
+E:\Projetos\pessoais\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.Resource1.resources
+E:\Projetos\pessoais\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csproj.GenerateResource.Cache
+E:\Projetos\pessoais\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.dll
+E:\Projetos\pessoais\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.pdb
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.dll
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.pdb
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.dll
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\MySql.Data.dll
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.pdb
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csprojResolveAssemblyReference.cache
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.Resource1.resources
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csproj.GenerateResource.Cache
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.dll
+C:\Backup Pendrive 37\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.pdb
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.dll
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.pdb
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.dll
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\MySql.Data.dll
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.pdb
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csprojResolveAssemblyReference.cache
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.Resource1.resources
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csproj.GenerateResource.Cache
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.dll
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.pdb
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.dll
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.pdb
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.dll
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\MySql.Data.dll
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.pdb
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csprojResolveAssemblyReference.cache
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.Resource1.resources
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csproj.GenerateResource.Cache
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.dll
+C:\Backup Pendrive 39\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.pdb
+C:\Backup Pendrive 42\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.dll
+C:\Backup Pendrive 42\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.pdb
+C:\Backup Pendrive 42\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.dll
+C:\Backup Pendrive 42\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\MySql.Data.dll
+C:\Backup Pendrive 42\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.pdb
+C:\Backup Pendrive 42\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csprojResolveAssemblyReference.cache
+C:\Backup Pendrive 42\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.Resource1.resources
+C:\Backup Pendrive 42\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csproj.GenerateResource.Cache
+C:\Backup Pendrive 42\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.dll
+C:\Backup Pendrive 42\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.pdb
+C:\Backup Pendrive 43\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.dll
+C:\Backup Pendrive 43\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.pdb
+C:\Backup Pendrive 43\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.dll
+C:\Backup Pendrive 43\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\MySql.Data.dll
+C:\Backup Pendrive 43\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.pdb
+C:\Backup Pendrive 43\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csprojResolveAssemblyReference.cache
+C:\Backup Pendrive 43\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.Resource1.resources
+C:\Backup Pendrive 43\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csproj.GenerateResource.Cache
+C:\Backup Pendrive 43\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.dll
+C:\Backup Pendrive 43\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.pdb
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csprojResolveAssemblyReference.cache
+G:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csproj.GenerateResource.Cache
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.dll
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.pdb
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.dll
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\MySql.Data.dll
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.pdb
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csprojResolveAssemblyReference.cache
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.Resource1.resources
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csproj.GenerateResource.Cache
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.dll
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.pdb
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.dll
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.pdb
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.dll
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\MySql.Data.dll
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.pdb
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csprojResolveAssemblyReference.cache
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.Resource1.resources
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csproj.GenerateResource.Cache
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.dll
+C:\Backup Pendrive 53\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.pdb
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.dll
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.pdb
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.dll
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\MySql.Data.dll
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.pdb
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csprojResolveAssemblyReference.cache
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.Resource1.resources
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csproj.GenerateResource.Cache
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.dll
+C:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.pdb
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.dll
+J:\Projetos\Pessoais\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.pdb
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.dll
+D:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.pdb
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.dll
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.pdb
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.dll
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.dll
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\MySql.Data.dll
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.pdb
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.pdb
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csprojResolveAssemblyReference.cache
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.Resource1.resources
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csproj.GenerateResource.Cache
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.dll
+E:\Gerador\3.0\DataDrain.ORM\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.pdb
+X:\gerador-camadas-master\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.dll
+X:\gerador-camadas-master\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.pdb
+X:\gerador-camadas-master\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.dll
+X:\gerador-camadas-master\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.dll
+X:\gerador-camadas-master\DataDrain.ORM.DAL.MySQL\bin\Debug\MySql.Data.dll
+X:\gerador-camadas-master\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.pdb
+X:\gerador-camadas-master\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.pdb
+X:\gerador-camadas-master\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csprojResolveAssemblyReference.cache
+X:\gerador-camadas-master\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.Resource1.resources
+X:\gerador-camadas-master\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csproj.GenerateResource.Cache
+X:\gerador-camadas-master\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.dll
+X:\gerador-camadas-master\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.pdb
+X:\gerador-camadas-master\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.MicroORM.dll
+X:\gerador-camadas-master\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.MicroORM.pdb
