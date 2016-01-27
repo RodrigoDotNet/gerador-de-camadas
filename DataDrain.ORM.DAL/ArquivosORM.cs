@@ -1,5 +1,7 @@
 ﻿using System.IO;
+using System.Linq;
 using DataDrain.ORM.DAL.Templates;
+using DataDrain.ORM.Interfaces.Objetos;
 
 namespace DataDrain.ORM.DAL
 {
@@ -10,12 +12,12 @@ namespace DataDrain.ORM.DAL
         /// </summary>
         /// <param name="caminho">caminho para gravação dos arquivos</param>
         /// <param name="strNamespace">NameSpace usado no projeto</param>
-        public static void GravaArquivosBaseOrm(string caminho, string strNamespace, string nomeProvider)
+        public static void GravaArquivosBaseOrm(ParametrosCriarProjetos parametro, string nomeProvider)
         {
-            GeraArquivosLINQ(caminho, nomeProvider, strNamespace);
-            GeraArquivosBLL(caminho, strNamespace);
-            GeraArquivosTO(caminho);
-            GeraArquivosInterface(caminho, strNamespace);
+            GeraArquivosLINQ(parametro, nomeProvider);
+            GeraArquivosBLL(parametro.CaminhoDestino, parametro.NameSpace);
+            GeraArquivosTO(parametro.CaminhoDestino);
+            GeraArquivosInterface(parametro.CaminhoDestino, parametro.NameSpace);
 
         }
 
@@ -36,11 +38,13 @@ namespace DataDrain.ORM.DAL
         private static void GeraArquivosBLL(string caminho, string strNamespace)
         {
             var validar = Template.RetornaValor("Validar");
+            var crudBaseBll = Template.RetornaValor("CrudBaseBLL");
 
             File.WriteAllText(string.Format("{0}\\BLL\\Validacao\\Validar.cs", caminho), validar.Value.Replace("TesteBLL.Validacao", string.Format("{0}BLL.Validacao", strNamespace)));
+            File.WriteAllText(string.Format("{0}\\BLL\\Base\\CrudBaseBLL.cs", caminho), crudBaseBll.Value.Replace("Corp", strNamespace));
         }
 
-        private static void GeraArquivosLINQ(string caminho, string nomeProvider, string strNamespace)
+        private static void GeraArquivosLINQ(ParametrosCriarProjetos parametro, string nomeProvider)
         {
 
             // ReSharper disable ResourceItemNotResolved
@@ -56,14 +60,16 @@ namespace DataDrain.ORM.DAL
             var ISqlFormatter = Template.RetornaValor("ISqlFormatter").Value;
             var provider = Template.RetornaValor(nomeProvider).Value;
 
-            var funcoesCrud = Template.RetornaValor("FuncoesCrud").Value;
+            var funcoesCrud = parametro.TiposObjetosAcaoBanco.Aggregate(Template.RetornaValor("FuncoesCrud").Value, (current, param) => current.Replace(param.Key, param.Value));
+
             var sqlLanguage = Template.RetornaValor("SqlLanguage").Value;
 
-            var crudBase = Template.RetornaValor("CrudBase").Value;
-            var singleton = Template.RetornaValor("Singleton").Value;
+            var crudBase = parametro.TiposObjetosAcaoBanco.Aggregate(Template.RetornaValor("CrudBase").Value, (current, param) => current.Replace(param.Key, param.Value));
+            var singleton = parametro.TiposObjetosAcaoBanco.Aggregate(Template.RetornaValor("Singleton").Value, (current, param) => current.Replace(param.Key, param.Value));
+            
             var eTipoConsulta = Template.RetornaValor("ETipoConsulta").Value;
-            var cmdMap = Template.RetornaValor("CmdMap").Value;
-            var transaction = Template.RetornaValor("Transaction").Value;
+            var cmdMap = parametro.TiposObjetosAcaoBanco.Aggregate(Template.RetornaValor("CmdMap").Value, (current, param) => current.Replace(param.Key, param.Value));
+            var transaction = parametro.TiposObjetosAcaoBanco.Aggregate(Template.RetornaValor("Transaction").Value, (current, param) => current.Replace(param.Key, param.Value));
 
             var fastInvoke = Template.RetornaValor("FastInvoke").Value;
             var mapExtension = Template.RetornaValor("MapExtension").Value;
@@ -74,36 +80,36 @@ namespace DataDrain.ORM.DAL
             var cachingProvider = Template.RetornaValor("ICachingProvider").Value;
 
 
-            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\TSqlORM\\DbExpressions.cs", caminho), dbExpressions);
-            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\TSqlORM\\DbExpressionVisitor.cs", caminho), dbExpressionVisitor);
-            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\TSqlORM\\ExpressionVisitor.cs", caminho), expressionVisitor);
-            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\TSqlORM\\QueryExecutor.cs", caminho), queryExecutor);
-            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\TSqlORM\\QueryLanguage.cs", caminho), queryLanguage);
-            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\TSqlORM\\QueryMapping.cs", caminho), queryMapping);
-            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\TSqlORM\\QueryTypeSystem.cs", caminho), queryTypeSystem);
-            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\TSqlORM\\SqlFormatter.cs", caminho), sqlFormatter);
+            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\TSqlORM\\DbExpressions.cs", parametro.CaminhoDestino), dbExpressions);
+            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\TSqlORM\\DbExpressionVisitor.cs", parametro.CaminhoDestino), dbExpressionVisitor);
+            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\TSqlORM\\ExpressionVisitor.cs", parametro.CaminhoDestino), expressionVisitor);
+            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\TSqlORM\\QueryExecutor.cs", parametro.CaminhoDestino), queryExecutor);
+            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\TSqlORM\\QueryLanguage.cs", parametro.CaminhoDestino), queryLanguage);
+            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\TSqlORM\\QueryMapping.cs", parametro.CaminhoDestino), queryMapping);
+            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\TSqlORM\\QueryTypeSystem.cs", parametro.CaminhoDestino), queryTypeSystem);
+            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\TSqlORM\\SqlFormatter.cs", parametro.CaminhoDestino), sqlFormatter);
 
-            File.WriteAllText(string.Format("{0}\\DAL\\ORM\\FastInvoke.cs", caminho), fastInvoke);
-            File.WriteAllText(string.Format("{0}\\DAL\\ORM\\MapExtension.cs", caminho), mapExtension);
-            File.WriteAllText(string.Format("{0}\\DAL\\ORM\\Caching\\CachingMannager.cs", caminho), cachingMannager);
-            File.WriteAllText(string.Format("{0}\\DAL\\ORM\\Caching\\Enuns\\ECacheAcao.cs", caminho), eCacheAcao);
-            File.WriteAllText(string.Format("{0}\\DAL\\ORM\\Caching\\Events\\CacheChangedEventArgs.cs", caminho), cacheChangedEventArgs);
-            File.WriteAllText(string.Format("{0}\\DAL\\ORM\\Caching\\Events\\CacheChangedEventHandler.cs", caminho), cacheChangedEventHandler);
-            File.WriteAllText(string.Format("{0}\\DAL\\ORM\\Caching\\Interfaces\\ICachingProvider.cs", caminho), cachingProvider);
+            File.WriteAllText(string.Format("{0}\\DAL\\ORM\\FastInvoke.cs", parametro.CaminhoDestino), fastInvoke);
+            File.WriteAllText(string.Format("{0}\\DAL\\ORM\\MapExtension.cs", parametro.CaminhoDestino), mapExtension);
+            File.WriteAllText(string.Format("{0}\\DAL\\ORM\\Caching\\CachingMannager.cs", parametro.CaminhoDestino), cachingMannager);
+            File.WriteAllText(string.Format("{0}\\DAL\\ORM\\Caching\\Enuns\\ECacheAcao.cs", parametro.CaminhoDestino), eCacheAcao);
+            File.WriteAllText(string.Format("{0}\\DAL\\ORM\\Caching\\Events\\CacheChangedEventArgs.cs", parametro.CaminhoDestino), cacheChangedEventArgs);
+            File.WriteAllText(string.Format("{0}\\DAL\\ORM\\Caching\\Events\\CacheChangedEventHandler.cs", parametro.CaminhoDestino), cacheChangedEventHandler);
+            File.WriteAllText(string.Format("{0}\\DAL\\ORM\\Caching\\Interfaces\\ICachingProvider.cs", parametro.CaminhoDestino), cachingProvider);
 
 
 
-            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\Factories\\ISqlFormatter.cs", caminho), ISqlFormatter.Replace("TesteDAL", string.Format("{0}DAL", strNamespace)));
-            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\Factories\\{1}.cs", caminho, nomeProvider), provider.Replace("TesteDAL", string.Format("{0}DAL", strNamespace)));
+            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\Factories\\ISqlFormatter.cs", parametro.CaminhoDestino), ISqlFormatter.Replace("TesteDAL", string.Format("{0}DAL", parametro.NameSpace)));
+            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\Factories\\{1}.cs", parametro.CaminhoDestino, nomeProvider), provider.Replace("TesteDAL", string.Format("{0}DAL", parametro.NameSpace)));
 
-            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\FuncoesCrud.cs", caminho), funcoesCrud.Replace("TesteDAL", string.Format("{0}DAL", strNamespace)));
-            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\SqlLanguage.cs", caminho), sqlLanguage.Replace("TesteDAL", string.Format("{0}DAL", strNamespace)));
+            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\FuncoesCrud.cs", parametro.CaminhoDestino), funcoesCrud.Replace("TesteDAL", string.Format("{0}DAL", parametro.NameSpace)));
+            File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\SqlLanguage.cs", parametro.CaminhoDestino), sqlLanguage.Replace("TesteDAL", string.Format("{0}DAL", parametro.NameSpace)));
 
-            File.WriteAllText(string.Format("{0}\\DAL\\Apoio\\Base\\CrudBase.cs", caminho), crudBase.Replace("TesteDAL", string.Format("{0}DAL", strNamespace)).Replace("{namespace}", strNamespace));
-            File.WriteAllText(string.Format("{0}\\DAL\\Apoio\\Conexao\\Singleton.cs", caminho), singleton.Replace("TesteDAL", string.Format("{0}DAL", strNamespace)));
-            File.WriteAllText(string.Format("{0}\\DAL\\Apoio\\Enumeradores\\ETipoConsulta.cs", caminho), eTipoConsulta.Replace("TesteDAL", string.Format("{0}DAL", strNamespace)));
-            File.WriteAllText(string.Format("{0}\\DAL\\Apoio\\CommandMap\\CmdMap.cs", caminho), cmdMap);
-            File.WriteAllText(string.Format("{0}\\DAL\\Apoio\\CommandMap\\Transaction.cs", caminho), transaction);
+            File.WriteAllText(string.Format("{0}\\DAL\\Apoio\\Base\\CrudBase.cs", parametro.CaminhoDestino), crudBase.Replace("TesteDAL", string.Format("{0}DAL", parametro.NameSpace)).Replace("{namespace}", parametro.NameSpace));
+            File.WriteAllText(string.Format("{0}\\DAL\\Apoio\\Conexao\\Singleton.cs", parametro.CaminhoDestino), singleton.Replace("TesteDAL", string.Format("{0}DAL", parametro.NameSpace)));
+            File.WriteAllText(string.Format("{0}\\DAL\\Apoio\\Enumeradores\\ETipoConsulta.cs", parametro.CaminhoDestino), eTipoConsulta.Replace("TesteDAL", string.Format("{0}DAL", parametro.NameSpace)));
+            File.WriteAllText(string.Format("{0}\\DAL\\Apoio\\CommandMap\\CmdMap.cs", parametro.CaminhoDestino), cmdMap);
+            File.WriteAllText(string.Format("{0}\\DAL\\Apoio\\CommandMap\\Transaction.cs", parametro.CaminhoDestino), transaction);
 
         }
     }

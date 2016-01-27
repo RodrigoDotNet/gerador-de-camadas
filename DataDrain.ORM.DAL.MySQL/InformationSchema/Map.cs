@@ -116,7 +116,8 @@ namespace DataDrain.ORM.DAL.MySQL.InformationSchema
                 {"IDbConnection", "MySqlConnection"}, 
                 {"IDbTransaction", "MySqlTransaction"}, 
                 {"IDbCommand", "MySqlCommand"},
-                {"IDbDataParameter", "MySqlParameter"}
+                {"IDbDataParameter", "MySqlParameter"},
+                {"usingIDb","MySql.Data.MySqlClient"}
             };
             }
         }

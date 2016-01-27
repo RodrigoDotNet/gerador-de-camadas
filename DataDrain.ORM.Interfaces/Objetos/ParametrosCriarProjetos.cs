@@ -8,6 +8,7 @@ namespace DataDrain.ORM.Interfaces.Objetos
         public ParametrosCriarProjetos()
         {
             VersaoFramework = "v4.5";
+            TiposObjetosAcaoBanco = new Dictionary<string, string>();
         }
 
         public string CaminhoDestino { get; set; }
@@ -21,5 +22,6 @@ namespace DataDrain.ORM.Interfaces.Objetos
         public string XmlLog4Net { get; set; }
         public bool MapWcf { get; set; }
         public bool MapLinq { get; set; }
+        public Dictionary<string, string> TiposObjetosAcaoBanco { get; set; }
     }
 }

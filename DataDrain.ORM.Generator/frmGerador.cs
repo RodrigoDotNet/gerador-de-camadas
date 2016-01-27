@@ -69,7 +69,7 @@ namespace DataDrain.ORM.Generator
         {
             InitializeComponent();
 
-            Historico = new HistoricoRegistro();
+            Historico = new HistoricoSqlite();
 
             _lvwColumnSorter = new ListViewColumnSorter();
             lvObjetosBanco.ListViewItemSorter = _lvwColumnSorter;
@@ -233,7 +233,8 @@ namespace DataDrain.ORM.Generator
                                 AssinarProjeto = chkGeraSN.Checked,
                                 XmlLog4Net = XmlLog4Net,
                                 MapWcf = chkMapWcf.Checked,
-                                MapLinq = chkMapLinq.Checked
+                                MapLinq = chkMapLinq.Checked,
+                                TiposObjetosAcaoBanco = Gerador.TiposObjetosAcaoBanco
                             });
 
                             CopiaDllLog(fb.SelectedPath);

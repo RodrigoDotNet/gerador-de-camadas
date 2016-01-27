@@ -14,6 +14,7 @@ namespace DataDrain.ORM.DAL
 
             Directory.CreateDirectory(string.Format("{0}\\BLL", caminho));
             Directory.CreateDirectory(string.Format("{0}\\BLL\\Validacao", caminho));
+            Directory.CreateDirectory(string.Format("{0}\\BLL\\Base", caminho));
             Directory.CreateDirectory(string.Format("{0}\\BLL\\Properties", caminho));
 
             Directory.CreateDirectory(string.Format("{0}\\DAL", caminho));

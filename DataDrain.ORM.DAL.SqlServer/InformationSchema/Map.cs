@@ -115,7 +115,8 @@ namespace DataDrain.ORM.DAL.SqlServer.InformationSchema
                 {"IDbConnection", "SqlConnection"}, 
                 {"IDbTransaction", "SqlTransaction"}, 
                 {"IDbCommand", "SqlCommand"},
-                {"IDbDataParameter", "SqlParameter"}
+                {"IDbDataParameter", "SqlParameter"},
+                {"usingIDb","System.Data.SqlClient"}
             };
             }
         }

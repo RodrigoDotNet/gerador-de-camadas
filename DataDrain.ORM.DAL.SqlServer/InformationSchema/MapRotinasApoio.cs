@@ -169,7 +169,7 @@ namespace DataDrain.ORM.DAL.SqlServer.InformationSchema
             try
             {
                 DiretoriosBase.Criar(parametros.CaminhoDestino);
-                ArquivosORM.GravaArquivosBaseOrm(parametros.CaminhoDestino, parametros.NameSpace, "SqlServerFormatter");
+                ArquivosORM.GravaArquivosBaseOrm(parametros, "SqlServerFormatter");
                 ArquivosObjetos.Log = !string.IsNullOrWhiteSpace(parametros.XmlLog4Net);
                 ArquivosObjetos.Gerar(parametros);
                 ArquivosProjeto.Gerar(parametros.CaminhoDestino, parametros.ObjetosMapeaveis, parametros.NameSpace, parametros.AssinarProjeto, parametros.GerarAppConfig, parametros.CaminhoStrongName, parametros.VersaoFramework, parametros.XmlLog4Net, "MySqlFormatter");
