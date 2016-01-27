@@ -25,16 +25,29 @@ namespace DataDrain.ORM.DAL.MySQL.InformationSchema
         /// <returns></returns>
         public List<DadosObjeto> ListaAllTables(string dataBaseName, DadosUsuario usr)
         {
+            var clsTables = new List<DadosObjeto>();
+
             using (var cnn = Conexao.RetornaConexaoBase(usr))
             {
                 cnn.Open();
-                var cmd = new MySqlCommand(string.Format("set global innodb_stats_on_metadata=0;SELECT 'tabela' as Tipo, `TABLES`.TABLE_NAME, `TABLES`.CREATE_TIME, ifnull(`TABLES`.UPDATE_TIME,`TABLES`.CREATE_TIME) as DataAlteracao,table_rows AS QtdRegistros FROM INFORMATION_SCHEMA.`TABLES` WHERE (`TABLES`.TABLE_SCHEMA = '{0}') AND (`TABLES`.TABLE_TYPE = 'BASE TABLE') ORDER BY `TABLES`.TABLE_NAME ASC;", dataBaseName), cnn);
+                var cmd = new MySqlCommand(string.Format("set global innodb_stats_on_metadata=0;SELECT `TABLES`.TABLE_NAME, `TABLES`.CREATE_TIME, ifnull(`TABLES`.UPDATE_TIME,`TABLES`.CREATE_TIME) as DataAlteracao,table_rows AS QtdRegistros FROM INFORMATION_SCHEMA.`TABLES` WHERE (`TABLES`.TABLE_SCHEMA = '{0}') AND (`TABLES`.TABLE_TYPE = 'BASE TABLE') ORDER BY `TABLES`.TABLE_NAME ASC;", dataBaseName), cnn);
 
                 using (var dr = cmd.ExecuteReader())
                 {
-                    return dr.MapToEntities<DadosObjeto>();
+                    while (dr.Read())
+                    {
+                        clsTables.Add(new DadosObjeto
+                        {
+                            Nome = dr[0].ToString(),
+                            DataCriacao = Convert.ToDateTime(dr[1]),
+                            DataAlteracao = Convert.ToDateTime(dr[2]),
+                            Tipo = "tabela",
+                            QtdRegistros = Convert.ToInt32(dr[3])
+                        });
+                    }
                 }
             }
+            return clsTables;
         }
 
         /// <summary>

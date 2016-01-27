@@ -128,3 +128,17 @@ X:\gerador-camadas-master\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.My
 X:\gerador-camadas-master\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.pdb
 X:\gerador-camadas-master\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.MicroORM.dll
 X:\gerador-camadas-master\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.MicroORM.pdb
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.pdb
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.MicroORM.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\bin\Debug\MySql.Data.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.MicroORM.pdb
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.pdb
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.Interfaces.pdb
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csprojResolveAssemblyReference.cache
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.Resource1.resources
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.csproj.GenerateResource.Cache
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\obj\Debug\DataDrain.ORM.DAL.MySQL.pdb

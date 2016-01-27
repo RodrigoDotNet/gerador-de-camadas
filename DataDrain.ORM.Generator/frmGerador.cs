@@ -113,7 +113,6 @@ namespace DataDrain.ORM.Generator
                         Usuario = txtUsuario.Text.Trim(),
                         Senha = txtSenha.Text.Trim().ToSecureString(),
                         Porta = txtPorta.Text.ToInt32(),
-                        DataBase = VerificaNomedataBase(),
                         TrustedConnection = chkTrustedConnection.Checked
                     };
 
@@ -146,7 +145,6 @@ namespace DataDrain.ORM.Generator
                     Usuario = txtUsuario.Text.Trim(),
                     Senha = txtSenha.Text.Trim().ToSecureString(),
                     Porta = txtPorta.Text.ToInt32(),
-                    DataBase = VerificaNomedataBase(),
                     MaquinaID = SerialProcessor,
                     TrustedConnection = chkTrustedConnection.Checked
                 };
@@ -281,7 +279,6 @@ namespace DataDrain.ORM.Generator
                                 Usuario = txtUsuario.Text.Trim(),
                                 Senha = txtSenha.Text.Trim().ToSecureString(),
                                 Porta = txtPorta.Text.ToInt32(),
-                                DataBase = VerificaNomedataBase(),
                                 MaquinaID = SerialProcessor,
                                 TrustedConnection = chkTrustedConnection.Checked
                             };
@@ -659,7 +656,6 @@ namespace DataDrain.ORM.Generator
                         Usuario = txtUsuario.Text.Trim(),
                         Senha = txtSenha.Text.Trim().ToSecureString(),
                         Porta = txtPorta.Text.ToInt32(),
-                        DataBase = VerificaNomedataBase(),
                         TrustedConnection = chkTrustedConnection.Checked
                     };
                 }
@@ -842,29 +838,6 @@ namespace DataDrain.ORM.Generator
 
                     lvObjetosSelecionados.Groups[grupo.Key.TipoObjeto].Header = string.Format("{0}{1} ({2})", nomePadrao, grupo.Key.Qtd > 1 ? "s" : "", grupo.Key.Qtd);
                 }
-            }
-        }
-
-        /// <summary>
-        /// Se o Gerador não suportar listagem de banco de dados permite a escolha do arquivo que represente o banco de dados
-        /// </summary>
-        /// <returns></returns>
-        private string VerificaNomedataBase()
-        {
-            var dados = Gerador.RotinasApoio.RetornaDialogPesquisa();
-
-            using (var fdo = new OpenFileDialog
-            {
-                Title = dados.Title,
-                Filter = dados.Filter,
-                InitialDirectory = dados.InitialDirectory,
-                CheckFileExists = dados.CheckFileExists,
-                CheckPathExists = dados.CheckPathExists,
-                FilterIndex = dados.FilterIndex,
-                Multiselect = dados.Multiselect
-            })
-            {
-                return fdo.ShowDialog(this) == DialogResult.OK ? fdo.FileName : "";
             }
         }
 

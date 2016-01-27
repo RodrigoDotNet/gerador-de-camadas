@@ -85,3 +85,14 @@ X:\gerador-camadas-master\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.In
 X:\gerador-camadas-master\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.pdb
 X:\gerador-camadas-master\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.pdb
 X:\gerador-camadas-master\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.DAL.pdb
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.SqlServer\bin\Debug\DataDrain.ORM.Interfaces.pdb
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csprojResolveAssemblyReference.cache
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.Resource1.resources
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csproj.GenerateResource.Cache
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.pdb

@@ -61,7 +61,7 @@ namespace DataDrain.ORM.Generator.Apoio.HistoricosConexao
             RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "Usuario", dadosLogin.Usuario.Trim());
             RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "Senha", _sh1.Criptografa(dadosLogin.Senha.ConvertToString()));
             RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "Servidor", dadosLogin.Servidor.Trim());
-            RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "DataBase", dadosLogin.DataBase.Trim());
+            RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "DataBase", "");
             RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "Porta", dadosLogin.Porta.ToString());
             RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "TrustedConnection", dadosLogin.TrustedConnection ? "true" : "false");
         }

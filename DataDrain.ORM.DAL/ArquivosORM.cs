@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using System.Resources;
 
@@ -30,12 +29,10 @@ namespace DataDrain.ORM.DAL
         {
 
             // ReSharper disable ResourceItemNotResolved
-            var entity = ((string)(rm.GetObject("IEntity")));
-            var StrongNamePermission = ((string)(rm.GetObject("StrongNamePermission")));
+            var strongNamePermission = ((string)(rm.GetObject("StrongNamePermission")));
             // ReSharper restore ResourceItemNotResolved
 
-            File.WriteAllText(string.Format("{0}\\Interfaces\\IEntity.cs", caminho), entity.Replace("{namespace}", strNamespace));
-            File.WriteAllText(string.Format("{0}\\Interfaces\\StrongNamePermission.cs", caminho), StrongNamePermission.Replace("{namespace}", strNamespace));
+            File.WriteAllText(string.Format("{0}\\Interfaces\\StrongNamePermission.cs", caminho), strongNamePermission.Replace("{namespace}", strNamespace));
 
         }
 

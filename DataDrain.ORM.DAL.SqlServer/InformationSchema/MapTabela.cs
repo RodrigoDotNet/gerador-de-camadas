@@ -23,7 +23,7 @@ namespace DataDrain.ORM.DAL.SqlServer.InformationSchema
         /// <returns></returns>
         public List<DadosObjeto> ListaAllTables(string dataBaseName, DadosUsuario usr)
         {
-            var clsTables=new List<DadosObjeto>();
+            var clsTables = new List<DadosObjeto>();
 
             using (var cnn = Conexao.RetornaConexaoBase(usr))
             {
