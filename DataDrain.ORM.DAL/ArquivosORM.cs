@@ -1,6 +1,5 @@
 ﻿using System.IO;
-using System.Reflection;
-using System.Resources;
+using DataDrain.ORM.DAL.Templates;
 
 namespace DataDrain.ORM.DAL
 {
@@ -13,86 +12,67 @@ namespace DataDrain.ORM.DAL
         /// <param name="strNamespace">NameSpace usado no projeto</param>
         public static void GravaArquivosBaseOrm(string caminho, string strNamespace, string nomeProvider)
         {
-
-            var assembly = Assembly.GetExecutingAssembly();
-            var nomesResources = assembly.GetManifestResourceNames();
-            var rm = new ResourceManager(nomesResources[0].Replace(".resources", string.Empty), assembly);
-
-            GeraArquivosLINQ(caminho, rm, nomeProvider, strNamespace);
-            GeraArquivosBLL(caminho, strNamespace, rm);
-            GeraArquivosTO(caminho, rm);
-            GeraArquivosInterface(caminho, strNamespace, rm);
+            GeraArquivosLINQ(caminho, nomeProvider, strNamespace);
+            GeraArquivosBLL(caminho, strNamespace);
+            GeraArquivosTO(caminho);
+            GeraArquivosInterface(caminho, strNamespace);
 
         }
 
-        private static void GeraArquivosInterface(string caminho, string strNamespace, ResourceManager rm)
+        private static void GeraArquivosInterface(string caminho, string strNamespace)
         {
+            var strongNamePermission = Template.RetornaValor("StrongNamePermission");
 
-            // ReSharper disable ResourceItemNotResolved
-            var strongNamePermission = ((string)(rm.GetObject("StrongNamePermission")));
-            // ReSharper restore ResourceItemNotResolved
-
-            File.WriteAllText(string.Format("{0}\\Interfaces\\StrongNamePermission.cs", caminho), strongNamePermission.Replace("{namespace}", strNamespace));
-
+            File.WriteAllText(string.Format("{0}\\Interfaces\\StrongNamePermission.cs", caminho), strongNamePermission.Value.Replace("{namespace}", strNamespace));
         }
 
-        private static void GeraArquivosTO(string caminho, ResourceManager rm)
+        private static void GeraArquivosTO(string caminho)
         {
+            var domainValidator = Template.RetornaValor("DomainValidator");
 
-            // ReSharper disable ResourceItemNotResolved
-            var domainValidator = ((string)(rm.GetObject("DomainValidator")));
-            // ReSharper restore ResourceItemNotResolved
-
-            File.WriteAllText(string.Format("{0}\\TO\\AttributeValidators\\DomainValidator.cs", caminho), domainValidator);
-
+            File.WriteAllText(string.Format("{0}\\TO\\AttributeValidators\\DomainValidator.cs", caminho), domainValidator.Value);
         }
 
-        private static void GeraArquivosBLL(string caminho, string strNamespace, ResourceManager rm)
+        private static void GeraArquivosBLL(string caminho, string strNamespace)
         {
+            var validar = Template.RetornaValor("Validar");
 
-            // ReSharper disable ResourceItemNotResolved
-            var validar = ((string)(rm.GetObject("Validar")));
-            // ReSharper restore ResourceItemNotResolved
-
-            File.WriteAllText(string.Format("{0}\\BLL\\Validacao\\Validar.cs", caminho), validar.Replace("TesteBLL.Validacao", string.Format("{0}BLL.Validacao", strNamespace)));
-
+            File.WriteAllText(string.Format("{0}\\BLL\\Validacao\\Validar.cs", caminho), validar.Value.Replace("TesteBLL.Validacao", string.Format("{0}BLL.Validacao", strNamespace)));
         }
 
-        private static void GeraArquivosLINQ(string caminho, ResourceManager rm, string nomeProvider, string strNamespace)
+        private static void GeraArquivosLINQ(string caminho, string nomeProvider, string strNamespace)
         {
 
             // ReSharper disable ResourceItemNotResolved
-            var dbExpressions = ((string)(rm.GetObject("DbExpressions")));
-            var dbExpressionVisitor = ((string)(rm.GetObject("DbExpressionVisitor")));
-            var expressionVisitor = ((string)(rm.GetObject("ExpressionVisitor")));
-            var queryExecutor = ((string)(rm.GetObject("QueryExecutor")));
-            var queryLanguage = ((string)(rm.GetObject("QueryLanguage")));
-            var queryMapping = ((string)(rm.GetObject("QueryMapping")));
-            var queryTypeSystem = ((string)(rm.GetObject("QueryTypeSystem")));
-            var sqlFormatter = ((string)(rm.GetObject("SqlFormatter")));
+            var dbExpressions = Template.RetornaValor("DbExpressions").Value;
+            var dbExpressionVisitor = Template.RetornaValor("DbExpressionVisitor").Value;
+            var expressionVisitor = Template.RetornaValor("ExpressionVisitor").Value;
+            var queryExecutor = Template.RetornaValor("QueryExecutor").Value;
+            var queryLanguage = Template.RetornaValor("QueryLanguage").Value;
+            var queryMapping = Template.RetornaValor("QueryMapping").Value;
+            var queryTypeSystem = Template.RetornaValor("QueryTypeSystem").Value;
+            var sqlFormatter = Template.RetornaValor("SqlFormatter").Value;
 
-            var ISqlFormatter = ((string)(rm.GetObject("ISqlFormatter")));
-            var provider = ((string)(rm.GetObject(nomeProvider)));
+            var ISqlFormatter = Template.RetornaValor("ISqlFormatter").Value;
+            var provider = Template.RetornaValor(nomeProvider).Value;
 
-            var funcoesCrud = ((string)(rm.GetObject("FuncoesCrud")));
-            var sqlLanguage = ((string)(rm.GetObject("SqlLanguage")));
+            var funcoesCrud = Template.RetornaValor("FuncoesCrud").Value;
+            var sqlLanguage = Template.RetornaValor("SqlLanguage").Value;
 
-            var crudBase = ((string)(rm.GetObject("CrudBase")));
-            var singleton = ((string)(rm.GetObject("Singleton")));
-            var eTipoConsulta = ((string)(rm.GetObject("ETipoConsulta")));
-            var cmdMap = ((string)(rm.GetObject("CmdMap")));
-            var transaction = ((string)(rm.GetObject("Transaction")));
+            var crudBase = Template.RetornaValor("CrudBase").Value;
+            var singleton = Template.RetornaValor("Singleton").Value;
+            var eTipoConsulta = Template.RetornaValor("ETipoConsulta").Value;
+            var cmdMap = Template.RetornaValor("CmdMap").Value;
+            var transaction = Template.RetornaValor("Transaction").Value;
 
-            var fastInvoke = ((string)(rm.GetObject("FastInvoke")));
-            var mapExtension = ((string)(rm.GetObject("MapExtension")));
-            var cachingMannager = ((string)(rm.GetObject("CachingMannager")));
-            var eCacheAcao = ((string)(rm.GetObject("ECacheAcao")));
-            var cacheChangedEventArgs = ((string)(rm.GetObject("CacheChangedEventArgs")));
-            var cacheChangedEventHandler = ((string)(rm.GetObject("CacheChangedEventHandler")));
-            var cachingProvider = ((string)(rm.GetObject("ICachingProvider")));
+            var fastInvoke = Template.RetornaValor("FastInvoke").Value;
+            var mapExtension = Template.RetornaValor("MapExtension").Value;
+            var cachingMannager = Template.RetornaValor("CachingMannager").Value;
+            var eCacheAcao = Template.RetornaValor("ECacheAcao").Value;
+            var cacheChangedEventArgs = Template.RetornaValor("CacheChangedEventArgs").Value;
+            var cacheChangedEventHandler = Template.RetornaValor("CacheChangedEventHandler").Value;
+            var cachingProvider = Template.RetornaValor("ICachingProvider").Value;
 
-
-            // ReSharper restore ResourceItemNotResolved
 
             File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\TSqlORM\\DbExpressions.cs", caminho), dbExpressions);
             File.WriteAllText(string.Format("{0}\\DAL\\DataDrain\\TSqlORM\\DbExpressionVisitor.cs", caminho), dbExpressionVisitor);

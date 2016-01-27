@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
-using System.Resources;
 using System.Text;
 using System.Text.RegularExpressions;
+using DataDrain.ORM.DAL.Templates;
 using DataDrain.ORM.Interfaces.Objetos;
 
 namespace DataDrain.ORM.DAL
@@ -84,11 +83,7 @@ namespace DataDrain.ORM.DAL
 
         internal static string RetornaTextoBase(string keyObj)
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            var nomesResources = assembly.GetManifestResourceNames();
-            var rm = new ResourceManager(nomesResources[0].Replace(".resources", string.Empty), assembly);
-            var texto = ((String)(rm.GetObject(keyObj)));
-            return texto;
+            return Template.RetornaValor(keyObj).Value;
         }
 
         private static void CriaPropriedades(List<DadosColunas> colunas, StringBuilder retorno, IEnumerable<DadosAssociation> listaFk, List<string> enumeradores, ParametrosCriarProjetos parametros)

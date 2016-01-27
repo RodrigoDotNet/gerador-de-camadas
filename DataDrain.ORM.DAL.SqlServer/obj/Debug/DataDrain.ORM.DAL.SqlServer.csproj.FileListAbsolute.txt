@@ -96,3 +96,6 @@ C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.SqlServ
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.csproj.GenerateResource.Cache
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.dll
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.SqlServer\obj\Debug\DataDrain.ORM.DAL.SqlServer.pdb
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.SqlServer\bin\Debug\data\axia.db
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.SqlServer\bin\Debug\System.Data.SQLite.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.SqlServer\bin\Debug\System.Data.SQLite.xml

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using DataDrain.ORM.Interfaces;
 using DataDrain.ORM.Interfaces.Objetos;
@@ -103,6 +104,22 @@ namespace DataDrain.ORM.DAL.MySQL.InformationSchema
             get { return MapeamentoProcedure != null; }
         }
 
+        /// <summary>
+        /// Lista dos objetos de conexão do provider
+        /// </summary>
+        public Dictionary<string, string> TiposObjetosAcaoBanco
+        {
+            get
+            {
+                return new Dictionary<string, string>
+            {
+                {"IDbConnection", "MySqlConnection"}, 
+                {"IDbTransaction", "MySqlTransaction"}, 
+                {"IDbCommand", "MySqlCommand"},
+                {"IDbDataParameter", "MySqlParameter"}
+            };
+            }
+        }
     }
 
 

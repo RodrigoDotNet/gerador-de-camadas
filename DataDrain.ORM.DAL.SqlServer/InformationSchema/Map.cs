@@ -103,6 +103,23 @@ namespace DataDrain.ORM.DAL.SqlServer.InformationSchema
             get { return MapeamentoProcedure != null; }
         }
 
+        /// <summary>
+        /// Lista dos objetos de conexão do provider
+        /// </summary>
+        public Dictionary<string, string> TiposObjetosAcaoBanco
+        {
+            get
+            {
+                return new Dictionary<string, string>
+            {
+                {"IDbConnection", "SqlConnection"}, 
+                {"IDbTransaction", "SqlTransaction"}, 
+                {"IDbCommand", "SqlCommand"},
+                {"IDbDataParameter", "SqlParameter"}
+            };
+            }
+        }
+
     }
 
 

@@ -34,3 +34,13 @@ X:\gerador-camadas-master\DataDrain.ORM.DAL\obj\Debug\DataDrain.ORM.DAL.Resource
 X:\gerador-camadas-master\DataDrain.ORM.DAL\obj\Debug\DataDrain.ORM.DAL.csproj.GenerateResource.Cache
 X:\gerador-camadas-master\DataDrain.ORM.DAL\obj\Debug\DataDrain.ORM.DAL.dll
 X:\gerador-camadas-master\DataDrain.ORM.DAL\obj\Debug\DataDrain.ORM.DAL.pdb
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL\bin\Debug\data\axia.db
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL\bin\Debug\DataDrain.ORM.DAL.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL\bin\Debug\DataDrain.ORM.DAL.pdb
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL\bin\Debug\DataDrain.ORM.Interfaces.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL\bin\Debug\System.Data.SQLite.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL\bin\Debug\DataDrain.ORM.Interfaces.pdb
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL\bin\Debug\System.Data.SQLite.xml
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL\obj\Debug\DataDrain.ORM.DAL.csprojResolveAssemblyReference.cache
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL\obj\Debug\DataDrain.ORM.DAL.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL\obj\Debug\DataDrain.ORM.DAL.pdb

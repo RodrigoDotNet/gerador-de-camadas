@@ -344,3 +344,6 @@ C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\o
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\obj\x86\Debug\DataDrain.ORM.Generator.TrustInfo.xml
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\obj\x86\Debug\DataDrain.ORM.Generator.exe.manifest
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\obj\x86\Debug\DataDrain.ORM.Generator.application
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\bin\Debug\data\axia.db
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\bin\Debug\System.Data.SQLite.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\bin\Debug\System.Data.SQLite.xml

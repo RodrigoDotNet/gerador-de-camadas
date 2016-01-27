@@ -24,5 +24,9 @@ namespace DataDrain.ORM.Interfaces
         bool CompativelMapeamentoView { get; }
 
         bool CompativelMapeamentoProcedure { get; }
+
+        Dictionary<string, string> TiposObjetosAcaoBanco { get; }
+
+
     }
 }

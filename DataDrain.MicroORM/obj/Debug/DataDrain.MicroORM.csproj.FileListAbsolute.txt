@@ -3,3 +3,8 @@ X:\gerador-camadas-master\DataDrain.MicroORM\bin\Debug\DataDrain.MicroORM.pdb
 X:\gerador-camadas-master\DataDrain.MicroORM\obj\Debug\DataDrain.MicroORM.dll
 X:\gerador-camadas-master\DataDrain.MicroORM\obj\Debug\DataDrain.MicroORM.pdb
 X:\gerador-camadas-master\DataDrain.MicroORM\obj\Debug\DataDrain.MicroORM.csprojResolveAssemblyReference.cache
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.MicroORM\bin\Debug\DataDrain.MicroORM.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.MicroORM\bin\Debug\DataDrain.MicroORM.pdb
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.MicroORM\obj\Debug\DataDrain.MicroORM.csprojResolveAssemblyReference.cache
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.MicroORM\obj\Debug\DataDrain.MicroORM.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.MicroORM\obj\Debug\DataDrain.MicroORM.pdb
