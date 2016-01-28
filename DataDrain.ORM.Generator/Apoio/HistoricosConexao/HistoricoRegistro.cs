@@ -17,7 +17,7 @@ namespace DataDrain.ORM.Generator.Apoio.HistoricosConexao
             _sh1=new GeraHashSha1();
         }
 
-        public override List<DadosUsuario> CarregaConexoes()
+        public override List<DadosUsuario> CarregaConexoes(string nomeProvedor)
         {
             var conexoes = RegistroWindows.RetornaTodasSubChaves(RegistroWindows.ChaveConexoes);
 
@@ -27,12 +27,13 @@ namespace DataDrain.ORM.Generator.Apoio.HistoricosConexao
                         {
                             ID = conexao,
                             Usuario = parametros.FirstOrDefault(p => p.Key == "Usuario").Value,
-                            Senha = _sh1.Descriptografa(parametros.FirstOrDefault(p => p.Key == "Senha").Value).ToSecureString(),
+                            Senha = _sh1.Descriptografa(parametros.FirstOrDefault(p => p.Key == "Senha").Value),
                             Servidor = parametros.FirstOrDefault(p => p.Key == "Servidor").Value,
                             DataBase = parametros.FirstOrDefault(p => p.Key == "DataBase").Value,
                             Porta = parametros.FirstOrDefault(p => p.Key == "Porta").Value.ToInt32(),
-                            TrustedConnection = parametros.FirstOrDefault(p => p.Key == "TrustedConnection").Value == "true"
-                        }).ToList();
+                            TrustedConnection = parametros.FirstOrDefault(p => p.Key == "TrustedConnection").Value == "true",
+                            NomeProvedor = parametros.FirstOrDefault(p => p.Key == "NomeProvedor").Value
+                        }).Where(p=>p.NomeProvedor == nomeProvedor).ToList();
         }
 
 
@@ -44,11 +45,10 @@ namespace DataDrain.ORM.Generator.Apoio.HistoricosConexao
             }
 
             
-            var conexoes = CarregaConexoes();
+            var conexoes = CarregaConexoes(dadosLogin.NomeProvedor);
 
             var conexao = conexoes.FirstOrDefault(c =>
                             c.Usuario == dadosLogin.Usuario &&
-                            c.Senha.SecureStringEqual(dadosLogin.Senha) &&
                             c.Servidor == dadosLogin.Servidor &&
                             c.DataBase == dadosLogin.DataBase &&
                             c.Porta == dadosLogin.Porta);
@@ -59,11 +59,12 @@ namespace DataDrain.ORM.Generator.Apoio.HistoricosConexao
             }
 
             RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "Usuario", dadosLogin.Usuario.Trim());
-            RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "Senha", _sh1.Criptografa(dadosLogin.Senha.ConvertToString()));
+            RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "Senha", _sh1.Criptografa(dadosLogin.Senha));
             RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "Servidor", dadosLogin.Servidor.Trim());
             RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "DataBase", "");
             RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "Porta", dadosLogin.Porta.ToString());
             RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "TrustedConnection", dadosLogin.TrustedConnection ? "true" : "false");
+            RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "NomeProvedor", dadosLogin.NomeProvedor);
         }
     }
 }

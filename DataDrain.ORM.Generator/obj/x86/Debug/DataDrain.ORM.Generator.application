@@ -14,14 +14,14 @@
     <framework targetVersion="4.0" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="DataDrain.ORM.Generator.exe.manifest" size="10352">
+    <dependentAssembly dependencyType="install" codebase="DataDrain.ORM.Generator.exe.manifest" size="11022">
       <assemblyIdentity name="DataDrain.ORM.Generator.exe" version="3.5.1.34" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>epfTO7tuwKb+2Jv4MlkJq0JsAL0=</dsig:DigestValue>
+        <dsig:DigestValue>V/jvjjbvKgPh66K9Sr8+xPL8+Ys=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -14,7 +14,7 @@ namespace DataDrain.ORM.Generator.Apoio.HistoricosConexao
 
     internal class HistoricoXml : HistoricoBase
     {
-        public override List<DadosUsuario> CarregaConexoes()
+        public override List<DadosUsuario> CarregaConexoes(string nomeProvedor)
         {
             try
             {
@@ -42,12 +42,13 @@ namespace DataDrain.ORM.Generator.Apoio.HistoricosConexao
                                                            Servidor = cnn.Element("servidor").Value,
                                                            DataBase = cnn.Element("database").Value,
                                                            Usuario = cnn.Element("usuario").Value,
-                                                           Senha = sh1.Descriptografa(cnn.Element("senha").Value.Trim()).ToSecureString(),
-                                                           Porta = cnn.Element("porta").ToString().ToInt32()
+                                                           Senha = sh1.Descriptografa(cnn.Element("senha").Value.Trim()),
+                                                           Porta = cnn.Element("porta").ToString().ToInt32(),
+                                                           NomeProvedor = cnn.Element("nomeProvedor").Value
                                                        });
                     }
                 }
-                return servidores;
+                return servidores.Where(p => p.NomeProvedor == nomeProvedor).ToList();
             }
             catch
             {
@@ -69,7 +70,7 @@ namespace DataDrain.ORM.Generator.Apoio.HistoricosConexao
 
             try
             {
-                if (ValidaExistente(CarregaConexoes(), dadosLogin))
+                if (ValidaExistente(CarregaConexoes(dadosLogin.NomeProvedor), dadosLogin))
                 {
                     var doc = XElement.Load(pathXml);
 
@@ -80,7 +81,7 @@ namespace DataDrain.ORM.Generator.Apoio.HistoricosConexao
 
                     foreach (var xe in singleBook)
                     {
-                        xe.SetElementValue("senha", sh1.Criptografa(dadosLogin.Senha.ConvertToString()));
+                        xe.SetElementValue("senha", sh1.Criptografa(dadosLogin.Senha));
                         xe.SetElementValue("data", XmlConvert.ToString(DateTime.Now, XmlDateTimeSerializationMode.Local));
                         //use the ReplaceContent method to do the replacement for all attribures
                         //this will remove all other attributes and save only the price attribute
@@ -108,13 +109,15 @@ namespace DataDrain.ORM.Generator.Apoio.HistoricosConexao
                     var usuario = xmlDoc.CreateElement("usuario");
                     var porta = xmlDoc.CreateElement("porta");
                     var senha = xmlDoc.CreateElement("senha");
+                    var nomeProvedor = xmlDoc.CreateElement("nomeProvedor");
 
                     maquinaId.AppendChild(xmlDoc.CreateTextNode(dadosLogin.MaquinaID));
                     servidor.AppendChild(xmlDoc.CreateTextNode(dadosLogin.Servidor));
                     database.AppendChild(xmlDoc.CreateTextNode(dadosLogin.DataBase));
                     usuario.AppendChild(xmlDoc.CreateTextNode(dadosLogin.Usuario));
-                    senha.AppendChild(xmlDoc.CreateTextNode(sh1.Criptografa(dadosLogin.Senha.ConvertToString())));
+                    senha.AppendChild(xmlDoc.CreateTextNode(sh1.Criptografa(dadosLogin.Senha)));
                     porta.AppendChild(xmlDoc.CreateTextNode(dadosLogin.Porta.ToString()));
+                    nomeProvedor.AppendChild(xmlDoc.CreateTextNode(dadosLogin.NomeProvedor));
 
                     var dataConexao = xmlDoc.CreateElement("data");
                     dataConexao.AppendChild(xmlDoc.CreateTextNode(XmlConvert.ToString(DateTime.Now, XmlDateTimeSerializationMode.Local)));
@@ -126,6 +129,7 @@ namespace DataDrain.ORM.Generator.Apoio.HistoricosConexao
                     conexao.AppendChild(usuario);
                     conexao.AppendChild(senha);
                     conexao.AppendChild(porta);
+                    conexao.AppendChild(nomeProvedor);
                     conexao.AppendChild(dataConexao);
 
                     if (existe)

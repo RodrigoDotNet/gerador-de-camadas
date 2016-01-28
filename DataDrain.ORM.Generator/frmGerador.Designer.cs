@@ -33,15 +33,15 @@ namespace DataDrain.ORM.Generator
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("Tabela", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup8 = new System.Windows.Forms.ListViewGroup("View", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("Procedure", System.Windows.Forms.HorizontalAlignment.Left);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGerador));
             System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Tabela", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("View", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Procedure", System.Windows.Forms.HorizontalAlignment.Left);
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGerador));
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Tabela", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("View", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("Procedure", System.Windows.Forms.HorizontalAlignment.Left);
             this.tbPrincipal = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tpConexao = new System.Windows.Forms.TabPage();
             this.chkTrustedConnection = new System.Windows.Forms.CheckBox();
             this.bntTestarConexao = new System.Windows.Forms.Button();
             this.bntAvancar = new System.Windows.Forms.Button();
@@ -54,7 +54,7 @@ namespace DataDrain.ORM.Generator
             this.label2 = new System.Windows.Forms.Label();
             this.txtServidor = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tpBancoDados = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.pbAcao = new System.Windows.Forms.ProgressBar();
@@ -65,7 +65,8 @@ namespace DataDrain.ORM.Generator
             this.btnMapearSelecionados = new System.Windows.Forms.Button();
             this.chSelecionarTodos = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tpMapeamento = new System.Windows.Forms.TabPage();
+            this.simpleButton1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chkMapWcf = new System.Windows.Forms.CheckBox();
             this.chkMapLinq = new System.Windows.Forms.CheckBox();
@@ -83,12 +84,11 @@ namespace DataDrain.ORM.Generator
             this.ilObjetos = new System.Windows.Forms.ImageList(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.bwDadosBanco = new System.ComponentModel.BackgroundWorker();
-            this.simpleButton1 = new System.Windows.Forms.Button();
             this.tbPrincipal.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tpConexao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
-            this.tabPage2.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            this.tpBancoDados.SuspendLayout();
+            this.tpMapeamento.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errPadrao)).BeginInit();
             this.SuspendLayout();
@@ -98,9 +98,9 @@ namespace DataDrain.ORM.Generator
             this.tbPrincipal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbPrincipal.Controls.Add(this.tabPage1);
-            this.tbPrincipal.Controls.Add(this.tabPage2);
-            this.tbPrincipal.Controls.Add(this.tabPage4);
+            this.tbPrincipal.Controls.Add(this.tpConexao);
+            this.tbPrincipal.Controls.Add(this.tpBancoDados);
+            this.tbPrincipal.Controls.Add(this.tpMapeamento);
             this.tbPrincipal.ImageList = this.imageList1;
             this.tbPrincipal.Location = new System.Drawing.Point(13, 13);
             this.tbPrincipal.Name = "tbPrincipal";
@@ -108,29 +108,31 @@ namespace DataDrain.ORM.Generator
             this.tbPrincipal.Size = new System.Drawing.Size(646, 275);
             this.tbPrincipal.TabIndex = 0;
             this.tbPrincipal.SelectedIndexChanged += new System.EventHandler(this.tbPrincipal_SelectedIndexChanged);
+            this.tbPrincipal.Selected += new System.Windows.Forms.TabControlEventHandler(this.tbPrincipal_Selected);
+            this.tbPrincipal.Deselected += new System.Windows.Forms.TabControlEventHandler(this.tbPrincipal_Deselected);
             // 
-            // tabPage1
+            // tpConexao
             // 
-            this.tabPage1.Controls.Add(this.chkTrustedConnection);
-            this.tabPage1.Controls.Add(this.bntTestarConexao);
-            this.tabPage1.Controls.Add(this.bntAvancar);
-            this.tabPage1.Controls.Add(this.txtPorta);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.pbLogo);
-            this.tabPage1.Controls.Add(this.txtSenha);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.txtUsuario);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.txtServidor);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.ImageIndex = 0;
-            this.tabPage1.Location = new System.Drawing.Point(4, 23);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(638, 248);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Conexão";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tpConexao.Controls.Add(this.chkTrustedConnection);
+            this.tpConexao.Controls.Add(this.bntTestarConexao);
+            this.tpConexao.Controls.Add(this.bntAvancar);
+            this.tpConexao.Controls.Add(this.txtPorta);
+            this.tpConexao.Controls.Add(this.label6);
+            this.tpConexao.Controls.Add(this.pbLogo);
+            this.tpConexao.Controls.Add(this.txtSenha);
+            this.tpConexao.Controls.Add(this.label3);
+            this.tpConexao.Controls.Add(this.txtUsuario);
+            this.tpConexao.Controls.Add(this.label2);
+            this.tpConexao.Controls.Add(this.txtServidor);
+            this.tpConexao.Controls.Add(this.label1);
+            this.tpConexao.ImageIndex = 0;
+            this.tpConexao.Location = new System.Drawing.Point(4, 23);
+            this.tpConexao.Name = "tpConexao";
+            this.tpConexao.Padding = new System.Windows.Forms.Padding(3);
+            this.tpConexao.Size = new System.Drawing.Size(638, 248);
+            this.tpConexao.TabIndex = 0;
+            this.tpConexao.Text = "Conexão";
+            this.tpConexao.UseVisualStyleBackColor = true;
             // 
             // chkTrustedConnection
             // 
@@ -252,25 +254,25 @@ namespace DataDrain.ORM.Generator
             this.label1.TabIndex = 0;
             this.label1.Text = "Servidor:";
             // 
-            // tabPage2
+            // tpBancoDados
             // 
-            this.tabPage2.Controls.Add(this.label8);
-            this.tabPage2.Controls.Add(this.txtBuscar);
-            this.tabPage2.Controls.Add(this.pbAcao);
-            this.tabPage2.Controls.Add(this.bntRefreshDatabase);
-            this.tabPage2.Controls.Add(this.cbBancoDados);
-            this.tabPage2.Controls.Add(this.lvObjetosBanco);
-            this.tabPage2.Controls.Add(this.btnMapearSelecionados);
-            this.tabPage2.Controls.Add(this.chSelecionarTodos);
-            this.tabPage2.Controls.Add(this.label4);
-            this.tabPage2.ImageIndex = 1;
-            this.tabPage2.Location = new System.Drawing.Point(4, 23);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(638, 248);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Bancos de Dados";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tpBancoDados.Controls.Add(this.label8);
+            this.tpBancoDados.Controls.Add(this.txtBuscar);
+            this.tpBancoDados.Controls.Add(this.pbAcao);
+            this.tpBancoDados.Controls.Add(this.bntRefreshDatabase);
+            this.tpBancoDados.Controls.Add(this.cbBancoDados);
+            this.tpBancoDados.Controls.Add(this.lvObjetosBanco);
+            this.tpBancoDados.Controls.Add(this.btnMapearSelecionados);
+            this.tpBancoDados.Controls.Add(this.chSelecionarTodos);
+            this.tpBancoDados.Controls.Add(this.label4);
+            this.tpBancoDados.ImageIndex = 1;
+            this.tpBancoDados.Location = new System.Drawing.Point(4, 23);
+            this.tpBancoDados.Name = "tpBancoDados";
+            this.tpBancoDados.Padding = new System.Windows.Forms.Padding(3);
+            this.tpBancoDados.Size = new System.Drawing.Size(638, 248);
+            this.tpBancoDados.TabIndex = 1;
+            this.tpBancoDados.Text = "Bancos de Dados";
+            this.tpBancoDados.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
@@ -316,16 +318,16 @@ namespace DataDrain.ORM.Generator
             // lvObjetosBanco
             // 
             this.lvObjetosBanco.FullRowSelect = true;
-            listViewGroup7.Header = "Tabela";
-            listViewGroup7.Name = "tabela";
-            listViewGroup8.Header = "View";
-            listViewGroup8.Name = "view";
-            listViewGroup9.Header = "Procedure";
-            listViewGroup9.Name = "procedure";
+            listViewGroup1.Header = "Tabela";
+            listViewGroup1.Name = "tabela";
+            listViewGroup2.Header = "View";
+            listViewGroup2.Name = "view";
+            listViewGroup3.Header = "Procedure";
+            listViewGroup3.Name = "procedure";
             this.lvObjetosBanco.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup7,
-            listViewGroup8,
-            listViewGroup9});
+            listViewGroup1,
+            listViewGroup2,
+            listViewGroup3});
             this.lvObjetosBanco.Location = new System.Drawing.Point(10, 61);
             this.lvObjetosBanco.Name = "lvObjetosBanco";
             this.lvObjetosBanco.OwnerDraw = true;
@@ -384,23 +386,33 @@ namespace DataDrain.ORM.Generator
             this.label4.TabIndex = 0;
             this.label4.Text = "Bancos de Dados:";
             // 
-            // tabPage4
+            // tpMapeamento
             // 
-            this.tabPage4.Controls.Add(this.simpleButton1);
-            this.tabPage4.Controls.Add(this.groupBox2);
-            this.tabPage4.Controls.Add(this.btnMapear);
-            this.tabPage4.Controls.Add(this.lvObjetosSelecionados);
-            this.tabPage4.Controls.Add(this.txtNameSpace);
-            this.tabPage4.Controls.Add(this.label7);
-            this.tabPage4.Controls.Add(this.label5);
-            this.tabPage4.ImageIndex = 3;
-            this.tabPage4.Location = new System.Drawing.Point(4, 23);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(638, 248);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Mapeamento";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tpMapeamento.Controls.Add(this.simpleButton1);
+            this.tpMapeamento.Controls.Add(this.groupBox2);
+            this.tpMapeamento.Controls.Add(this.btnMapear);
+            this.tpMapeamento.Controls.Add(this.lvObjetosSelecionados);
+            this.tpMapeamento.Controls.Add(this.txtNameSpace);
+            this.tpMapeamento.Controls.Add(this.label7);
+            this.tpMapeamento.Controls.Add(this.label5);
+            this.tpMapeamento.ImageIndex = 3;
+            this.tpMapeamento.Location = new System.Drawing.Point(4, 23);
+            this.tpMapeamento.Name = "tpMapeamento";
+            this.tpMapeamento.Padding = new System.Windows.Forms.Padding(3);
+            this.tpMapeamento.Size = new System.Drawing.Size(638, 248);
+            this.tpMapeamento.TabIndex = 3;
+            this.tpMapeamento.Text = "Mapeamento";
+            this.tpMapeamento.UseVisualStyleBackColor = true;
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
+            this.simpleButton1.Location = new System.Drawing.Point(595, 7);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(38, 38);
+            this.simpleButton1.TabIndex = 4;
+            this.simpleButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // groupBox2
             // 
@@ -480,16 +492,16 @@ namespace DataDrain.ORM.Generator
             // 
             // lvObjetosSelecionados
             // 
-            listViewGroup1.Header = "Tabela";
-            listViewGroup1.Name = "Tabela";
-            listViewGroup2.Header = "View";
-            listViewGroup2.Name = "View";
-            listViewGroup3.Header = "Procedure";
-            listViewGroup3.Name = "Procedure";
+            listViewGroup4.Header = "Tabela";
+            listViewGroup4.Name = "Tabela";
+            listViewGroup5.Header = "View";
+            listViewGroup5.Name = "View";
+            listViewGroup6.Header = "Procedure";
+            listViewGroup6.Name = "Procedure";
             this.lvObjetosSelecionados.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2,
-            listViewGroup3});
+            listViewGroup4,
+            listViewGroup5,
+            listViewGroup6});
             this.lvObjetosSelecionados.Location = new System.Drawing.Point(10, 26);
             this.lvObjetosSelecionados.Name = "lvObjetosSelecionados";
             this.lvObjetosSelecionados.Size = new System.Drawing.Size(181, 161);
@@ -564,16 +576,6 @@ namespace DataDrain.ORM.Generator
             this.bwDadosBanco.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bwDadosBanco_ProgressChanged);
             this.bwDadosBanco.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwDadosBanco_RunWorkerCompleted);
             // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(595, 7);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(38, 38);
-            this.simpleButton1.TabIndex = 4;
-            this.simpleButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
-            // 
             // frmGerador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -589,13 +591,13 @@ namespace DataDrain.ORM.Generator
             this.Text = "Data Drain ORM";
             this.Load += new System.EventHandler(this.frmGerador_Load);
             this.tbPrincipal.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.tpConexao.ResumeLayout(false);
+            this.tpConexao.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
+            this.tpBancoDados.ResumeLayout(false);
+            this.tpBancoDados.PerformLayout();
+            this.tpMapeamento.ResumeLayout(false);
+            this.tpMapeamento.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errPadrao)).EndInit();
@@ -607,15 +609,15 @@ namespace DataDrain.ORM.Generator
         #endregion
 
         private System.Windows.Forms.TabControl tbPrincipal;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tpConexao;
         private TextBox txtSenha;
         private Label label3;
         private System.Windows.Forms.TextBox txtUsuario;
         private Label label2;
         private System.Windows.Forms.TextBox txtServidor;
         private Label label1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tpBancoDados;
+        private System.Windows.Forms.TabPage tpMapeamento;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ErrorProvider errPadrao;
         private Label label4;

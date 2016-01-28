@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Management;
 using System.Reflection;
 using System.Security.AccessControl;
 using System.Security.Principal;
@@ -61,6 +62,10 @@ namespace DataDrain.ORM.Generator
 
         private List<DadosObjeto> _dadosObjetos = new List<DadosObjeto>();
 
+        private TabPage PreviousTab;
+
+        private TabPage CurrentTab;
+
         #endregion
 
         #region Load
@@ -104,14 +109,14 @@ namespace DataDrain.ORM.Generator
 
         private void bntTestarConexao_Click(object sender, EventArgs e)
         {
-            if (!errPadrao.HasErrors(tabPage1))
+            if (!errPadrao.HasErrors(tpConexao))
             {
                 Cursor = Cursors.WaitCursor;
                 var dl = new DadosUsuario
                     {
                         Servidor = txtServidor.Text.Trim(),
                         Usuario = txtUsuario.Text.Trim(),
-                        Senha = txtSenha.Text.Trim().ToSecureString(),
+                        Senha = txtSenha.Text.Trim(),
                         Porta = txtPorta.Text.ToInt32(),
                         TrustedConnection = chkTrustedConnection.Checked
                     };
@@ -137,21 +142,20 @@ namespace DataDrain.ORM.Generator
 
         private void bntAvancar_Click(object sender, EventArgs e)
         {
-            if (!errPadrao.HasErrors(tabPage1))
+            if (!errPadrao.HasErrors(tpConexao))
             {
                 DadosLogin = new DadosUsuario
                 {
                     Servidor = txtServidor.Text.Trim(),
                     Usuario = txtUsuario.Text.Trim(),
-                    Senha = txtSenha.Text.Trim().ToSecureString(),
+                    Senha = txtSenha.Text.Trim(),
                     Porta = txtPorta.Text.ToInt32(),
                     MaquinaID = SerialProcessor,
-                    TrustedConnection = chkTrustedConnection.Checked
+                    TrustedConnection = chkTrustedConnection.Checked,
+                    NomeProvedor = Gerador.GetType().FullName
                 };
 
-                Historico.SalvaConexao(DadosLogin);
-
-                tbPrincipal.SelectTab(tabPage2);
+                tbPrincipal.SelectTab(tpBancoDados);
             }
             else
             {
@@ -268,9 +272,9 @@ namespace DataDrain.ORM.Generator
                 {
                     case 0:
                     case 1:
-                        if (errPadrao.HasErrors(tabPage1))
+                        if (errPadrao.HasErrors(tpConexao))
                         {
-                            tbPrincipal.SelectTab(tabPage1);
+                            tbPrincipal.SelectTab(tpConexao);
                         }
                         else
                         {
@@ -278,15 +282,19 @@ namespace DataDrain.ORM.Generator
                             {
                                 Servidor = txtServidor.Text.Trim(),
                                 Usuario = txtUsuario.Text.Trim(),
-                                Senha = txtSenha.Text.Trim().ToSecureString(),
+                                Senha = txtSenha.Text.Trim(),
                                 Porta = txtPorta.Text.ToInt32(),
                                 MaquinaID = SerialProcessor,
-                                TrustedConnection = chkTrustedConnection.Checked
+                                TrustedConnection = chkTrustedConnection.Checked,
+                                NomeProvedor = Gerador.GetType().FullName
                             };
 
-                            Historico.SalvaConexao(DadosLogin);
+                            if (PreviousTab == tpConexao)
+                            {
+                                Historico.SalvaConexao(DadosLogin);
+                            }
 
-                            if (tbPrincipal.SelectedTab == tabPage2)
+                            if (tbPrincipal.SelectedTab == tpBancoDados)
                             {
                                 _objetosSelecionados = new List<KeyValuePair<TipoObjetoBanco, List<DadosColunas>>>();
                             }
@@ -510,6 +518,21 @@ namespace DataDrain.ORM.Generator
             txtSenha.Enabled = !chkTrustedConnection.Checked;
         }
 
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            CarregaListaObjetos(txtBuscar.Text);
+        }
+
+        private void tbPrincipal_Deselected(object sender, TabControlEventArgs e)
+        {
+            PreviousTab = e.TabPage;
+        }
+
+        private void tbPrincipal_Selected(object sender, TabControlEventArgs e)
+        {
+            CurrentTab = e.TabPage;
+        }
+
         #endregion
 
         #region AutoComplete
@@ -520,7 +543,7 @@ namespace DataDrain.ORM.Generator
             {
                 txtUsuario.AutoCompleteMode = AutoCompleteMode.Suggest;
                 txtUsuario.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                txtUsuario.AutoCompleteCustomSource = Historico.RetornaNomeLogins(txtServidor.Text);
+                txtUsuario.AutoCompleteCustomSource = Historico.RetornaNomeLogins(txtServidor.Text, Gerador.GetType().FullName);
             }
         }
 
@@ -528,8 +551,61 @@ namespace DataDrain.ORM.Generator
         {
             if (string.IsNullOrWhiteSpace(txtUsuario.Text))
             {
-                txtSenha.Text = Historico.RetornaSenhaLogins(txtServidor.Text, txtUsuario.Text);
+                txtSenha.Text = Historico.RetornaSenhaLogins(txtServidor.Text, txtUsuario.Text, Gerador.GetType().FullName);
             }
+        }
+
+        private void chkOpcao_CheckedChanged(object sender, EventArgs e)
+        {
+            var chk = sender as CheckBox;
+
+            if (chk != null)
+            {
+                RegistroWindows.GravaValor(chk.Name, chk.Checked.ToString());
+            }
+        }
+
+        private void bwDadosBanco_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            pbAcao.Visible = true;
+            pbAcao.Value = e.ProgressPercentage;
+        }
+
+        private void bwDadosBanco_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+            {
+                MessageBox.Show("Ação cancelada pelo usuario.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                pbAcao.Visible = false;
+                return;
+            }
+
+            if (e.Error != null)
+            {
+                MessageBox.Show(e.Error.Message, e.Error.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                pbAcao.Visible = false;
+                return;
+            }
+
+            var objetos = e.Result as List<DadosObjeto>;
+
+            if (objetos == null)
+            {
+                MessageBox.Show("Não foi possivel recuperar a listagem de objetos.\nConsulte as permissões do usuario.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                pbAcao.Visible = false;
+                return;
+            }
+
+            _dadosObjetos = objetos;
+
+            CarregaListaObjetos();
+
+            pbAcao.Visible = false;
+        }
+
+        private void bwDadosBanco_DoWork(object sender, DoWorkEventArgs e)
+        {
+            CarregaObjetosBanco(e);
         }
 
         #endregion
@@ -630,7 +706,7 @@ namespace DataDrain.ORM.Generator
         {
             txtServidor.AutoCompleteMode = AutoCompleteMode.Suggest;
             txtServidor.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            txtServidor.AutoCompleteCustomSource = Historico.RetornaNomeServidores();
+            txtServidor.AutoCompleteCustomSource = Historico.RetornaNomeServidores(Gerador.GetType().FullName);
             txtServidor.Focus();
         }
 
@@ -655,7 +731,7 @@ namespace DataDrain.ORM.Generator
                     {
                         Servidor = txtServidor.Text.Trim(),
                         Usuario = txtUsuario.Text.Trim(),
-                        Senha = txtSenha.Text.Trim().ToSecureString(),
+                        Senha = txtSenha.Text.Trim(),
                         Porta = txtPorta.Text.ToInt32(),
                         TrustedConnection = chkTrustedConnection.Checked
                     };
@@ -844,7 +920,24 @@ namespace DataDrain.ORM.Generator
 
         private void RetornaNomeProvider()
         {
-            SerialProcessor = Gerador.ToString();
+            try
+            {
+                const string computerName = "localhost";
+                var scope = new ManagementScope(String.Format("\\\\{0}\\root\\CIMV2", computerName), null);
+                scope.Connect();
+                var query = new ObjectQuery("SELECT UUID FROM Win32_ComputerSystemProduct");
+                var searcher = new ManagementObjectSearcher(scope, query);
+
+                foreach (var wmiObject in searcher.Get().Cast<ManagementObject>())
+                {
+                    SerialProcessor = wmiObject["UUID"].ToString();
+                }
+            }
+            catch (Exception)
+            {
+
+                SerialProcessor = Guid.NewGuid().ToString("D").ToUpper();
+            }
         }
 
 
@@ -872,56 +965,6 @@ namespace DataDrain.ORM.Generator
             }
 
             return !di.Attributes.HasFlag(FileAttributes.ReadOnly);
-        }
-
-        #endregion
-
-        private void chkOpcao_CheckedChanged(object sender, EventArgs e)
-        {
-            var chk = sender as CheckBox;
-
-            if (chk != null)
-            {
-                RegistroWindows.GravaValor(chk.Name, chk.Checked.ToString());
-            }
-        }
-
-        private void bwDadosBanco_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            pbAcao.Visible = true;
-            pbAcao.Value = e.ProgressPercentage;
-        }
-
-        private void bwDadosBanco_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (e.Cancelled)
-            {
-                MessageBox.Show("Ação cancelada pelo usuario.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                pbAcao.Visible = false;
-                return;
-            }
-
-            if (e.Error != null)
-            {
-                MessageBox.Show(e.Error.Message, e.Error.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                pbAcao.Visible = false;
-                return;
-            }
-
-            var objetos = e.Result as List<DadosObjeto>;
-
-            if (objetos == null)
-            {
-                MessageBox.Show("Não foi possivel recuperar a listagem de objetos.\nConsulte as permissões do usuario.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                pbAcao.Visible = false;
-                return;
-            }
-
-            _dadosObjetos = objetos;
-
-            CarregaListaObjetos();
-
-            pbAcao.Visible = false;
         }
 
         private void CarregaListaObjetos(string busca = null)
@@ -962,14 +1005,8 @@ namespace DataDrain.ORM.Generator
             }
         }
 
-        private void bwDadosBanco_DoWork(object sender, DoWorkEventArgs e)
-        {
-            CarregaObjetosBanco(e);
-        }
+        #endregion
 
-        private void txtBuscar_TextChanged(object sender, EventArgs e)
-        {
-            CarregaListaObjetos(txtBuscar.Text);
-        }
+
     }
 }

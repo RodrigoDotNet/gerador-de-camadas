@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using DataDrain.Mapping;
 using DataDrain.ORM.Generator.Apoio.Base;
 using DataDrain.ORM.Interfaces;
 using DataDrain.ORM.Interfaces.Objetos;
@@ -9,30 +13,30 @@ namespace DataDrain.ORM.Generator.Apoio.HistoricosConexao
 {
     internal class HistoricoSqlite : HistoricoBase
     {
-        private const string StrConnection = @"Data Source=data\axia.db; Version=3; FailIfMissing=True; Foreign Keys=True;";
+        private readonly string _strConnection = string.Format(@"Data Source={0}data\axia.db; Version=3;", AppDomain.CurrentDomain.BaseDirectory);
         private readonly GeraHashSha1 _sh1;
 
         public HistoricoSqlite()
         {
             _sh1 = new GeraHashSha1();
+            string exeDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            Directory.SetCurrentDirectory(exeDir);
         }
 
-        public override List<DadosUsuario> CarregaConexoes()
+        public override List<DadosUsuario> CarregaConexoes(string nomeProvedor)
         {
-            var conexoes = RegistroWindows.RetornaTodasSubChaves(RegistroWindows.ChaveConexoes);
+            using (var cnn = new SQLiteConnection(_strConnection))
+            {
+                var cmd = cnn.CreateCommand();
+                cmd.CommandText = "SELECT * FROM HistoricoConexao WHERE Provider = @nomeProvedor;";
+                cmd.Parameters.AddWithValue("nomeProvedor", nomeProvedor);
+                cnn.Open();
 
-            return (from conexao in conexoes
-                    let parametros = RegistroWindows.RetornaTodosValoresChave(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, conexao))
-                    select new DadosUsuario
-                    {
-                        ID = conexao,
-                        Usuario = parametros.FirstOrDefault(p => p.Key == "Usuario").Value,
-                        Senha = _sh1.Descriptografa(parametros.FirstOrDefault(p => p.Key == "Senha").Value).ToSecureString(),
-                        Servidor = parametros.FirstOrDefault(p => p.Key == "Servidor").Value,
-                        DataBase = parametros.FirstOrDefault(p => p.Key == "DataBase").Value,
-                        Porta = parametros.FirstOrDefault(p => p.Key == "Porta").Value.ToInt32(),
-                        TrustedConnection = parametros.FirstOrDefault(p => p.Key == "TrustedConnection").Value == "true"
-                    }).ToList();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    return dr.MapToEntities<DadosUsuario>();
+                }
+            }
         }
 
 
@@ -40,30 +44,62 @@ namespace DataDrain.ORM.Generator.Apoio.HistoricosConexao
         {
             if (dadosLogin == null || string.IsNullOrWhiteSpace(dadosLogin.ID))
             {
-                throw new ArgumentNullException("dadosLogin", "ID do canexão não pode ser nulo ou vazio");
+                return;
             }
 
-
-            var conexoes = CarregaConexoes();
-
-            var conexao = conexoes.FirstOrDefault(c =>
-                            c.Usuario == dadosLogin.Usuario &&
-                            c.Senha.SecureStringEqual(dadosLogin.Senha) &&
-                            c.Servidor == dadosLogin.Servidor &&
-                            c.DataBase == dadosLogin.DataBase &&
-                            c.Porta == dadosLogin.Porta);
-
-            if (conexao != null)
+            using (var cnn = new SQLiteConnection(_strConnection))
             {
-                dadosLogin.ID = conexao.ID;
-            }
+                var cmd = cnn.CreateCommand();
+                cmd.CommandText = @"SELECT * FROM HistoricoConexao 
+                                    WHERE Provider = @nomeProvedor 
+                                    AND Usuario = @usuario
+                                    AND Servidor = @servidor
+                                    AND Porta = @porta;";
 
-            RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "Usuario", dadosLogin.Usuario.Trim());
-            RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "Senha", _sh1.Criptografa(dadosLogin.Senha.ConvertToString()));
-            RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "Servidor", dadosLogin.Servidor.Trim());
-            RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "DataBase", "");
-            RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "Porta", dadosLogin.Porta.ToString());
-            RegistroWindows.GravaValor(string.Format("{0}\\{1}", RegistroWindows.ChaveConexoes, dadosLogin.ID), "TrustedConnection", dadosLogin.TrustedConnection ? "true" : "false");
+                cmd.Parameters.AddWithValue("nomeProvedor", dadosLogin.NomeProvedor);
+                cmd.Parameters.AddWithValue("usuario", dadosLogin.Usuario);
+                cmd.Parameters.AddWithValue("servidor", dadosLogin.Servidor);
+                cmd.Parameters.AddWithValue("porta", dadosLogin.Porta);
+
+                cnn.Open();
+
+                DadosUsuario dadosConexao;
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    dadosConexao = dr.MapToEntities<DadosUsuario>().FirstOrDefault();
+
+                    if (dadosConexao != null)
+                    {
+                        dadosConexao.Senha = _sh1.Descriptografa(dadosConexao.Senha);
+                    }
+                }
+
+                if (dadosConexao == null)
+                {
+                    cmd.CommandText = @"INSERT INTO HistoricoConexao (ID, MaquinaID, Usuario, Senha, Servidor, [DataBase], Porta, TrustedConnection, Provider)  
+                                        VALUES (@id, @maquinaID, @usuario, @senha, @servidor, @db, @porta, @trustedConnection, @nomeProvedor);";
+                    cmd.Parameters.AddWithValue("id", dadosLogin.ID);
+                    cmd.Parameters.AddWithValue("maquinaID", dadosLogin.MaquinaID);
+                    cmd.Parameters.AddWithValue("senha", _sh1.Criptografa(dadosLogin.Senha));
+                    cmd.Parameters.AddWithValue("db", dadosLogin.DataBase);
+                    cmd.Parameters.AddWithValue("trustedConnection", dadosLogin.TrustedConnection);
+
+                    cmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    cmd.CommandText = @"UPDATE HistoricoConexao SET MaquinaID = @maquinaID, Usuario = @usuario, Senha = @senha, Servidor = @servidor, [DataBase] = @db, Porta = @porta, TrustedConnection = @trustedConnection, Provider = @nomeProvedor
+                                        WHERE ID = @id;";
+                    cmd.Parameters.AddWithValue("id", dadosLogin.ID);
+                    cmd.Parameters.AddWithValue("maquinaID", dadosLogin.MaquinaID);
+                    cmd.Parameters.AddWithValue("senha", _sh1.Criptografa(dadosLogin.Senha));
+                    cmd.Parameters.AddWithValue("db", dadosLogin.DataBase);
+                    cmd.Parameters.AddWithValue("trustedConnection", dadosLogin.TrustedConnection);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

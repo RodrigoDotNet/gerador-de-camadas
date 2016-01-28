@@ -79,7 +79,6 @@ namespace DataDrain.ORM.DAL
             assemblyInterface = assemblyInterface.Replace("[namespace]", nameSpace);
             assemblyInterface = assemblyInterface.Replace("[guid]", guidProjInterface);
 
-
             File.WriteAllText(string.Format("{0}\\Interfaces\\{1}Interfaces.csproj", caminho, nameSpace), projInterface);
             File.WriteAllText(string.Format("{0}\\Interfaces\\Properties\\AssemblyInfo.cs", caminho), assemblyInterface);
 

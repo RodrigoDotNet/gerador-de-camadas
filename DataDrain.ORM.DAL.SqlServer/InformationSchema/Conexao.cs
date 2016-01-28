@@ -14,7 +14,7 @@ namespace DataDrain.ORM.DAL.SqlServer.InformationSchema
         {
             return usr.TrustedConnection
                 ? new SqlConnection(string.Format(TrustedStringConnection, usr.Servidor, usr.DataBase))
-                : new SqlConnection(string.Format(StringConnection, usr.Servidor, usr.DataBase, usr.Usuario, usr.Senha.ConvertToString()));
+                : new SqlConnection(string.Format(StringConnection, usr.Servidor, usr.DataBase, usr.Usuario, usr.Senha));
 
         }
     }

@@ -113,8 +113,8 @@ namespace DataDrain.ORM.DAL.MySQL.InformationSchema
             {
                 return new Dictionary<string, string>
             {
-                {"IDbConnection", "MySqlConnection"}, 
-                {"IDbTransaction", "MySqlTransaction"}, 
+                {"{IDbConnection}", "MySqlConnection"}, 
+                {"{IDbTransaction}", "MySqlTransaction"}, 
                 {"IDbCommand", "MySqlCommand"},
                 {"IDbDataParameter", "MySqlParameter"},
                 {"usingIDb","MySql.Data.MySqlClient"}

@@ -8,7 +8,7 @@ namespace DataDrain.ORM.DAL.MySQL.InformationSchema
     {
         public static MySqlConnection RetornaConexaoBase(DadosUsuario usr)
         {
-            return new MySqlConnection(string.Format("Data Source={0};Initial Catalog={1};UID={2}; Password={3};Port={4};", usr.Servidor, usr.DataBase, usr.Usuario, usr.Senha.ConvertToString(), usr.Porta));
+            return new MySqlConnection(string.Format("Data Source={0};Initial Catalog={1};UID={2}; Password={3};Port={4};", usr.Servidor, usr.DataBase, usr.Usuario, usr.Senha, usr.Porta));
         }
             
     }

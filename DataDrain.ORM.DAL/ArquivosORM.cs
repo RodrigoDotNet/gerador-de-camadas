@@ -24,8 +24,15 @@ namespace DataDrain.ORM.DAL
         private static void GeraArquivosInterface(string caminho, string strNamespace)
         {
             var strongNamePermission = Template.RetornaValor("StrongNamePermission");
+            var iFactory = Gerador.RetornaTextoBase("IFactory").Replace("{namespace}", strNamespace);
+            var iPersistence = Gerador.RetornaTextoBase("IPersistence").Replace("{namespace}", strNamespace);
+            var iUnityOfWork = Gerador.RetornaTextoBase("IUnityOfWork").Replace("{namespace}", strNamespace);
 
             File.WriteAllText(string.Format("{0}\\Interfaces\\StrongNamePermission.cs", caminho), strongNamePermission.Value.Replace("{namespace}", strNamespace));
+            File.WriteAllText(string.Format("{0}\\Interfaces\\IFactory.cs", caminho), iFactory);
+            File.WriteAllText(string.Format("{0}\\Interfaces\\IPersistence.cs", caminho), iPersistence);
+            File.WriteAllText(string.Format("{0}\\Interfaces\\IUnityOfWork.cs", caminho), iUnityOfWork);
+
         }
 
         private static void GeraArquivosTO(string caminho)

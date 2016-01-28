@@ -141,8 +141,6 @@ namespace DataDrain.ORM.DAL
                 retorno.Append(string.Format("public {0}{1} {2} {{ get; set; }}", coluna.Tipo, VerificaNullable(coluna.Tipo, coluna.AceitaNull), RemoveCaracteresInvalidos(coluna.Coluna)) + Environment.NewLine + Environment.NewLine);
             }
 
-            retorno.AppendFormat("{0}#endregion{0}{0}", Environment.NewLine);
-
             CriaAssociacoes(retorno, listaFk);
 
             retorno.Append("}" + Environment.NewLine);
@@ -211,7 +209,6 @@ namespace DataDrain.ORM.DAL
                 retorno.AppendFormat("using System.Data.Linq.Mapping;{0}", Environment.NewLine);
             }
 
-            retorno.AppendFormat("using System.Runtime.Serialization;{0}", Environment.NewLine);
             retorno.AppendLine();
             retorno.AppendFormat("{0}{1}", string.Format("namespace {0}TO", strNamespace), Environment.NewLine);
             retorno.AppendFormat("{{{0}", Environment.NewLine);
@@ -227,7 +224,6 @@ namespace DataDrain.ORM.DAL
 
             retorno.AppendFormat("{0}{1}", string.Format("public class {0}TO", RetornaNomeClasseAjustado(nomeTabela)), Environment.NewLine);
             retorno.AppendFormat("{{{0}{0}", Environment.NewLine);
-            retorno.AppendFormat("#region .: Propriedades Referente á Tabela :.{0}{0}", Environment.NewLine);
         }
 
 
@@ -288,7 +284,7 @@ namespace DataDrain.ORM.DAL
             textoBase = Log ? textoBase.Replace("[log]", "Log.Error(ex.Message, ex);").Replace("[logHeader]", string.Format("private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof({0}BLL));", nomeTabela)) : textoBase.Replace("[log]", "").Replace("[logHeader]", "");
 
             return textoBase.Replace("{namespace}", strNamespace).Replace("{classe}", (nomeTabela));
-
+            
         }
 
         public string GerarClasseDAL(string nomeTabela, string strNamespace, TipoObjetoBanco.ETipoObjeto tipoObjeto, List<DadosStoredProceduresParameters> parametros)
@@ -324,29 +320,6 @@ namespace DataDrain.ORM.DAL
             textoBase = Log ? textoBase.Replace("[log]", "Log.Error(ex.Message, ex);").Replace("[logHeader]", string.Format("private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof({0}DAL));", nomeTabela)) : textoBase.Replace("[log]", "").Replace("[logHeader]", "");
 
             return textoBase.Replace("{namespace}", strNamespace).Replace("{classe}", (nomeTabela));
-
-        }
-
-        public string GerarInterfaceDAL(string nomeArquivo, string nameSpace, TipoObjetoBanco.ETipoObjeto tipoObjeto, List<DadosStoredProceduresParameters> parametros)
-        {
-
-            string textoBase;
-            switch (tipoObjeto)
-            {
-                case TipoObjetoBanco.ETipoObjeto.Tabela:
-                    textoBase = RetornaTextoBase("interfaceCRUD");
-                    break;
-                case TipoObjetoBanco.ETipoObjeto.View:
-                    textoBase = RetornaTextoBase("interfaceViewProcedure");
-                    break;
-                case TipoObjetoBanco.ETipoObjeto.Procedure:
-                    textoBase = "";
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException("tipoObjeto");
-            }
-
-            return textoBase.Replace("{namespace}", nameSpace).Replace("{classe}", (nomeArquivo));
 
         }
     }

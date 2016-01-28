@@ -17,8 +17,8 @@ namespace DataDrain.ORM.DAL
 
                 if (!string.IsNullOrWhiteSpace(log4Net))
                 {
-                    var temp = log4Net.Replace("[connectionString]", string.Format("server={0};User Id={1};database={2};Password={3};Allow Zero Datetime=True;Allow User Variables=True;Convert Zero Datetime=True;Treat Blobs As UTF8=True;", dadosConexao.Servidor, dadosConexao.Usuario, dadosConexao.DataBase, dadosConexao.Senha.ConvertToString()));
-                    temp = temp.Replace("[connectionStrings]", string.Format("<connectionStrings>{0}{1}{0}</connectionStrings>{0}", Environment.NewLine, string.Format("<add name=\"STRING_CONNECTION\" connectionString=\"server={0};User Id={1};database={2};Password={3};Allow Zero Datetime=True;Allow User Variables=True;Convert Zero Datetime=True;Treat Blobs As UTF8=True;\" providerName=\"MySql.Data.MySqlClient\" />", dadosConexao.Servidor, dadosConexao.Usuario, dadosConexao.DataBase, dadosConexao.Senha.ConvertToString())));
+                    var temp = log4Net.Replace("[connectionString]", string.Format("server={0};User Id={1};database={2};Password={3};Allow Zero Datetime=True;Allow User Variables=True;Convert Zero Datetime=True;Treat Blobs As UTF8=True;", dadosConexao.Servidor, dadosConexao.Usuario, dadosConexao.DataBase, dadosConexao.Senha));
+                    temp = temp.Replace("[connectionStrings]", string.Format("<connectionStrings>{0}{1}{0}</connectionStrings>{0}", Environment.NewLine, string.Format("<add name=\"STRING_CONNECTION\" connectionString=\"server={0};User Id={1};database={2};Password={3};Allow Zero Datetime=True;Allow User Variables=True;Convert Zero Datetime=True;Treat Blobs As UTF8=True;\" providerName=\"MySql.Data.MySqlClient\" />", dadosConexao.Servidor, dadosConexao.Usuario, dadosConexao.DataBase, dadosConexao.Senha)));
                     sbAppConfig = new StringBuilder(temp);
                 }
                 else
@@ -26,7 +26,7 @@ namespace DataDrain.ORM.DAL
                     sbAppConfig.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
                     sbAppConfig.AppendLine("<configuration>");
                     sbAppConfig.AppendLine("<connectionStrings>");
-                    sbAppConfig.AppendLine(string.Format("<add name=\"STRING_CONNECTION\" connectionString=\"server={0};User Id={1};database={2};Password={3};Allow Zero Datetime=True;Allow User Variables=True;Convert Zero Datetime=True;Treat Blobs As UTF8=True;\" providerName=\"MySql.Data.MySqlClient\" />", dadosConexao.Servidor, dadosConexao.Usuario, dadosConexao.DataBase, dadosConexao.Senha.ConvertToString()));
+                    sbAppConfig.AppendLine(string.Format("<add name=\"STRING_CONNECTION\" connectionString=\"server={0};User Id={1};database={2};Password={3};Allow Zero Datetime=True;Allow User Variables=True;Convert Zero Datetime=True;Treat Blobs As UTF8=True;\" providerName=\"MySql.Data.MySqlClient\" />", dadosConexao.Servidor, dadosConexao.Usuario, dadosConexao.DataBase, dadosConexao.Senha));
                     sbAppConfig.AppendLine("</connectionStrings>");
                     sbAppConfig.AppendLine("</configuration>");
                 }

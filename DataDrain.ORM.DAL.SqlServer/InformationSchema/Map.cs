@@ -112,8 +112,8 @@ namespace DataDrain.ORM.DAL.SqlServer.InformationSchema
             {
                 return new Dictionary<string, string>
             {
-                {"IDbConnection", "SqlConnection"}, 
-                {"IDbTransaction", "SqlTransaction"}, 
+                {"{IDbConnection}", "SqlConnection"}, 
+                {"{IDbTransaction}", "SqlTransaction"}, 
                 {"IDbCommand", "SqlCommand"},
                 {"IDbDataParameter", "SqlParameter"},
                 {"usingIDb","System.Data.SqlClient"}
