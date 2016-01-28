@@ -208,6 +208,10 @@ namespace DataDrain.ORM.DAL
                 retorno.AppendFormat("using System.ComponentModel.DataAnnotations;{0}", Environment.NewLine);
                 retorno.AppendFormat("using System.Data.Linq.Mapping;{0}", Environment.NewLine);
             }
+            if (parametros.MapWcf)
+            {
+                retorno.AppendFormat("using System.Runtime.Serialization;{0}", Environment.NewLine);
+            }
 
             retorno.AppendLine();
             retorno.AppendFormat("{0}{1}", string.Format("namespace {0}TO", strNamespace), Environment.NewLine);

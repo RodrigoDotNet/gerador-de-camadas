@@ -189,6 +189,12 @@ namespace DataDrain.ORM.DAL.MySQL.InformationSchema
             {
                 DiretoriosBase.Criar(parametros.CaminhoDestino);
                 ArquivosORM.GravaArquivosBaseOrm(parametros, "MySqlFormatter");
+
+                if (parametros.MapWcf)
+                {
+                    ProjetoWcf.CriarProjeto(parametros);
+                }
+
                 ArquivosObjetos.Log = !string.IsNullOrWhiteSpace(parametros.XmlLog4Net);
                 ArquivosObjetos.Gerar(parametros);
                 ArquivosProjeto.Gerar(parametros.CaminhoDestino, parametros.ObjetosMapeaveis, parametros.NameSpace, parametros.AssinarProjeto, parametros.GerarAppConfig, parametros.CaminhoStrongName, parametros.VersaoFramework, parametros.XmlLog4Net, "MySqlFormatter");

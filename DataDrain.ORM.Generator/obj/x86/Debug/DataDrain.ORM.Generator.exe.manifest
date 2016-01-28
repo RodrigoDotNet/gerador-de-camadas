@@ -4,7 +4,7 @@
   <description asmv2:iconFile="1364628355_45282.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="DataDrain.ORM.Generator" version="3.7.5871.22240" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="DataDrain.ORM.Generator" version="3.7.5871.27104" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="x86" />
     <commandLine file="DataDrain.ORM.Generator.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -55,50 +55,50 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataDrain.ORM.DAL.dll" size="35840">
-      <assemblyIdentity name="DataDrain.ORM.DAL" version="3.6.5871.21758" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataDrain.ORM.DAL.dll" size="37888">
+      <assemblyIdentity name="DataDrain.ORM.DAL" version="3.6.5871.27103" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>iMwCQC/lBKWHQqJD+/cHooaHT+0=</dsig:DigestValue>
+        <dsig:DigestValue>AQaSkp70g4TjOLjxEAR3obJJULo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataDrain.ORM.DAL.MySQL.dll" size="39424">
-      <assemblyIdentity name="DataDrain.ORM.DAL.MySQL" version="3.7.5871.22240" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="DataDrain.ORM.DAL.MySQL" version="3.7.5871.27103" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>jXKGgFVlXMM4LhjyfY+RMd/GX9w=</dsig:DigestValue>
+        <dsig:DigestValue>4UdK6HabkAfzEEFLdow012HorkU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataDrain.ORM.DAL.SqlServer.dll" size="66560">
-      <assemblyIdentity name="DataDrain.ORM.DAL.SqlServer" version="3.7.5871.22240" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="DataDrain.ORM.DAL.SqlServer" version="3.7.5871.27103" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>oGCxMhTitztMJ8kgC3ef6qSwKtM=</dsig:DigestValue>
+        <dsig:DigestValue>I9os+8DiURcNHwAoISX3rdPnesA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataDrain.ORM.Generator.exe" size="749568">
-      <assemblyIdentity name="DataDrain.ORM.Generator" version="3.7.5871.22240" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="x86" />
+      <assemblyIdentity name="DataDrain.ORM.Generator" version="3.7.5871.27104" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>JPIrPKHxoTROJlEE/cstd6UD0Lo=</dsig:DigestValue>
+        <dsig:DigestValue>Ki8Wv9gxvspJP2oHV/F+dNkKPBA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

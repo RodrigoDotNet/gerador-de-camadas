@@ -49,6 +49,7 @@
     <Compile Include="ArquivosProjeto.cs" />
     <Compile Include="DiretoriosBase.cs" />
     <Compile Include="Gerador.cs" />
+    <Compile Include="ProjetoWcf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\Template.cs" />
   </ItemGroup>

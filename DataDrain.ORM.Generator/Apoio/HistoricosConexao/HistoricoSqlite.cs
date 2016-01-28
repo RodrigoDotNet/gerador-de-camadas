@@ -6,7 +6,6 @@ using System.Linq;
 using System.Reflection;
 using DataDrain.Mapping;
 using DataDrain.ORM.Generator.Apoio.Base;
-using DataDrain.ORM.Interfaces;
 using DataDrain.ORM.Interfaces.Objetos;
 
 namespace DataDrain.ORM.Generator.Apoio.HistoricosConexao
@@ -19,8 +18,8 @@ namespace DataDrain.ORM.Generator.Apoio.HistoricosConexao
         public HistoricoSqlite()
         {
             _sh1 = new GeraHashSha1();
-            string exeDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            Directory.SetCurrentDirectory(exeDir);
+            var exeDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            if (exeDir != null) Directory.SetCurrentDirectory(exeDir);
         }
 
         public override List<DadosUsuario> CarregaConexoes(string nomeProvedor)
