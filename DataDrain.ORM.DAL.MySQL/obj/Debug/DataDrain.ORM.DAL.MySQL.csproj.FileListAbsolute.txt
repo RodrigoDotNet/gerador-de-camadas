@@ -145,3 +145,4 @@ C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\o
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\bin\Debug\data\axia.db
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\bin\Debug\System.Data.SQLite.dll
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\bin\Debug\System.Data.SQLite.xml
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.DAL.MySQL\bin\Debug\DataDrain.ORM.DAL.MySQL.dll.config

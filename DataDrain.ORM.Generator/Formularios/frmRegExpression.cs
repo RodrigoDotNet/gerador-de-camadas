@@ -7,19 +7,10 @@ namespace DataDrain.ORM.Generator.Formularios
 {
     public partial class frmRegExpression : Form
     {
-        #region Load
-
         public frmRegExpression()
         {
             InitializeComponent();
         }
-
-        private void frmRegExpression_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        #endregion
 
         #region Eventos
 
@@ -62,10 +53,10 @@ namespace DataDrain.ORM.Generator.Formularios
 
         private void bntAjuda_Click(object sender, EventArgs e)
         {
-            //http://msdn.microsoft.com/en-us/library/dd901590(v=vs.95).aspx
-            var help = new frmRegExpHelp();
-            help.ShowDialog();
-            help.Dispose();
+            using (var help = new frmRegExpHelp())
+            {
+                help.ShowDialog();    
+            }
         }
 
         #endregion

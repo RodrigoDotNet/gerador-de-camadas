@@ -36,7 +36,7 @@ namespace DataDrain.ORM.Generator.Apoio.HistoricosConexao
 
                         servidores.AddRange(from conexao in conexoes
                                             from cnn in conexao.Children
-                                            where cnn != null && cnn.Element("maquina").Value == frmGerador.SerialProcessor
+                                            where cnn != null && cnn.Element("maquina").Value == frmGerador.IdComputador
                                             select new DadosUsuario
                                                        {
                                                            Servidor = cnn.Element("servidor").Value,

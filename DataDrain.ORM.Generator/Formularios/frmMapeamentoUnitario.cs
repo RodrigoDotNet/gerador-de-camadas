@@ -23,7 +23,7 @@ namespace DataDrain.ORM.Generator.Formularios
 
         public KeyValuePair<TipoObjetoBanco, List<DadosColunas>> ObjetosSelecionado { get; set; }
 
-        public ImageList ilObjetos { get; set; }
+        public ImageList IlObjetos { get; set; }
 
         public string NomeObjeto { get; set; }
 
@@ -74,7 +74,6 @@ namespace DataDrain.ORM.Generator.Formularios
                         case TipoObjetoBanco.ETipoObjeto.Procedure:
                             Parametros = Gerador.MapeamentoProcedure.ListaAllStoredProceduresParameters(BancoSelecionado, DadosLogin, nomeObjeto);
 
-                            //exiber formulario de preenchimento de parametros
                             if (Parametros.Count > 0)
                             {
                                 var frm = new frmParametros {Parametros = Parametros};
@@ -97,11 +96,10 @@ namespace DataDrain.ORM.Generator.Formularios
                             throw new ArgumentOutOfRangeException("tipo", "Tipo inválido");
                     }
 
-                    //Carrega o objeto que deve ser exibido
                     ObjetosSelecionado = new KeyValuePair<TipoObjetoBanco, List<DadosColunas>>(new TipoObjetoBanco(nomeObjeto, tipo.ToString(), Parametros), colunasObjeto);
                 }
 
-                GridView.CarregaGridViewColunas(gvColunasObjeto, ObjetosSelecionado, ilObjetos);
+                GridView.CarregaGridViewColunas(gvColunasObjeto, ObjetosSelecionado, IlObjetos);
             }
             catch (Exception ex)
             {
@@ -181,8 +179,6 @@ namespace DataDrain.ORM.Generator.Formularios
         }
 
         #endregion
-
-
 
         #endregion
 

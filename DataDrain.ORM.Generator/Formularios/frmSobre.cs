@@ -14,14 +14,13 @@ namespace DataDrain.ORM.Generator.Formularios
         public frmSobre()
         {
             InitializeComponent();
-            Text = String.Format("Sobre {0}", AssemblyTitle);
+            Text = string.Format("Sobre {0}", AssemblyTitle);
             labelProductName.Text = AssemblyProduct;
             labelVersion.Text = Versao.RetornaVersao();
             labelCopyright.Text = AssemblyCopyright;
             labelCompanyName.Text = AssemblyCompany;
             textBoxDescription.Text = AssemblyDescription;
 
-            linkLabel2.Links.Add(11, 39, "http://br.linkedin.com/in/rodrigodotnet");
             linkLabel1.Links.Add(8, 24, "rodrigodotnet@gmail.com");
         }
 

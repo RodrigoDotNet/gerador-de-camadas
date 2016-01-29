@@ -9,11 +9,7 @@ namespace DataDrain.ORM.Generator.Formularios
     public partial class frmParametros : Form
     {
 
-        #region Propriedades
-
         public List<DadosStoredProceduresParameters> Parametros { get; set; }
-
-        #endregion
 
         #region .: Load :.
 
@@ -74,29 +70,27 @@ namespace DataDrain.ORM.Generator.Formularios
         {
             DateTime data;
             int numerico;
-            Int64 numericoGrande;
+            long numericoGrande;
             ulong numericoMuitoGrande;
-            float numericoDecimal;
             double numericoDecimalGrande;
             TimeSpan hora;
 
             if (DateTime.TryParse(valor, out data)) { return data; }
 
-            if (Int32.TryParse(valor, out numerico)) { return numerico; }
+            if (int.TryParse(valor, out numerico)) { return numerico; }
 
-            if (Int64.TryParse(valor, out numericoGrande)) { return numericoGrande; }
+            if (long.TryParse(valor, out numericoGrande)) { return numericoGrande; }
 
             if (ulong.TryParse(valor, out numericoMuitoGrande)) { return numericoMuitoGrande; }
 
-            if (float.TryParse(valor, out numericoDecimal)) { return numericoDecimal; }
-
-            if (Double.TryParse(valor, out numericoDecimalGrande)) { return numericoDecimalGrande; }
+            if (double.TryParse(valor, out numericoDecimalGrande)) { return numericoDecimalGrande; }
 
             if (TimeSpan.TryParse(valor, out hora)) { return hora; }
 
-            if (valor == null) { return null; }
-
-            if (valor == "null") { return null; }
+            if (valor == null || valor == "null")
+            {
+                return null;
+            }
 
             return string.Empty;
         }

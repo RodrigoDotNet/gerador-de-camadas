@@ -6,12 +6,8 @@ namespace DataDrain.ORM.Interfaces
     {
         string RetornaTipoDadosDotNet(string tipoDados);
 
-        string RetornaTiposDbType(string tipoDados);
-
         string ConvertTipoClrToSql(string tipoDados);
 
         void CriarArquivosProjeto(ParametrosCriarProjetos parametros);
-
-        OpenDadosFileDialog RetornaDialogPesquisa();
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using DataDrain.ORM.Interfaces;
 using DataDrain.ORM.Interfaces.Objetos;
 
 namespace DataDrain.ORM.DAL

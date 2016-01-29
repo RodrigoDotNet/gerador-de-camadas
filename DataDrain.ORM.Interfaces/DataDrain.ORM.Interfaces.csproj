@@ -63,7 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtensionMethods\EmIInformationSchema.cs" />
-    <Compile Include="ExtensionMethods\EmSecureString.cs" />
     <Compile Include="IInformationSchema.cs" />
     <Compile Include="IInformationSchemaProcedure.cs" />
     <Compile Include="IInformationSchemaTable.cs" />
@@ -76,7 +75,6 @@
     <Compile Include="Objetos\DadosObjeto.cs" />
     <Compile Include="Objetos\DadosTabelas.cs" />
     <Compile Include="Objetos\DadosUsuario.cs" />
-    <Compile Include="Objetos\OpenDadosFileDialog.cs" />
     <Compile Include="Objetos\ParametrosCriarProjetos.cs" />
     <Compile Include="Objetos\TipoObjetoBanco.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

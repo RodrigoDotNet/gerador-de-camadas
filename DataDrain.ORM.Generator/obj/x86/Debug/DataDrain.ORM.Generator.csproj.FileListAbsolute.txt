@@ -349,3 +349,4 @@ C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\b
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\bin\Debug\DataDrain.MicroORM.dll
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\bin\Debug\DataDrain.MicroORM.pdb
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\bin\Debug\Microsoft.VisualBasic.PowerPacks.Vs.dll
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\bin\Debug\data\axia.db

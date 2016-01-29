@@ -41,10 +41,6 @@ namespace DataDrain.ORM.DAL
                 strTextoOk = Regex.Replace(strTextoOk, "[ç]", "c");
                 strTextoOk = Regex.Replace(strTextoOk, "[Ç]", "C");
                 strTextoOk = Regex.Replace(strTextoOk, @"^[\d-]*\s*", "");
-
-                //var filtroRegex = new Regex("([^a-zA-Z]+)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
-                //strTextoOk = filtroRegex.Replace(strTextoOk, "");
-
             }
             return strTextoOk;
 

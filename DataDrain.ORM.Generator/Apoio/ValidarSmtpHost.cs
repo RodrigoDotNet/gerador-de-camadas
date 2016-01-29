@@ -7,12 +7,6 @@ namespace DataDrain.ORM.Generator.Apoio
 {
     public sealed class ValidarSmtpHost
     {
-        /// <summary>
-        /// valida se o servidor smtp é valido
-        /// </summary>
-        /// <param name="host"></param>
-        /// <param name="porta"></param>
-        /// <returns></returns>
         public static bool Validar(string host, int porta)
         {
             try

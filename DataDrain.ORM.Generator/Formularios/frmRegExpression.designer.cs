@@ -120,7 +120,6 @@ namespace DataDrain.ORM.Generator.Formularios
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Regular Expression";
-            this.Load += new System.EventHandler(this.frmRegExpression_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errProvRegExp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

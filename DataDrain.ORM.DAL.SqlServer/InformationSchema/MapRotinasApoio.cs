@@ -25,7 +25,7 @@ namespace DataDrain.ORM.DAL.SqlServer.InformationSchema
                     return "long";
 
                 case "real":
-                    return "Single";
+                    return "float";
 
                 case "date":
                 case "smalldatetime":
@@ -35,17 +35,17 @@ namespace DataDrain.ORM.DAL.SqlServer.InformationSchema
                     return "DateTime";
 
                 case "time":
-                    return "System.TimeSpan";
+                    return "TimeSpan";
 
                 case "bit":
                 case "bool":
-                    return "Boolean";
+                    return "bool";
 
                 case "decimal":
                 case "numeric":
                 case "smallmoney":
                 case "money":
-                    return "Decimal";
+                    return "decimal";
 
                 case "float":
                 case "double":
@@ -58,63 +58,16 @@ namespace DataDrain.ORM.DAL.SqlServer.InformationSchema
                     return "System.DateTimeOffset";
 
                 case "varbinary":
+                case "image":
+                case "rowversion":
                     return "byte[]";
+
+                case "sql_variant":
+                    return "object";
 
                 default:
                     return "String";
 
-            }
-        }
-
-        /// <summary>
-        /// Retorna o tipo de dados  usados para os parametros
-        /// </summary>
-        /// <param name="tipoDados"></param>
-        public string RetornaTiposDbType(string tipoDados)
-        {
-            switch (tipoDados)
-            {
-
-                case "smallint":
-                case "tinyint":
-                case "mediumint":
-                    return "DbType.Int16";
-
-                case "int":
-                case "year":
-                    return "DbType.Int32";
-
-                case "bigint":
-                    return "DbType.Int64";
-
-                case "float":
-                case "double":
-                    return "DbType.Double";
-
-                case "smalldatetime":
-                case "datetime":
-                case "datetime2":
-                case "timestamp":
-                    return "DbType.DateTime";
-
-                case "time":
-                    return "DbType.TimeSpan";
-
-                case "real":
-                    return "DbType.Single";
-
-                case "bit":
-                case "bool":
-                    return "DbType.Boolean";
-
-                case "decimal":
-                case "numeric":
-                case "smallmoney":
-                case "money":
-                    return "DbType.Decimal";
-
-                default:
-                    return "DbType.String";
             }
         }
 
@@ -185,15 +138,6 @@ namespace DataDrain.ORM.DAL.SqlServer.InformationSchema
             {
                 throw;
             }
-        }
-
-        /// <summary>
-        /// Retorna os dados para uma dialog de pesquisa de arquivo
-        /// </summary>
-        /// <returns></returns>
-        public OpenDadosFileDialog RetornaDialogPesquisa()
-        {
-            return new OpenDadosFileDialog();
         }
     }
 }

@@ -23,10 +23,6 @@ namespace DataDrain.ORM.Generator
 {
     public partial class frmGerador : Form
     {
-        #region Enumeradores
-
-        #endregion
-
         #region Variaveis
 
         private List<KeyValuePair<TipoObjetoBanco, List<DadosColunas>>> _objetosSelecionados;
@@ -35,12 +31,7 @@ namespace DataDrain.ORM.Generator
 
         private List<KeyValuePair<string, Image>> _imgObjetosMapeados;
 
-        internal static string SerialProcessor;
-
-        #endregion
-
-        #region Estrutura
-
+        internal static string IdComputador;
 
         #endregion
 
@@ -82,7 +73,7 @@ namespace DataDrain.ORM.Generator
 
         private void frmGerador_Load(object sender, EventArgs e)
         {
-            RetornaNomeProvider();
+            ProcessaIdComputador();
 
             txtPorta.Text = Gerador.InfoConexao.PortaPadrao.ToString();
             pbLogo.Image = Logo;
@@ -150,7 +141,7 @@ namespace DataDrain.ORM.Generator
                     Usuario = txtUsuario.Text.Trim(),
                     Senha = txtSenha.Text.Trim(),
                     Porta = txtPorta.Text.ToInt32(),
-                    MaquinaID = SerialProcessor,
+                    MaquinaID = IdComputador,
                     TrustedConnection = chkTrustedConnection.Checked,
                     NomeProvedor = Gerador.GetType().FullName
                 };
@@ -284,7 +275,7 @@ namespace DataDrain.ORM.Generator
                                 Usuario = txtUsuario.Text.Trim(),
                                 Senha = txtSenha.Text.Trim(),
                                 Porta = txtPorta.Text.ToInt32(),
-                                MaquinaID = SerialProcessor,
+                                MaquinaID = IdComputador,
                                 TrustedConnection = chkTrustedConnection.Checked,
                                 NomeProvedor = Gerador.GetType().FullName
                             };
@@ -437,7 +428,7 @@ namespace DataDrain.ORM.Generator
                         frm.DadosLogin = DadosLogin;
                         frm.BancoSelecionado = BancoSelecionado;
                         frm.Parametros = Parametros;
-                        frm.ilObjetos = ilObjetos;
+                        frm.IlObjetos = ilObjetos;
                         frm.NomeObjeto = retorno.Item.Text;
                         frm.TipoObjeto = retorno.SubItem.Text.ConvertToEnum<TipoObjetoBanco.ETipoObjeto>();
 
@@ -680,10 +671,12 @@ namespace DataDrain.ORM.Generator
                     }
                 }
 
-                var frm = new frmLog4Net();
+                var frm = new frmLog4Net
+                {
+                    txtNomeArquivo = {Text = Arquivo.RetornaNomevalidoArquivo(txtNameSpace.Text)},
+                    Gerador = Gerador
+                };
 
-                frm.txtNomeArquivo.Text = Arquivo.RetornaNomevalidoArquivo(txtNameSpace.Text);
-                frm.Gerador = Gerador;
                 frm.ShowDialog(this);
 
                 if (frm.Confirmou)
@@ -785,17 +778,14 @@ namespace DataDrain.ORM.Generator
 
         private static int RetornaImagem(string tipo)
         {
-            if (tipo.ToLower() == "tabela")
+            switch (tipo.ToLower())
             {
-                return 0;
-            }
-            if (tipo.ToLower() == "view")
-            {
-                return 1;
-            }
-            if (tipo.ToLower() == "procedure")
-            {
-                return 2;
+                case "tabela":
+                    return 0;
+                case "view":
+                    return 1;
+                case "procedure":
+                    return 2;
             }
             return 0;
         }
@@ -918,34 +908,29 @@ namespace DataDrain.ORM.Generator
             }
         }
 
-        private void RetornaNomeProvider()
+        private void ProcessaIdComputador()
         {
             try
             {
                 const string computerName = "localhost";
-                var scope = new ManagementScope(String.Format("\\\\{0}\\root\\CIMV2", computerName), null);
+                var scope = new ManagementScope(string.Format("\\\\{0}\\root\\CIMV2", computerName), null);
                 scope.Connect();
                 var query = new ObjectQuery("SELECT UUID FROM Win32_ComputerSystemProduct");
                 var searcher = new ManagementObjectSearcher(scope, query);
 
                 foreach (var wmiObject in searcher.Get().Cast<ManagementObject>())
                 {
-                    SerialProcessor = wmiObject["UUID"].ToString();
+                    IdComputador = wmiObject["UUID"].ToString();
                 }
             }
             catch (Exception)
             {
 
-                SerialProcessor = Guid.NewGuid().ToString("D").ToUpper();
+                IdComputador = Guid.NewGuid().ToString("D").ToUpper();
             }
         }
 
 
-        /// <summary>
-        /// Verifica se o usuario atual possui permissão de gravação na pasta
-        /// </summary>
-        /// <param name="caminho"></param>
-        /// <returns></returns>
         private static bool VerificaPermissaoPasta(string caminho)
         {
 

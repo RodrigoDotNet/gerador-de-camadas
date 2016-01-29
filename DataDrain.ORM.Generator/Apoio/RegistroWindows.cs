@@ -54,14 +54,7 @@ namespace DataDrain.ORM.Generator.Apoio
         /// <param name="valor">valor a ser guardado</param>
         public static void GravaValor(string chave, string valor)
         {
-            try
-            {
-                GravaValor(Key, chave, valor);
-            }
-            catch
-            {
-                throw;
-            }
+            GravaValor(Key, chave, valor);
         }
 
         /// <summary>
@@ -105,14 +98,7 @@ namespace DataDrain.ORM.Generator.Apoio
         /// <returns>Retorna o objeto referente a chave, caso não encontre volta uma string vazia</returns>
         public static string RecuperaValor(string chave, string valorPadrao)
         {
-            try
-            {
-                return RecuperaValor(Key, chave, valorPadrao);
-            }
-            catch
-            {
-                throw;
-            }
+            return RecuperaValor(Key, chave, valorPadrao);
         }
 
         /// <summary>
@@ -159,7 +145,7 @@ namespace DataDrain.ORM.Generator.Apoio
             }
 
             var key = Registry.CurrentUser.OpenSubKey(string.Format("{0}{1}", KeyApp, nomePasta));
-            
+
             if (key == null)
             {
                 var nKey = Registry.CurrentUser.CreateSubKey(string.Format("{0}\\{1}", KeyApp, nomePasta));
@@ -190,7 +176,7 @@ namespace DataDrain.ORM.Generator.Apoio
 
             var valorConteudo = new List<KeyValuePair<string, string>>();
 
-            using (var settingsRegKey = Registry.CurrentUser.OpenSubKey(chave.Replace("HKEY_CURRENT_USER\\","")))
+            using (var settingsRegKey = Registry.CurrentUser.OpenSubKey(chave.Replace("HKEY_CURRENT_USER\\", "")))
             {
                 if (settingsRegKey != null)
                 {

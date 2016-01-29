@@ -1,6 +1,4 @@
 ﻿
-using System;
-
 namespace DataDrain.ORM.Interfaces.Objetos
 {
     public class DadosColunas

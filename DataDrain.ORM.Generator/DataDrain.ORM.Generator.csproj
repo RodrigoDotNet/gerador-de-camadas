@@ -106,10 +106,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Apoio\API\GDIStuff.cs" />
-    <Compile Include="Apoio\API\Win32Stuff.cs" />
     <Compile Include="Apoio\Arquivo.cs" />
-    <Compile Include="Apoio\CaptureScreen.cs" />
     <Compile Include="Apoio\Configura\GridView.cs" />
     <Compile Include="Apoio\DadosRegExpression.cs" />
     <Compile Include="Apoio\emSerialize.cs" />
@@ -124,9 +121,6 @@
     <Compile Include="Apoio\RegistroWindows.cs" />
     <Compile Include="Apoio\ValidarSmtpHost.cs" />
     <Compile Include="Apoio\Versao.cs" />
-    <Compile Include="Controles\AutoComplete\MnLogins.cs" />
-    <Compile Include="Controles\AutoComplete\MnServidores.cs" />
-    <Compile Include="Controles\TextEditPlus.cs" />
     <Compile Include="ExtensionMethods\DocumentExtensions.cs" />
     <Compile Include="ExtensionMethods\EmEnum.cs" />
     <Compile Include="ExtensionMethods\EmErrorProvider.cs" />

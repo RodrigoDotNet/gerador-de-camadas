@@ -13,12 +13,10 @@ namespace DataDrain.ORM.DAL
         /// </summary>
         public static void Gerar(ParametrosCriarProjetos parametros)
         {
-
             foreach (var objetoOrm in parametros.ObjetosMapeaveis)
             {
                 GeraClassesORM(objetoOrm.Key, objetoOrm.Value, parametros);
             }
-
         }
 
         private static void GeraClassesORM(TipoObjetoBanco objOrm, List<DadosColunas> colunasObjeto, ParametrosCriarProjetos parametros)

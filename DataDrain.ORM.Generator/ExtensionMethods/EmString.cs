@@ -6,17 +6,12 @@ namespace DataDrain.ORM.Generator
 {
     public static class EmString
     {
-        /// <summary>
-        /// Converte o texto para string ou retorna zero em caso de erro
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
         public static int ToInt32(this string input)
         {
             if (!string.IsNullOrWhiteSpace(input))
             {
                 int saida;
-                Int32.TryParse(input, out saida);
+                int.TryParse(input, out saida);
                 return saida;
             }
             return 0;
@@ -42,11 +37,6 @@ namespace DataDrain.ORM.Generator
             return typeof(string);
         }
 
-        /// <summary>
-        /// Converte a primeira letra da primeira palavra para maiusculo
-        /// </summary>
-        /// <param name="source"></param>
-        /// <returns></returns>
         public static string PrimeiraLetraMaiuscula(this string source)
         {
             if (string.IsNullOrWhiteSpace(source))
