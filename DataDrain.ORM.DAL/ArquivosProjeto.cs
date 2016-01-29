@@ -4,183 +4,77 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 using DataDrain.ORM.Interfaces.Objetos;
 
 namespace DataDrain.ORM.DAL
 {
     public class ArquivosProjeto
     {
-        public static void Gerar(string caminho, List<KeyValuePair<TipoObjetoBanco, List<DadosColunas>>> objetosMapeaveis, string nameSpace, bool assinarProjeto, bool gerarAppConfig, string caminhoStrongName, string versaoFramework, string xmlLog4Net, string provider)
+        public static void Gerar(ParametrosCriarProjetos parametros, string provider)
         {
 
             var guidProjInterface = Guid.NewGuid().ToString().ToUpper();
             var guidProjTO = Guid.NewGuid().ToString().ToUpper().ToUpper();
-            var guidProjDAL = Guid.NewGuid().ToString().ToUpper().ToUpper();
-            var guidProjBLL = Guid.NewGuid().ToString().ToUpper().ToUpper();
-            var guidProjSolution = Guid.NewGuid().ToString().ToUpper().ToUpper();
+            var guidProjDal = Guid.NewGuid().ToString().ToUpper().ToUpper();
+            var guidProjBll = Guid.NewGuid().ToString().ToUpper().ToUpper();
+            var guidProjWcf = Guid.NewGuid().ToString().ToUpper().ToUpper();
 
-            var arquivosInterface = (from KeyValuePair<TipoObjetoBanco, List<DadosColunas>> t in objetosMapeaveis select string.Format("<Compile Include=\"IPersistence{0}.cs\" />", Gerador.RetornaNomeClasseAjustado(t.Key.NomeObjeto).Replace(" ", ""))).ToList();
-            var arquivosTO = (from KeyValuePair<TipoObjetoBanco, List<DadosColunas>> t in objetosMapeaveis select string.Format("<Compile Include=\"{0}TO.cs\" />", Gerador.RetornaNomeClasseAjustado(t.Key.NomeObjeto))).ToList();
-            var arquivosDAL = (from KeyValuePair<TipoObjetoBanco, List<DadosColunas>> t in objetosMapeaveis select string.Format("<Compile Include=\"{0}DAL.cs\" />", Gerador.RetornaNomeClasseAjustado(t.Key.NomeObjeto))).ToList();
-            var arquivosBLL = (from KeyValuePair<TipoObjetoBanco, List<DadosColunas>> t in objetosMapeaveis select string.Format("<Compile Include=\"{0}BLL.cs\" />", Gerador.RetornaNomeClasseAjustado(t.Key.NomeObjeto))).ToList();
 
-            const string caminhoProjetoTo = "OTetalpmet";
-            const string caminhoAssemblyTo = "ofnIylbmessA";
-            const string caminhoProjetoInterface = "secafretnIetalpmeT";
-            const string caminhoProjetoDAL = "LADetalpmet";
-            const string caminhoProjetoBLL = "LLBetalpmet";
-            const string caminhoProjetoSolution = "noituloS";
+            var arquivosInterface = (from KeyValuePair<TipoObjetoBanco, List<DadosColunas>> t in parametros.ObjetosMapeaveis select string.Format("<Compile Include=\"IPersistence{0}.cs\" />", Gerador.RetornaNomeClasseAjustado(t.Key.NomeObjeto).Replace(" ", ""))).ToList();
+            var arquivosTO = (from KeyValuePair<TipoObjetoBanco, List<DadosColunas>> t in parametros.ObjetosMapeaveis select string.Format("<Compile Include=\"{0}TO.cs\" />", Gerador.RetornaNomeClasseAjustado(t.Key.NomeObjeto))).ToList();
+            var arquivosDal = (from KeyValuePair<TipoObjetoBanco, List<DadosColunas>> t in parametros.ObjetosMapeaveis select string.Format("<Compile Include=\"{0}DAL.cs\" />", Gerador.RetornaNomeClasseAjustado(t.Key.NomeObjeto))).ToList();
+            var arquivosBll = (from KeyValuePair<TipoObjetoBanco, List<DadosColunas>> t in parametros.ObjetosMapeaveis select string.Format("<Compile Include=\"{0}BLL.cs\" />", Gerador.RetornaNomeClasseAjustado(t.Key.NomeObjeto))).ToList();
 
-            var sbLog4Net = new System.Text.StringBuilder();
+            var sbLog4Net = new StringBuilder();
 
             sbLog4Net.AppendLine("<Reference Include=\"log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=AMD64\">");
             sbLog4Net.AppendLine("<SpecificVersion>False</SpecificVersion>");
             sbLog4Net.AppendLine("<HintPath>..\\log4net.dll</HintPath>");
             sbLog4Net.AppendLine("</Reference>");
 
-            #region Verifica se o projeto deve ser assinado
+            var templateAssembly = AssinaProjeto(parametros);
 
-            var templateAssembly = Gerador.RetornaTextoBase(caminhoAssemblyTo);
-            var tmpAssInfo = string.Empty;
+            GeraProjetoInterface(parametros, guidProjInterface, arquivosInterface, templateAssembly);
+            GeraProjetoTo(parametros, guidProjTO, guidProjInterface, arquivosTO, templateAssembly);
+            GeraProjetoDal(parametros, provider, guidProjDal, guidProjInterface, guidProjTO, arquivosDal, sbLog4Net, templateAssembly);
+            GeraProjetoBll(parametros, guidProjBll, guidProjInterface, guidProjTO, guidProjDal, arquivosBll, sbLog4Net, templateAssembly);
+            GeraProjetoWcf(parametros, guidProjWcf);
+            GeraSoluction(parametros, guidProjTO, guidProjDal, guidProjInterface, guidProjBll, guidProjWcf);
 
-            if (assinarProjeto)
+            Directory.Move(string.Format("{0}\\TO", parametros.CaminhoDestino), string.Format("{0}\\{1}TO", parametros.CaminhoDestino, parametros.NameSpace.Replace(".", "")));
+            Directory.Move(string.Format("{0}\\DAL", parametros.CaminhoDestino), string.Format("{0}\\{1}DAL", parametros.CaminhoDestino, parametros.NameSpace.Replace(".", "")));
+            Directory.Move(string.Format("{0}\\BLL", parametros.CaminhoDestino), string.Format("{0}\\{1}BLL", parametros.CaminhoDestino, parametros.NameSpace.Replace(".", "")));
+            Directory.Move(string.Format("{0}\\Interfaces", parametros.CaminhoDestino), string.Format("{0}\\{1}Interfaces", parametros.CaminhoDestino, parametros.NameSpace.Replace(".", "")));
+
+        }
+
+        private static void GeraSoluction(ParametrosCriarProjetos parametros, string guidProjTO, string guidProjDAL, string guidProjInterface, string guidProjBLL, string guidProjWcf)
+        {
+            var trocasSolution = new Hashtable
             {
-                if (string.IsNullOrEmpty(caminhoStrongName))
-                {
-                    var nomeSnkFile = string.Format("{0}.snk", nameSpace);
+                {"[guid]", Guid.NewGuid().ToString().ToUpper().ToUpper()},
+                {"[namespace]", parametros.NameSpace},
+                {"[guidTO]", guidProjTO},
+                {"[guidDAL]", guidProjDAL},
+                {"[guidInterface]", guidProjInterface},
+                {"[guidBLL]", guidProjBLL}
+            };
 
-                    GerarKey(string.Format("{0}\\{1}", caminho, nomeSnkFile));
-                    tmpAssInfo = string.Format("[assembly: AssemblyKeyFile({0}\"{1}{2}\")]", "@", "..\\", nomeSnkFile);
-                }
-                else
-                {
-                    tmpAssInfo = string.Format("[assembly: AssemblyKeyFile({0}\"{1}\")]", "@", caminhoStrongName);
-                }
+            var projSolution = Gerador.RetornaTextoBase("noituloS");
+
+            if (parametros.MapWcf)
+            {
+                projSolution = projSolution.Replace("[guidWcf]", string.Format("Project(\"{{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}}\") = \"{0}Wcf\", \"{0}Wcf\\{0}Wcf.csproj\", \"{{53034ACE-081D-4CDA-8075-D3B158C7DAF9}}\"{1}EndProject", parametros.NameSpace, Environment.NewLine));
+                projSolution = projSolution.Replace("[guidGlobalWcf]", string.Format("{{{0}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU{1}{{{0}}}.Debug|Any CPU.Build.0 = Debug|Any CPU{1}{{{0}}}.Release|Any CPU.ActiveCfg = Release|Any CPU{1}{{{0}}}.Release|Any CPU.Build.0 = Release|Any CPU", guidProjWcf, Environment.NewLine));
+            }
+            else
+            {
+                projSolution = projSolution.Replace("[guidWcf]", "");
+                projSolution = projSolution.Replace("[guidGlobalWcf]", "");
             }
 
-            templateAssembly = templateAssembly.Replace("{sing}", tmpAssInfo);
-
-            #endregion
-
-            #region Gera Projeto Interface
-
-            var trocasInterface = new Hashtable
-                                          {
-                                              {"[guid]", guidProjInterface},
-                                              {"[namespace]", nameSpace},
-                                              {"[arquivos]", string.Join("\n", arquivosInterface.ToArray())}
-                                          };
-
-            var projInterface = Gerador.RetornaTextoBase(caminhoProjetoInterface);
-            projInterface = trocasInterface.Cast<DictionaryEntry>().Aggregate(projInterface, (current, entry) => current.Replace(entry.Key.ToString(), entry.Value.ToString()));
-            projInterface = projInterface.Replace("[versao]", versaoFramework);
-
-            var assemblyInterface = templateAssembly.Replace("[log]", "");
-            assemblyInterface = assemblyInterface.Replace("[namespace]", nameSpace);
-            assemblyInterface = assemblyInterface.Replace("[guid]", guidProjInterface);
-
-            File.WriteAllText(string.Format("{0}\\Interfaces\\{1}Interfaces.csproj", caminho, nameSpace), projInterface);
-            File.WriteAllText(string.Format("{0}\\Interfaces\\Properties\\AssemblyInfo.cs", caminho), assemblyInterface);
-
-            #endregion
-
-            #region Gera Projeto TO
-
-            var trocasTo = new Hashtable
-                                   {
-                                       {"[guid]", guidProjTO},
-                                       {"[namespace]", nameSpace},
-                                       {"[guidInterface]", guidProjInterface},
-                                       {"[arquivos]", string.Join("\n", arquivosTO.ToArray())}
-                                   };
-
-            var projTO = Gerador.RetornaTextoBase(caminhoProjetoTo);
-            projTO = trocasTo.Cast<DictionaryEntry>().Aggregate(projTO, (current, entry) => current.Replace(entry.Key.ToString(), entry.Value.ToString()));
-            projTO = projTO.Replace("[versao]", versaoFramework);
-
-            var assemblyTO = templateAssembly.Replace("[camada]", "TO").Replace("[log]", "");
-            assemblyTO = assemblyTO.Replace("[namespace]", nameSpace);
-            assemblyTO = assemblyTO.Replace("[guid]", guidProjTO);
-
-
-            File.WriteAllText(string.Format("{0}\\TO\\{1}TO.csproj", caminho, nameSpace), projTO);
-            File.WriteAllText(string.Format("{0}\\TO\\Properties\\AssemblyInfo.cs", caminho), assemblyTO);
-
-            #endregion
-
-            #region Gera Projeto DAL
-
-            var trocasDAL = new Hashtable
-                                    {
-                                        {"[guid]", guidProjDAL},
-                                        {"[namespace]", nameSpace},
-                                        {"[guidInterface]", guidProjInterface},
-                                        {"[guidTO]",guidProjTO},
-                                        {"[provider]",string.Format("<Compile Include=\"DataDrain\\Factories\\{0}.cs\" />", provider)},
-                                        {"[arquivos]", string.Join("\n", arquivosDAL.ToArray())},
-                                        {"[log]",!string.IsNullOrWhiteSpace(xmlLog4Net)?sbLog4Net.ToString():""},
-                                    };
-
-            var projDAL = Gerador.RetornaTextoBase(caminhoProjetoDAL);
-
-
-
-            projDAL = trocasDAL.Cast<DictionaryEntry>().Aggregate(projDAL, (current, entry) => current.Replace(entry.Key.ToString(), entry.Value.ToString()));
-            projDAL = projDAL.Replace("[versao]", versaoFramework);
-
-
-            var assemblyDAL = templateAssembly.Replace("[camada]", "DAL").Replace("[log]", !string.IsNullOrWhiteSpace(xmlLog4Net) ? "[assembly: log4net.Config.XmlConfigurator(Watch = true)]" : ""); ;
-            assemblyDAL = assemblyDAL.Replace("[namespace]", nameSpace);
-            assemblyDAL = assemblyDAL.Replace("[guid]", guidProjDAL);
-
-
-            File.WriteAllText(string.Format("{0}\\DAL\\{1}DAL.csproj", caminho, nameSpace), projDAL);
-            File.WriteAllText(string.Format("{0}\\DAL\\Properties\\AssemblyInfo.cs", caminho), assemblyDAL);
-
-            #endregion
-
-            #region Gera Projeto BLL
-
-            var trocasBLL = new Hashtable
-                                    {
-                                        {"[guid]", guidProjBLL},
-                                        {"[namespace]", nameSpace},
-                                        {"[guidInterface]", guidProjInterface},
-                                        {"[guidTO]",guidProjTO},
-                                        {"[guidDAL]",guidProjDAL},
-                                        {"[arquivos]", string.Join("\n", arquivosBLL.ToArray())},
-                                        {"[log]",!string.IsNullOrWhiteSpace(xmlLog4Net)?sbLog4Net.ToString():""}
-                                    };
-
-            var projBLL = Gerador.RetornaTextoBase(caminhoProjetoBLL);
-            projBLL = trocasBLL.Cast<DictionaryEntry>().Aggregate(projBLL, (current, entry) => current.Replace(entry.Key.ToString(), entry.Value.ToString()));
-            projBLL = projBLL.Replace("[versao]", versaoFramework);
-
-            var assemblyBLL = templateAssembly.Replace("[camada]", "bll").Replace("[log]", !string.IsNullOrWhiteSpace(xmlLog4Net) ? "[assembly: log4net.Config.XmlConfigurator(Watch = true)]" : ""); ; ;
-            assemblyBLL = assemblyBLL.Replace("[namespace]", nameSpace);
-            assemblyBLL = assemblyBLL.Replace("[guid]", guidProjBLL);
-
-
-            File.WriteAllText(string.Format("{0}\\BLL\\{1}BLL.csproj", caminho, nameSpace), projBLL);
-            File.WriteAllText(string.Format("{0}\\BLL\\Properties\\AssemblyInfo.cs", caminho), assemblyBLL);
-
-            #endregion
-
-            #region Gera Projeto Solution
-
-            var trocasSolution = new Hashtable
-                                         {
-                                             {"[guid]", guidProjSolution},
-                                             {"[namespace]", nameSpace},
-                                             {"[guidTO]", guidProjTO},
-                                             {"[guidDAL]", guidProjDAL},
-                                             {"[guidInterface]",guidProjInterface},
-                                             {"[guidBLL]",guidProjBLL}
-                                         };
-
-            var projSolution = Gerador.RetornaTextoBase(caminhoProjetoSolution);
-
-            switch (versaoFramework)
+            switch (parametros.VersaoFramework)
             {
                 case "v2.0":
                     projSolution = projSolution.Replace("2010", "2008");
@@ -194,22 +88,176 @@ namespace DataDrain.ORM.DAL
 
             projSolution = trocasSolution.Cast<DictionaryEntry>().Aggregate(projSolution, (current, entry) => current.Replace(entry.Key.ToString(), entry.Value.ToString()));
 
-            File.WriteAllText(string.Format("{0}\\{1}.sln", caminho, nameSpace), projSolution);
+            File.WriteAllText(string.Format("{0}\\{1}.sln", parametros.CaminhoDestino, parametros.NameSpace), projSolution);
+        }
 
-            #endregion
+        private static void GeraProjetoBll(ParametrosCriarProjetos parametros, string guidProjBLL, string guidProjInterface, string guidProjTO, string guidProjDAL, List<string> arquivosBLL, StringBuilder sbLog4Net, string templateAssembly)
+        {
+            var trocasBLL = new Hashtable
+            {
+                {"[guid]", guidProjBLL},
+                {"[namespace]", parametros.NameSpace},
+                {"[guidInterface]", guidProjInterface},
+                {"[guidTO]", guidProjTO},
+                {"[guidDAL]", guidProjDAL},
+                {"[arquivos]", string.Join("\n", arquivosBLL.ToArray())},
+                {"[log]", !string.IsNullOrWhiteSpace(parametros.XmlLog4Net) ? sbLog4Net.ToString() : ""}
+            };
 
-            Directory.Move(string.Format("{0}\\TO", caminho), string.Format("{0}\\{1}TO", caminho, nameSpace.Replace(".", "")));
-            Directory.Move(string.Format("{0}\\DAL", caminho), string.Format("{0}\\{1}DAL", caminho, nameSpace.Replace(".", "")));
-            Directory.Move(string.Format("{0}\\BLL", caminho), string.Format("{0}\\{1}BLL", caminho, nameSpace.Replace(".", "")));
-            Directory.Move(string.Format("{0}\\Interfaces", caminho), string.Format("{0}\\{1}Interfaces", caminho, nameSpace.Replace(".", "")));
+            var projBLL = Gerador.RetornaTextoBase("LLBetalpmet");
+            projBLL = trocasBLL.Cast<DictionaryEntry>().Aggregate(projBLL, (current, entry) => current.Replace(entry.Key.ToString(), entry.Value.ToString()));
+            projBLL = projBLL.Replace("[versao]", parametros.VersaoFramework);
+
+            var assemblyBLL = templateAssembly.Replace("[camada]", "bll").Replace("[log]", !string.IsNullOrWhiteSpace(parametros.XmlLog4Net) ? "[assembly: log4net.Config.XmlConfigurator(Watch = true)]" : "");
+            ;
+            ;
+            assemblyBLL = assemblyBLL.Replace("[namespace]", parametros.NameSpace);
+            assemblyBLL = assemblyBLL.Replace("[guid]", guidProjBLL);
+
+
+            File.WriteAllText(string.Format("{0}\\BLL\\{1}BLL.csproj", parametros.CaminhoDestino, parametros.NameSpace), projBLL);
+            File.WriteAllText(string.Format("{0}\\BLL\\Properties\\AssemblyInfo.cs", parametros.CaminhoDestino), assemblyBLL);
+        }
+
+        private static void GeraProjetoDal(ParametrosCriarProjetos parametros, string provider, string guidProjDAL, string guidProjInterface, string guidProjTO, List<string> arquivosDAL, StringBuilder sbLog4Net, string templateAssembly)
+        {
+            var trocasDAL = new Hashtable
+            {
+                {"[guid]", guidProjDAL},
+                {"[namespace]", parametros.NameSpace},
+                {"[guidInterface]", guidProjInterface},
+                {"[guidTO]", guidProjTO},
+                {"[provider]", string.Format("<Compile Include=\"DataDrain\\Factories\\{0}.cs\" />", provider)},
+                {"[arquivos]", string.Join("\n", arquivosDAL.ToArray())},
+                {"[log]", !string.IsNullOrWhiteSpace(parametros.XmlLog4Net) ? sbLog4Net.ToString() : ""},
+            };
+
+            var projDAL = Gerador.RetornaTextoBase("LADetalpmet");
+
+
+            projDAL = trocasDAL.Cast<DictionaryEntry>().Aggregate(projDAL, (current, entry) => current.Replace(entry.Key.ToString(), entry.Value.ToString()));
+            projDAL = projDAL.Replace("[versao]", parametros.VersaoFramework);
+
+
+            var assemblyDAL = templateAssembly.Replace("[camada]", "DAL").Replace("[log]", !string.IsNullOrWhiteSpace(parametros.XmlLog4Net) ? "[assembly: log4net.Config.XmlConfigurator(Watch = true)]" : "");
+            ;
+            assemblyDAL = assemblyDAL.Replace("[namespace]", parametros.NameSpace);
+            assemblyDAL = assemblyDAL.Replace("[guid]", guidProjDAL);
+
+
+            File.WriteAllText(string.Format("{0}\\DAL\\{1}DAL.csproj", parametros.CaminhoDestino, parametros.NameSpace), projDAL);
+            File.WriteAllText(string.Format("{0}\\DAL\\Properties\\AssemblyInfo.cs", parametros.CaminhoDestino), assemblyDAL);
+        }
+
+        private static void GeraProjetoTo(ParametrosCriarProjetos parametros, string guidProjTO, string guidProjInterface, List<string> arquivosTO, string templateAssembly)
+        {
+            var trocasTo = new Hashtable
+            {
+                {"[guid]", guidProjTO},
+                {"[namespace]", parametros.NameSpace},
+                {"[guidInterface]", guidProjInterface},
+                {"[arquivos]", string.Join("\n", arquivosTO.ToArray())}
+            };
+
+            var projTO = Gerador.RetornaTextoBase("ofnIylbmessA");
+            projTO = trocasTo.Cast<DictionaryEntry>().Aggregate(projTO, (current, entry) => current.Replace(entry.Key.ToString(), entry.Value.ToString()));
+            projTO = projTO.Replace("[versao]", parametros.VersaoFramework);
+
+            var assemblyTO = templateAssembly.Replace("[camada]", "TO").Replace("[log]", "");
+            assemblyTO = assemblyTO.Replace("[namespace]", parametros.NameSpace);
+            assemblyTO = assemblyTO.Replace("[guid]", guidProjTO);
+
+
+            File.WriteAllText(string.Format("{0}\\TO\\{1}TO.csproj", parametros.CaminhoDestino, parametros.NameSpace), projTO);
+            File.WriteAllText(string.Format("{0}\\TO\\Properties\\AssemblyInfo.cs", parametros.CaminhoDestino), assemblyTO);
+        }
+
+        private static void GeraProjetoInterface(ParametrosCriarProjetos parametros, string guidProjInterface, List<string> arquivosInterface, string templateAssembly)
+        {
+            var trocasInterface = new Hashtable
+            {
+                {"[guid]", guidProjInterface},
+                {"[namespace]", parametros.NameSpace},
+                {"[arquivos]", string.Join("\n", arquivosInterface.ToArray())}
+            };
+
+            var projInterface = Gerador.RetornaTextoBase("secafretnIetalpmeT");
+            projInterface = trocasInterface.Cast<DictionaryEntry>().Aggregate(projInterface, (current, entry) => current.Replace(entry.Key.ToString(), entry.Value.ToString()));
+            projInterface = projInterface.Replace("[versao]", parametros.VersaoFramework);
+
+            var assemblyInterface = templateAssembly.Replace("[log]", "");
+            assemblyInterface = assemblyInterface.Replace("[namespace]", parametros.NameSpace);
+            assemblyInterface = assemblyInterface.Replace("[guid]", guidProjInterface);
+
+            File.WriteAllText(string.Format("{0}\\Interfaces\\{1}Interfaces.csproj", parametros.CaminhoDestino, parametros.NameSpace), projInterface);
+            File.WriteAllText(string.Format("{0}\\Interfaces\\Properties\\AssemblyInfo.cs", parametros.CaminhoDestino), assemblyInterface);
+        }
+
+        private static void GeraProjetoWcf(ParametrosCriarProjetos parametros, string guidProjWcf)
+        {
+            var servicos = new List<string>();
+            var servicosCode = new List<string>();
+            var servicosInterface = new List<string>();
+
+            Directory.CreateDirectory(string.Format("{0}\\{1}Wcf\\", parametros.CaminhoDestino, parametros.NameSpace));
+            Directory.CreateDirectory(string.Format("{0}\\{1}Wcf\\Interface", parametros.CaminhoDestino, parametros.NameSpace));
+            Directory.CreateDirectory(string.Format("{0}\\{1}Wcf\\Properties", parametros.CaminhoDestino, parametros.NameSpace));
+
+            var assemblyInfoWcf = Gerador.RetornaTextoBase("AssemblyInfoWcf").Replace("{namespace}", parametros.NameSpace).Replace("{guid}", Guid.NewGuid().ToString("D"));
+            File.WriteAllText(string.Format("{0}\\{1}Wcf\\Properties\\AssemblyInfo.cs", parametros.CaminhoDestino, parametros.NameSpace), assemblyInfoWcf);
+
+            foreach (var classe in parametros.ObjetosMapeaveis)
+            {
+                File.WriteAllText(string.Format("{0}\\{1}Wcf\\{2}.cs", parametros.CaminhoDestino, parametros.NameSpace, classe.Key.NomeObjeto), string.Format("<%@ ServiceHost Language=\"C#\" Debug=\"true\" Service=\"CorpWcf.Aceite\" CodeBehind=\"{0}.svc.cs\" %>", classe.Key.NomeObjeto));
+
+                var corpoServico = Gerador.RetornaTextoBase("corpoServico").Replace("{namespace}", parametros.NameSpace).Replace("{classe}", classe.Key.NomeObjeto);
+                File.WriteAllText(string.Format("{0}\\{1}Wcf\\{2}.svc.cs", parametros.CaminhoDestino, parametros.NameSpace, classe.Key.NomeObjeto), corpoServico);
+
+                var corpoInterfaceServico = Gerador.RetornaTextoBase("corpoInterfaceServico").Replace("{namespace}", parametros.NameSpace).Replace("{classe}", classe.Key.NomeObjeto); ;
+                File.WriteAllText(string.Format("{0}\\{1}Wcf\\Interface\\I{2}.cs", parametros.CaminhoDestino, parametros.NameSpace, classe.Key.NomeObjeto), corpoInterfaceServico);
+
+                servicos.Add(string.Format("<Content Include=\"{0}.svc\" />", classe.Key.NomeObjeto));
+                servicosCode.Add(string.Format("<Compile Include=\"{0}.svc.cs\">{1}<DependentUpon>{0}.svc</DependentUpon>{1}</Compile>", classe.Key.NomeObjeto, Environment.NewLine));
+                servicosInterface.Add(string.Format("<Compile Include=\"Interface\\I{0}.cs\" />", classe.Key.NomeObjeto));
+            }
+
+            var corpoProjetoWcf = Gerador.RetornaTextoBase("corpoProjetoWcf").Replace("{namespace}", parametros.NameSpace)
+                .Replace("{servicos}", string.Join("\n", servicos))
+                .Replace("{servicosCode}", string.Join("\n", servicosCode))
+                .Replace("[guid]",guidProjWcf)
+                .Replace("{servicosInterface}", string.Join("\n", servicosInterface));
+
+            File.WriteAllText(string.Format("{0}\\{1}Wcf\\{2}Wcf.csproj", parametros.CaminhoDestino, parametros.NameSpace, parametros.NameSpace), corpoProjetoWcf);
+
+            var corpoWebConfig = Gerador.RetornaTextoBase("corpoWebConfig");
+            File.WriteAllText(string.Format("{0}\\{1}Wcf\\Web.config", parametros.CaminhoDestino, parametros.NameSpace), corpoWebConfig);
 
         }
 
+        private static string AssinaProjeto(ParametrosCriarProjetos parametros)
+        {
+            var templateAssembly = Gerador.RetornaTextoBase("ofnIylbmessA");
+            var tmpAssInfo = string.Empty;
 
-        /// <summary>
-        /// Gera uma chave de assinatura
-        /// </summary>
-        /// <param name="keyName"></param>
+            if (parametros.AssinarProjeto)
+            {
+                if (string.IsNullOrEmpty(parametros.CaminhoStrongName))
+                {
+                    var nomeSnkFile = string.Format("{0}.snk", parametros.NameSpace);
+
+                    GerarKey(string.Format("{0}\\{1}", parametros.CaminhoDestino, nomeSnkFile));
+                    tmpAssInfo = string.Format("[assembly: AssemblyKeyFile({0}\"{1}{2}\")]", "@", "..\\", nomeSnkFile);
+                }
+                else
+                {
+                    tmpAssInfo = string.Format("[assembly: AssemblyKeyFile({0}\"{1}\")]", "@", parametros.CaminhoStrongName);
+                }
+            }
+
+            templateAssembly = templateAssembly.Replace("{sing}", tmpAssInfo);
+            return templateAssembly;
+        }
+
         private static void GerarKey(string keyName)
         {
 

@@ -21,4 +21,3 @@ C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Interfaces\
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Interfaces\bin\Debug\DataDrain.ORM.Interfaces.pdb
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Interfaces\obj\Debug\DataDrain.ORM.Interfaces.dll
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Interfaces\obj\Debug\DataDrain.ORM.Interfaces.pdb
-C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Interfaces\obj\Debug\DataDrain.ORM.Interfaces.csprojResolveAssemblyReference.cache

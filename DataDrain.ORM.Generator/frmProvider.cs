@@ -28,6 +28,7 @@ namespace DataDrain.ORM.Generator
             _providers = RetornaProvidersReferenciados().OrderByDescending(p => p.Versao).ToList();
 
             pbLogo.DataBindings.Add("Image", "", "Logo");
+            pbLogo.DoubleClick += pbLogo_DoubleClick;
             lblVersao.DataBindings.Add("Text", "", "Versao");
             lblBDMinimo.DataBindings.Add("Text", "", "BancoMinimo");
             lblTabela.DataBindings.Add("Text", "", "MapeamentoTabela");
@@ -42,6 +43,16 @@ namespace DataDrain.ORM.Generator
             }
 
             labelControl1.Text = Versao.RetornaVersao();
+        }
+
+        void pbLogo_DoubleClick(object sender, EventArgs e)
+        {
+            var pb = sender as PictureBox;
+
+            if (pb != null)
+            {
+                rptProviders_ItemTemplate_DoubleClick(rptProviders, EventArgs.Empty);
+            }
         }
 
         #endregion

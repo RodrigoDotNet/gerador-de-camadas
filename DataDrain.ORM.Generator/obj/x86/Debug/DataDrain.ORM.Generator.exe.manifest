@@ -4,7 +4,7 @@
   <description asmv2:iconFile="1364628355_45282.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="DataDrain.ORM.Generator" version="3.7.5872.18717" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="DataDrain.ORM.Generator" version="4.0.5872.27515" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="x86" />
     <commandLine file="DataDrain.ORM.Generator.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -50,55 +50,55 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>V45oysMJwI8MjC0BgBWnhI4YYvY=</dsig:DigestValue>
+        <dsig:DigestValue>K3z/3u4cB+oWpAWCn6oNmDQ0i0k=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataDrain.ORM.DAL.dll" size="37888">
-      <assemblyIdentity name="DataDrain.ORM.DAL" version="3.6.5872.18717" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataDrain.ORM.DAL.dll" size="39424">
+      <assemblyIdentity name="DataDrain.ORM.DAL" version="3.6.5872.27449" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>8CJLi4f7vR8QJ6N/8w9W5IIWrr0=</dsig:DigestValue>
+        <dsig:DigestValue>f2T8p7BCccbV1aQKo0Af3JM6KjI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataDrain.ORM.DAL.MySQL.dll" size="38400">
-      <assemblyIdentity name="DataDrain.ORM.DAL.MySQL" version="3.7.5872.18717" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="DataDrain.ORM.DAL.MySQL" version="3.7.5872.27449" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>07Ems8VOSA7H4lWj8aIMj/1ZCW8=</dsig:DigestValue>
+        <dsig:DigestValue>Z7XRQn8+0aOT69wnGSM9rdf+75s=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataDrain.ORM.DAL.SqlServer.dll" size="66048">
-      <assemblyIdentity name="DataDrain.ORM.DAL.SqlServer" version="3.7.5872.18717" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataDrain.ORM.DAL.SqlServer.dll" size="65536">
+      <assemblyIdentity name="DataDrain.ORM.DAL.SqlServer" version="3.7.5872.27449" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>HdY1lgor+urnBYdvX7PKKLXcYBM=</dsig:DigestValue>
+        <dsig:DigestValue>ZW3JWrBPoiWwtBQIsnYSh2fzgaM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataDrain.ORM.Generator.exe" size="744448">
-      <assemblyIdentity name="DataDrain.ORM.Generator" version="3.7.5872.18717" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="x86" />
+      <assemblyIdentity name="DataDrain.ORM.Generator" version="4.0.5872.27515" publicKeyToken="2CF0EE673BC4D672" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>3aXMnIr1N1epMD5DmAembrM3hw8=</dsig:DigestValue>
+        <dsig:DigestValue>HQhbkUqEpmMBdoe3Vxmc/jMvUug=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -110,7 +110,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>8kJguZhw3aoI2CPlI+LV6tM56QY=</dsig:DigestValue>
+        <dsig:DigestValue>ElXdmtGEUpbbW8eHT7oytTBi7Bo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
