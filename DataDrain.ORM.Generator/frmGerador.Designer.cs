@@ -205,7 +205,7 @@ namespace DataDrain.ORM.Generator
             this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(160, 20);
             this.txtSenha.TabIndex = 2;
-            this.txtSenha.Text = "XX4@mju98";
+            this.txtSenha.Text = "";
             // 
             // label3
             // 
@@ -241,7 +241,7 @@ namespace DataDrain.ORM.Generator
             this.txtServidor.Name = "txtServidor";
             this.txtServidor.Size = new System.Drawing.Size(344, 20);
             this.txtServidor.TabIndex = 0;
-            this.txtServidor.Text = "187.18.50.37";
+            this.txtServidor.Text = "";
             this.txtServidor.Leave += new System.EventHandler(this.txtServidor_Leave);
             this.txtServidor.Validating += new System.ComponentModel.CancelEventHandler(this.txtServidor_Validating);
             // 
