@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security;
 
@@ -87,5 +89,88 @@ namespace DataDrain.ORM.Generator
 
             return secureString;
         }
+
+        public static IEnumerable<int> AllIndexesOf(this string str, string value)
+        {
+            if (String.IsNullOrEmpty(value))
+                throw new ArgumentException("the string to find may not be empty", "value");
+            for (int index = 0; ; index += value.Length)
+            {
+                index = str.IndexOf(value, index);
+                if (index == -1)
+                    break;
+                yield return index;
+            }
+        }
+
+        public static object ConverteParaTipo(this object valor)
+        {
+            if (valor == null || valor.ToString() == "null")
+            {
+                return null;
+            }
+
+            DateTime data;
+            int numerico;
+            long numericoGrande;
+            ulong numericoMuitoGrande;
+            double numericoDecimalGrande;
+            TimeSpan hora;
+
+            if (DateTime.TryParse(valor.ToString(), out data)) { return data; }
+
+            if (int.TryParse(valor.ToString(), out numerico)) { return numerico; }
+
+            if (long.TryParse(valor.ToString(), out numericoGrande)) { return numericoGrande; }
+
+            if (ulong.TryParse(valor.ToString(), out numericoMuitoGrande)) { return numericoMuitoGrande; }
+
+            if (double.TryParse(valor.ToString(), out numericoDecimalGrande)) { return numericoDecimalGrande; }
+
+            if (TimeSpan.TryParse(valor.ToString(), out hora)) { return hora; }
+
+            return valor;
+        }
+
+        public static string RetornaTipo(this object valor)
+        {
+            if (valor == null || valor.ToString() == "null")
+            {
+                return "object";
+            }
+
+            DateTime data;
+            int numerico;
+            long numericoGrande;
+            ulong numericoMuitoGrande;
+            double numericoDecimalGrande;
+            TimeSpan hora;
+
+            if (DateTime.TryParse(valor.ToString(), out data)) { return "DateTime"; }
+
+            if (int.TryParse(valor.ToString(), out numerico)) { return "int"; }
+
+            if (long.TryParse(valor.ToString(), out numericoGrande)) { return "long"; }
+
+            if (ulong.TryParse(valor.ToString(), out numericoMuitoGrande)) { return "ulong"; }
+
+            if (double.TryParse(valor.ToString(), out numericoDecimalGrande)) { return "double"; }
+
+            if (TimeSpan.TryParse(valor.ToString(), out hora)) { return "DateTime"; }
+
+            return "string";
+        }
+
+        public static bool ContainsInsensitive(this string texto, string palavra)
+        {
+            if (string.IsNullOrWhiteSpace(texto) || string.IsNullOrWhiteSpace(palavra))
+            {
+                return false;
+            }
+
+            var culture = new CultureInfo("pt-BR");
+            return culture.CompareInfo.IndexOf(texto, palavra, CompareOptions.IgnoreCase) > -1;
+        }
+
     }
 }

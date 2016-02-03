@@ -101,6 +101,6 @@
 
         private System.Windows.Forms.Button btnAvancar2;
         private System.Windows.Forms.DataGridView gvColunasObjeto;
-        private System.Windows.Forms.Button button1;
+        internal System.Windows.Forms.Button button1;
     }
 }

@@ -19,7 +19,6 @@ namespace DataDrain.ORM.Interfaces.Objetos
         public bool AssinarProjeto { get; set; }
         public string CaminhoStrongName { get; set; }
         public string VersaoFramework { get; set; }
-        public string XmlLog4Net { get; set; }
         public bool MapWcf { get; set; }
         public bool MapLinq { get; set; }
         public Dictionary<string, string> TiposObjetosAcaoBanco { get; set; }

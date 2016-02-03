@@ -10,6 +10,5 @@ namespace DataDrain.ORM.DAL.MySQL.InformationSchema
         {
             return new MySqlConnection(string.Format("Data Source={0};Initial Catalog={1};UID={2}; Password={3};Port={4};", usr.Servidor, usr.DataBase, usr.Usuario, usr.Senha, usr.Porta));
         }
-            
     }
 }

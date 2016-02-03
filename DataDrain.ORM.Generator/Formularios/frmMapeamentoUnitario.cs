@@ -29,6 +29,10 @@ namespace DataDrain.ORM.Generator.Formularios
 
         public TipoObjetoBanco.ETipoObjeto TipoObjeto { get; set; }
 
+        public List<DadosColunas> Colunas { get; set; }
+
+        public string Consulta { get; set; }
+
         #endregion
 
         #region Load
@@ -57,7 +61,7 @@ namespace DataDrain.ORM.Generator.Formularios
         {
             try
             {
-                if (ObjetosSelecionado.Key==null)
+                if (ObjetosSelecionado.Key == null)
                 {
                     var colunasObjeto = new List<DadosColunas>();
 
@@ -76,7 +80,7 @@ namespace DataDrain.ORM.Generator.Formularios
 
                             if (Parametros.Count > 0)
                             {
-                                var frm = new frmParametros {Parametros = Parametros};
+                                var frm = new frmParametros { Parametros = Parametros };
 
                                 if (frm.ShowDialog(this) == DialogResult.Yes)
                                 {
@@ -92,11 +96,18 @@ namespace DataDrain.ORM.Generator.Formularios
 
                             break;
 
+                        case TipoObjetoBanco.ETipoObjeto.Query:
+                            colunasObjeto = Colunas;
+                            break;
+
                         default:
                             throw new ArgumentOutOfRangeException("tipo", "Tipo inválido");
                     }
 
-                    ObjetosSelecionado = new KeyValuePair<TipoObjetoBanco, List<DadosColunas>>(new TipoObjetoBanco(nomeObjeto, tipo.ToString(), Parametros), colunasObjeto);
+                    ObjetosSelecionado = tipo == TipoObjetoBanco.ETipoObjeto.Query ?
+                        new KeyValuePair<TipoObjetoBanco, List<DadosColunas>>(new TipoObjetoBanco(nomeObjeto, tipo.ToString(), Parametros, Consulta), colunasObjeto)
+                        : new KeyValuePair<TipoObjetoBanco, List<DadosColunas>>(new TipoObjetoBanco(nomeObjeto, tipo.ToString(), Parametros), colunasObjeto);
+
                 }
 
                 GridView.CarregaGridViewColunas(gvColunasObjeto, ObjetosSelecionado, IlObjetos);
@@ -121,7 +132,7 @@ namespace DataDrain.ORM.Generator.Formularios
                                 ? gvColunasObjeto.Rows[i].Cells[8].Value.ToString()
                                 : "";
 
-                            coluna.TipoSync = (DadosColunas.ETipoSync) gvColunasObjeto.Rows[i].Cells[9].Value;
+                            coluna.TipoSync = (DadosColunas.ETipoSync)gvColunasObjeto.Rows[i].Cells[9].Value;
 
                             break;
                         }

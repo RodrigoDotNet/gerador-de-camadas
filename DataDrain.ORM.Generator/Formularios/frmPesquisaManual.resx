@@ -117,25 +117,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBox1.Text" xml:space="preserve">
-    <value>Os dados do SMTP Server ficaram salvos no arquivo app.config sem nehuma proteção, já que o Log4net não oferece esse recurso.
-
-Em aplicações Windows Form, WPF e Windows Service deve se ficar atento ao acesso a pasta onde estara armazenado o arquivo.config.
-
-Se não houver como impedir o acesso não recomendo o uso do log via e-mail.</value>
-  </data>
-  <data name="textBox8.Text" xml:space="preserve">
-    <value>CREATE TABLE Log (
-    Id int IDENTITY (1, 1) NOT NULL,
-    Date datetime NOT NULL,
-    Thread varchar (255) NOT NULL,
-    Level varchar (50) NOT NULL,
-    Logger varchar (255) NOT NULL,
-    Message varchar (4000) NOT NULL,
-    Exception varchar (2000) NULL
-);</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnMapear.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABGdBTUEAALGPC/xhBQAAAQ9JREFUSEu1
+        1U1KA2EQhGEvmBsMDkF0YBAVVFCR0Az+oJDzZJWztV8vhKby+jWoWTybYqoSCJM+cfeul4/tvvGOPfUU
+        htny9ukV7RAMs83y7hXtEAyzp83iFe0QDLP7x41XtEMwzG7uHryiHYJhNl/dekU7BMPsYr72inYIhtn6
+        fPaKdgiG2el62jXesaOewvAYMOxpfzkryisY9jzb6/98UHsvVn+lm+EgOJsuf/WNv/3UPwiOJX7csbGO
+        kYpZPCMdNca9sQqNZ9RRcW+sQuMZdVTcG6vQeEYdFffGKjSeUUfFe2MVGs+oo+LeWIXGM+qouDdWofGM
+        OirujVVoPKOOinszNNYx0HgWz0hHTMMXO4nIwY8BqkEAAAAASUVORK5CYII=
+</value>
   </data>
   <metadata name="errPadrao.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAA
+        AAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP//
+        /wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP//
+        /wD///8A////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAvgAAAO0AAAA8AAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAdwAAAL4AAAAMAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAA4QAAAMQAAADhAAAATgAAAAAAAAAdAAAAqQAAAOEAAADOAAAAaAAA
+        AAEAAACqAAAA4QAAAOEAAADhAAAApwEBAcwAAAA0AQEBZwEBAcwBAQEAAQEBmwEBAaIAAAAXAQEBTwEB
+        AcwBAQE1AQEBAAEBAcwBAQFnAAAANAEBAcwBAQFjAQEBAAEBAWwBAQHFAQEBAAEBAcUBAQFmAQEBAAEB
+        AQMBAQHFAQEBYwEBAQABAQHFAQEBYwEBAQABAQEyAQEBAAEBAUMBAQG/AQEBQwEBAQABAQG/AQEBYAEB
+        AQABAQEAAQEBvwEBAWABAQEAAQEBvwEBAWABAQEAAQEBAAEBAUEBAQG5AQEBQgEBAQABAQEAAQEBuQEB
+        AV0BAQEAAQEBAAEBAbkBAQFdAQEBAAEBAbkBAQFdAQEBAAEBAQABAQG0AQEBYwEBAQABAQFZAQEBAAEB
+        AbQBAQFdAQEBAAEBAQMBAQG0AQEBWgEBAQABAQG0AQEBWgEBAQABAQEAAQEBrwEBAVgBAQEsAQEBrwEB
+        AQABAQGFAQEBigEBARMBAQFDAQEBrwEBAS4BAQEAAQEBrwEBAVgBAQEAAQEBAAEBATwBAQGsAQEBlwEB
+        AawBAQEAAQEBFwEBAYMBAQGsAQEBngEBAVEBAQEBAQEBgQEBAawBAQGsAQEBVgEBAQD///8A////AP//
+        /wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP//
+        /wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP//
+        /wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP//
+        /wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP//
+        /wD///8A//8AAP//AAD+HwAA/j8AAAgAAAAIEAAASRIAAImTAAAZkwAAKRMAAAgTAAAIAQAA//8AAP//
+        AAD//wAA//8AAA==
+</value>
+  </data>
 </root>

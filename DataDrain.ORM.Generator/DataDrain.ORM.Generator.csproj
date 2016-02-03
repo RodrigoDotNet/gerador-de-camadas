@@ -121,16 +121,16 @@
     <Compile Include="Apoio\RegistroWindows.cs" />
     <Compile Include="Apoio\ValidarSmtpHost.cs" />
     <Compile Include="Apoio\Versao.cs" />
+    <Compile Include="Controles\DataGridViewMaskedTextCell.cs" />
+    <Compile Include="Controles\DataGridViewMaskedTextColumn.cs" />
+    <Compile Include="Controles\DataGridViewMaskedTextControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controles\ReferencedDescriptionAttribute.cs" />
     <Compile Include="ExtensionMethods\DocumentExtensions.cs" />
     <Compile Include="ExtensionMethods\EmEnum.cs" />
     <Compile Include="ExtensionMethods\EmErrorProvider.cs" />
     <Compile Include="ExtensionMethods\EmString.cs" />
-    <Compile Include="Formularios\frmLog4Net.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formularios\frmLog4Net.Designer.cs">
-      <DependentUpon>frmLog4Net.cs</DependentUpon>
-    </Compile>
     <Compile Include="Formularios\frmMapeamentoUnitario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +142,12 @@
     </Compile>
     <Compile Include="Formularios\frmParametros.designer.cs">
       <DependentUpon>frmParametros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmPesquisaManual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmPesquisaManual.Designer.cs">
+      <DependentUpon>frmPesquisaManual.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\frmRegExpHelp.cs">
       <SubType>Form</SubType>
@@ -175,14 +181,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Formularios\frmLog4Net.resx">
-      <DependentUpon>frmLog4Net.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmMapeamentoUnitario.resx">
       <DependentUpon>frmMapeamentoUnitario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmParametros.resx">
       <DependentUpon>frmParametros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmPesquisaManual.resx">
+      <DependentUpon>frmPesquisaManual.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmRegExpHelp.resx">
       <DependentUpon>frmRegExpHelp.cs</DependentUpon>
@@ -236,6 +242,7 @@
     <None Include="Resources\1374174076_cancel.png" />
     <None Include="teste.snk" />
     <None Include="TextFile1.txt" />
+    <None Include="Resources\1454543275_icon-89-document-file-sql.png" />
     <Content Include="xmlRegExp.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

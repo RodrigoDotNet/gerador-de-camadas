@@ -47,8 +47,6 @@ namespace DataDrain.ORM.Generator
 
         private string BancoSelecionado { get; set; }
 
-        private string XmlLog4Net { get; set; }
-
         private HistoricoBase Historico { get; set; }
 
         private List<DadosObjeto> _dadosObjetos = new List<DadosObjeto>();
@@ -210,9 +208,6 @@ namespace DataDrain.ORM.Generator
                     {
                         if (VerificaPermissaoPasta(fb.SelectedPath))
                         {
-
-                            VerificaConfiguracaoLog4Net();
-
                             foreach (var colunas in from objeto in _objetosSelecionados from colunas in objeto.Value where colunas.RegExp == "sem" select colunas)
                             {
                                 colunas.RegExp = "";
@@ -226,7 +221,6 @@ namespace DataDrain.ORM.Generator
                                 NameSpace = txtNameSpace.Text.Trim(),
                                 GerarAppConfig = chkGeraAppConfig.Checked,
                                 AssinarProjeto = chkGeraSN.Checked,
-                                XmlLog4Net = XmlLog4Net,
                                 MapWcf = chkMapWcf.Checked,
                                 MapLinq = chkMapLinq.Checked,
                                 TiposObjetosAcaoBanco = Gerador.TiposObjetosAcaoBanco
@@ -309,11 +303,10 @@ namespace DataDrain.ORM.Generator
                         {
                             btnMapearSelecionados_Click(btnMapearSelecionados, EventArgs.Empty);
                         }
-                        else
+                        else if (_objetosSelecionados.Any(q => q.Key.QuerySql == null))
                         {
                             tbPrincipal.SelectedIndex = 1;
                         }
-
 
                         break;
                 }
@@ -657,44 +650,6 @@ namespace DataDrain.ORM.Generator
             }
         }
 
-        private void VerificaConfiguracaoLog4Net()
-        {
-            if (chkLog4Net.Checked)
-            {
-                chkGeraAppConfig.Checked = true;
-
-                if (!string.IsNullOrEmpty(XmlLog4Net))
-                {
-                    if (MessageBox.Show("Já existe uma configuração ativa para o Log4Net.\nSe entrar no editor novamente a configuração antiga sera perdida.\nDeseja continuar?", "ATENÇÃO", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
-                    {
-                        return;
-                    }
-                }
-
-                var frm = new frmLog4Net
-                {
-                    txtNomeArquivo = {Text = Arquivo.RetornaNomevalidoArquivo(txtNameSpace.Text)},
-                    Gerador = Gerador
-                };
-
-                frm.ShowDialog(this);
-
-                if (frm.Confirmou)
-                {
-                    XmlLog4Net = frm.XmlRetorno;
-                }
-                else
-                {
-                    chkLog4Net.Checked = false;
-                    XmlLog4Net = string.Empty;
-                }
-            }
-            else
-            {
-                XmlLog4Net = string.Empty;
-            }
-        }
-
         private void ConfiguraAutoComplete()
         {
             txtServidor.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -786,6 +741,8 @@ namespace DataDrain.ORM.Generator
                     return 1;
                 case "procedure":
                     return 2;
+                case "query":
+                    return 8;
             }
             return 0;
         }
@@ -879,7 +836,7 @@ namespace DataDrain.ORM.Generator
 
             lvObjetosSelecionados.Columns.Add("Nome", lvObjetosSelecionados.Width - 30);
 
-            if (_objetosSelecionados != null)
+            if (_objetosSelecionados != null && _objetosSelecionados.Count(o => o.Key != null) > 0)
             {
                 foreach (var objeto in _objetosSelecionados)
                 {
@@ -991,6 +948,27 @@ namespace DataDrain.ORM.Generator
         }
 
         #endregion
+
+        private void bntMapConsulta_Click(object sender, EventArgs e)
+        {
+            using (var frm = new frmPesquisaManual { Gerador = Gerador, DadosLogin = DadosLogin, BancoSelecionado = cbBancoDados.Text, IlObjetos = ilObjetos })
+            {
+                frm.ShowDialog();
+
+                if (frm.ObjetoSelecionado.Key != null)
+                {
+                    _objetosSelecionados.Add(frm.ObjetoSelecionado);
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            ExibeObjetosSelecionados();
+            tbPrincipal.SelectTab(2);
+            txtNameSpace.Focus();
+        }
 
 
     }

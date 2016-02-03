@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DataDrain.ORM.Generator")]
-[assembly: AssemblyDescription("DataDrain ORM é um mapeador objeto-relacional que permite que os desenvolvedores C# trabalhem com dados relacionais usando objetos específicos do domínio. Ele elimina a necessidade da maioria do código de acesso a dados que os desenvolvedores geralmente precisa escrever.")]
+[assembly: AssemblyDescription("DataDrain ORM é um mapeador objeto-relacional criado inicialmente por motivos de estudo.")]
 
 #if DEBUG
 [assembly: AssemblyConfiguration("Debug")]
@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyCompany("RodrigoDotNET")]
 [assembly: AssemblyProduct("DataDrain.ORM.Generator")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 #pragma warning disable 1699

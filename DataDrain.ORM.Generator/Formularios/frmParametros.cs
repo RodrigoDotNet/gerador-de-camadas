@@ -66,35 +66,6 @@ namespace DataDrain.ORM.Generator.Formularios
             dgParametros.Columns.Add(valor);
         }
 
-        private static object ConverteString(string valor)
-        {
-            DateTime data;
-            int numerico;
-            long numericoGrande;
-            ulong numericoMuitoGrande;
-            double numericoDecimalGrande;
-            TimeSpan hora;
-
-            if (DateTime.TryParse(valor, out data)) { return data; }
-
-            if (int.TryParse(valor, out numerico)) { return numerico; }
-
-            if (long.TryParse(valor, out numericoGrande)) { return numericoGrande; }
-
-            if (ulong.TryParse(valor, out numericoMuitoGrande)) { return numericoMuitoGrande; }
-
-            if (double.TryParse(valor, out numericoDecimalGrande)) { return numericoDecimalGrande; }
-
-            if (TimeSpan.TryParse(valor, out hora)) { return hora; }
-
-            if (valor == null || valor == "null")
-            {
-                return null;
-            }
-
-            return string.Empty;
-        }
-
         #endregion
 
         #region .: Eventos :.
@@ -107,7 +78,7 @@ namespace DataDrain.ORM.Generator.Formularios
                 {
                     foreach (var parametro in Parametros.Where(parametro => parametro.ParameterName == dgParametros.Rows[i].Cells[0].Value.ToString()))
                     {
-                        parametro.ParameterValue = ConverteString((string)dgParametros.Rows[i].Cells[2].Value);
+                        parametro.ParameterValue = dgParametros.Rows[i].Cells[2].Value.ConverteParaTipo();
                     }
                 }
                 Close();

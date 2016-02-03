@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using DataDrain.ORM.Interfaces;
@@ -120,6 +121,45 @@ namespace DataDrain.ORM.DAL.MySQL.InformationSchema
                 {"usingIDb","MySql.Data.MySqlClient"}
             };
             }
+        }
+
+        public List<DadosColunas> MapQuery(string sql, List<DadosStoredProceduresParameters> parametros, DadosUsuario dadosLogin)
+        {
+            var retorno = new List<DadosColunas>();
+            DataTable dt;
+
+            using (var cnn = Conexao.RetornaConexaoBase(dadosLogin))
+            {
+                var cmd = cnn.CreateCommand();
+                cmd.CommandText = sql;
+
+                foreach (var parametro in parametros)
+                {
+                    cmd.Parameters.AddWithValue(parametro.ParameterName, parametro.DefineNull ? null : parametro.ParameterValue);
+                }
+
+                cnn.Open();
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    dt = dr.GetSchemaTable();
+                }
+            }
+
+            if (dt != null)
+            {
+                retorno.AddRange(from DataRow row in dt.Rows
+                    select new DadosColunas
+                    {
+                        Coluna = row["ColumnName"].ToString(), 
+                        Pk = (bool) row["IsKey"], 
+                        AceitaNull = (bool) row["AllowDBNull"], 
+                        Tipo = row["DataType"].ToString().Replace("System.", "").Replace("U", ""), 
+                        TipoSync = DadosColunas.ETipoSync.Never
+                    });
+            }
+
+            return retorno;
         }
     }
 

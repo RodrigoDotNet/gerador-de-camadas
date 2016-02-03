@@ -269,6 +269,7 @@ namespace DataDrain.ORM.DAL
                 case TipoObjetoBanco.ETipoObjeto.Tabela:
                     textoBase = RetornaTextoBase("padraoBLLNativo");
                     break;
+                case TipoObjetoBanco.ETipoObjeto.Query:
                 case TipoObjetoBanco.ETipoObjeto.Procedure:
                     textoBase = RetornaTextoBase("padraoBLLProc");
                     textoBase = textoBase.Replace("{parametros}", string.Join(", ", parametros.Select(p => string.Format("{0} {1}", p.ParameterDotNetType, p.ParameterName))));
@@ -284,10 +285,10 @@ namespace DataDrain.ORM.DAL
             textoBase = Log ? textoBase.Replace("[log]", "Log.Error(ex.Message, ex);").Replace("[logHeader]", string.Format("private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof({0}BLL));", nomeTabela)) : textoBase.Replace("[log]", "").Replace("[logHeader]", "");
 
             return textoBase.Replace("{namespace}", strNamespace).Replace("{classe}", (nomeTabela));
-            
+
         }
 
-        public string GerarClasseDAL(string nomeTabela, string strNamespace, TipoObjetoBanco.ETipoObjeto tipoObjeto, List<DadosStoredProceduresParameters> parametros)
+        public string GerarClasseDAL(string nomeTabela, string strNamespace, TipoObjetoBanco.ETipoObjeto tipoObjeto, List<DadosStoredProceduresParameters> parametros, string query)
         {
 
             string textoBase;
@@ -296,6 +297,7 @@ namespace DataDrain.ORM.DAL
                 case TipoObjetoBanco.ETipoObjeto.Tabela:
                     textoBase = RetornaTextoBase("padraoDALNativo");
                     break;
+                case TipoObjetoBanco.ETipoObjeto.Query:
                 case TipoObjetoBanco.ETipoObjeto.Procedure:
                     textoBase = RetornaTextoBase("padraoDALProc");
                     textoBase = textoBase.Replace("{parametros}", string.Join(", ", parametros.Select(p => string.Format("{0} {1}", p.ParameterDotNetType, p.ParameterName))));
@@ -308,6 +310,8 @@ namespace DataDrain.ORM.DAL
                     }
 
                     textoBase = textoBase.Replace("{carregaParametros}", sbParametros.ToString());
+                    textoBase = textoBase.Replace("{query}", tipoObjeto == TipoObjetoBanco.ETipoObjeto.Procedure ? nomeTabela : query);
+                    textoBase = textoBase.Replace("{proc}", tipoObjeto == TipoObjetoBanco.ETipoObjeto.Procedure ? "cmd.CommandType = CommandType.StoredProcedure;" : "");
 
                     break;
                 case TipoObjetoBanco.ETipoObjeto.View:

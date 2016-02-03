@@ -334,7 +334,6 @@ C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\b
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\bin\Debug\System.Data.SQLite.xml
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\bin\Debug\DataDrain.ORM.DAL.pdb
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\obj\x86\Debug\DataDrain.ORM.Generator.csprojResolveAssemblyReference.cache
-C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\obj\x86\Debug\DataDrain.ORM.Generator.Formularios.frmLog4Net.resources
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\obj\x86\Debug\DataDrain.ORM.Generator.Formularios.frmMapeamentoUnitario.resources
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\obj\x86\Debug\DataDrain.ORM.Generator.Formularios.frmParametros.resources
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\obj\x86\Debug\DataDrain.ORM.Generator.Formularios.frmRegExpHelp.resources
@@ -349,3 +348,4 @@ C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\o
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\obj\x86\Debug\DataDrain.ORM.Generator.application
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\obj\x86\Debug\DataDrain.ORM.Generator.exe
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\obj\x86\Debug\DataDrain.ORM.Generator.pdb
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.ORM.Generator\obj\x86\Debug\DataDrain.ORM.Generator.Formularios.frmPesquisaManual.resources

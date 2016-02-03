@@ -9,13 +9,15 @@ namespace DataDrain.ORM.Interfaces.Objetos
         {
             Tabela,
             View,
-            Procedure
+            Procedure,
+            Query
         }
 
-        public TipoObjetoBanco(string nome, string tipo, List<DadosStoredProceduresParameters> parametros = null)
+        public TipoObjetoBanco(string nome, string tipo, List<DadosStoredProceduresParameters> parametros = null, string consulta = null)
         {
             NomeObjeto = nome;
             Parametros = parametros;
+            QuerySql = consulta;
 
             switch (tipo.ToLower())
             {
@@ -28,7 +30,9 @@ namespace DataDrain.ORM.Interfaces.Objetos
                 case "procedure":
                     TipoObjeto = ETipoObjeto.Procedure;
                     break;
-
+                case "query":
+                    TipoObjeto = ETipoObjeto.Query;
+                    break;
                 default:
 
                     throw new ArgumentOutOfRangeException("tipo", "Tipo inválido");
@@ -53,5 +57,10 @@ namespace DataDrain.ORM.Interfaces.Objetos
         /// Lista de parametros
         /// </summary>
         public List<DadosStoredProceduresParameters> Parametros { get; set; }
+
+        /// <summary>
+        /// Dados da Consulta Manual
+        /// </summary>
+        public string QuerySql { get; private set; }
     }
 }

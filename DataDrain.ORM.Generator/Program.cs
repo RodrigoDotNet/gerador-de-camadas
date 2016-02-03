@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Principal;
 using System.Windows.Forms;
+using DataDrain.ORM.Generator.Formularios;
 
 namespace DataDrain.ORM.Generator
 {
@@ -12,7 +13,6 @@ namespace DataDrain.ORM.Generator
         [STAThread]
         static void Main()
         {
-            //Este código deve ser executado antes de criar qualquer elemento da UI
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

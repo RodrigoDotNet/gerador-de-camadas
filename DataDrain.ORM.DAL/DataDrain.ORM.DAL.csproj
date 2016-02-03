@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="data\axia.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

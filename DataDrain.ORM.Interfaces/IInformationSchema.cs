@@ -27,6 +27,6 @@ namespace DataDrain.ORM.Interfaces
 
         Dictionary<string, string> TiposObjetosAcaoBanco { get; }
 
-
+        List<DadosColunas> MapQuery(string sql, List<DadosStoredProceduresParameters> parametros, DadosUsuario dadosLogin);
     }
 }

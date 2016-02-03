@@ -26,7 +26,7 @@ namespace DataDrain.ORM.DAL
 
             var arquivo = gerador.GerarClasseTO(colunasObjeto, objOrm.NomeObjeto, parametros.NameSpace, objOrm.Associacoes, objOrm.Enumns, parametros);
             var arquivoBLL = gerador.GerarClasseBLL(nomeArquivo, parametros.NameSpace, objOrm.TipoObjeto, objOrm.Parametros);
-            var arquivoDAL = gerador.GerarClasseDAL(nomeArquivo, parametros.NameSpace, objOrm.TipoObjeto, objOrm.Parametros);
+            var arquivoDAL = gerador.GerarClasseDAL(nomeArquivo, parametros.NameSpace, objOrm.TipoObjeto, objOrm.Parametros, objOrm.QuerySql);
 
             File.WriteAllText(string.Format("{0}\\TO\\{1}TO.cs", parametros.CaminhoDestino, nomeArquivo), arquivo);
             File.WriteAllText(string.Format("{0}\\BLL\\{1}BLL.cs", parametros.CaminhoDestino, nomeArquivo), arquivoBLL);

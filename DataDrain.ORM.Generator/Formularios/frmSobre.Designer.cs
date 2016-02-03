@@ -38,8 +38,6 @@
             this.tbSobre = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txtRelease = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -48,7 +46,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.tbSobre.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -151,7 +148,6 @@
             // tbSobre
             // 
             this.tbSobre.Controls.Add(this.tabPage1);
-            this.tbSobre.Controls.Add(this.tabPage2);
             this.tbSobre.Controls.Add(this.tabPage3);
             this.tbSobre.Location = new System.Drawing.Point(140, 107);
             this.tbSobre.Name = "tbSobre";
@@ -183,29 +179,6 @@
             this.textBoxDescription.TabIndex = 24;
             this.textBoxDescription.TabStop = false;
             this.textBoxDescription.Text = "Description";
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.txtRelease);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(266, 100);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Release";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // txtRelease
-            // 
-            this.txtRelease.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtRelease.Location = new System.Drawing.Point(3, 3);
-            this.txtRelease.Multiline = true;
-            this.txtRelease.Name = "txtRelease";
-            this.txtRelease.ReadOnly = true;
-            this.txtRelease.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtRelease.Size = new System.Drawing.Size(260, 94);
-            this.txtRelease.TabIndex = 0;
-            this.txtRelease.Text = resources.GetString("txtRelease.Text");
             // 
             // tabPage3
             // 
@@ -277,8 +250,6 @@
             this.tbSobre.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
@@ -297,8 +268,6 @@
         private System.Windows.Forms.TabControl tbSobre;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TextBox textBoxDescription;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox txtRelease;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel1;

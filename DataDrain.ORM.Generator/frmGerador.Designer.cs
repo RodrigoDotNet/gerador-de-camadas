@@ -33,21 +33,19 @@ namespace DataDrain.ORM.Generator
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGerador));
             System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Tabela", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("View", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Procedure", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Tabela", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("View", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("Procedure", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("Query", System.Windows.Forms.HorizontalAlignment.Left);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGerador));
             this.tbPrincipal = new System.Windows.Forms.TabControl();
             this.tpConexao = new System.Windows.Forms.TabPage();
             this.chkTrustedConnection = new System.Windows.Forms.CheckBox();
-            this.bntTestarConexao = new System.Windows.Forms.Button();
-            this.bntAvancar = new System.Windows.Forms.Button();
             this.txtPorta = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.pbLogo = new System.Windows.Forms.PictureBox();
             this.txtSenha = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
@@ -58,22 +56,18 @@ namespace DataDrain.ORM.Generator
             this.label8 = new System.Windows.Forms.Label();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.pbAcao = new System.Windows.Forms.ProgressBar();
-            this.bntRefreshDatabase = new System.Windows.Forms.Button();
             this.cbBancoDados = new System.Windows.Forms.ComboBox();
             this.lvObjetosBanco = new System.Windows.Forms.ListView();
             this.ilIcones = new System.Windows.Forms.ImageList(this.components);
-            this.btnMapearSelecionados = new System.Windows.Forms.Button();
             this.chSelecionarTodos = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tpMapeamento = new System.Windows.Forms.TabPage();
-            this.simpleButton1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chkMapWcf = new System.Windows.Forms.CheckBox();
             this.chkMapLinq = new System.Windows.Forms.CheckBox();
             this.chkLog4Net = new System.Windows.Forms.CheckBox();
             this.chkGeraSN = new System.Windows.Forms.CheckBox();
             this.chkGeraAppConfig = new System.Windows.Forms.CheckBox();
-            this.btnMapear = new System.Windows.Forms.Button();
             this.lvObjetosSelecionados = new System.Windows.Forms.ListView();
             this.txtNameSpace = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -84,13 +78,21 @@ namespace DataDrain.ORM.Generator
             this.ilObjetos = new System.Windows.Forms.ImageList(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.bwDadosBanco = new System.ComponentModel.BackgroundWorker();
+            this.bntTestarConexao = new System.Windows.Forms.Button();
+            this.bntAvancar = new System.Windows.Forms.Button();
+            this.pbLogo = new System.Windows.Forms.PictureBox();
+            this.bntMapConsulta = new System.Windows.Forms.Button();
+            this.bntRefreshDatabase = new System.Windows.Forms.Button();
+            this.btnMapearSelecionados = new System.Windows.Forms.Button();
+            this.simpleButton1 = new System.Windows.Forms.Button();
+            this.btnMapear = new System.Windows.Forms.Button();
             this.tbPrincipal.SuspendLayout();
             this.tpConexao.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.tpBancoDados.SuspendLayout();
             this.tpMapeamento.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errPadrao)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // tbPrincipal
@@ -105,7 +107,7 @@ namespace DataDrain.ORM.Generator
             this.tbPrincipal.Location = new System.Drawing.Point(13, 13);
             this.tbPrincipal.Name = "tbPrincipal";
             this.tbPrincipal.SelectedIndex = 0;
-            this.tbPrincipal.Size = new System.Drawing.Size(646, 275);
+            this.tbPrincipal.Size = new System.Drawing.Size(646, 286);
             this.tbPrincipal.TabIndex = 0;
             this.tbPrincipal.SelectedIndexChanged += new System.EventHandler(this.tbPrincipal_SelectedIndexChanged);
             this.tbPrincipal.Selected += new System.Windows.Forms.TabControlEventHandler(this.tbPrincipal_Selected);
@@ -129,7 +131,7 @@ namespace DataDrain.ORM.Generator
             this.tpConexao.Location = new System.Drawing.Point(4, 23);
             this.tpConexao.Name = "tpConexao";
             this.tpConexao.Padding = new System.Windows.Forms.Padding(3);
-            this.tpConexao.Size = new System.Drawing.Size(638, 248);
+            this.tpConexao.Size = new System.Drawing.Size(638, 259);
             this.tpConexao.TabIndex = 0;
             this.tpConexao.Text = "Conexão";
             this.tpConexao.UseVisualStyleBackColor = true;
@@ -144,30 +146,6 @@ namespace DataDrain.ORM.Generator
             this.chkTrustedConnection.Text = "Trusted Connection";
             this.chkTrustedConnection.UseVisualStyleBackColor = true;
             this.chkTrustedConnection.CheckedChanged += new System.EventHandler(this.chkTrustedConnection_CheckedChanged);
-            // 
-            // bntTestarConexao
-            // 
-            this.bntTestarConexao.Image = ((System.Drawing.Image)(resources.GetObject("bntTestarConexao.Image")));
-            this.bntTestarConexao.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.bntTestarConexao.Location = new System.Drawing.Point(10, 167);
-            this.bntTestarConexao.Name = "bntTestarConexao";
-            this.bntTestarConexao.Size = new System.Drawing.Size(122, 32);
-            this.bntTestarConexao.TabIndex = 5;
-            this.bntTestarConexao.Text = "Testar Conexão";
-            this.bntTestarConexao.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bntTestarConexao.Click += new System.EventHandler(this.bntTestarConexao_Click);
-            // 
-            // bntAvancar
-            // 
-            this.bntAvancar.Image = global::DataDrain.ORM.Generator.Properties.Resources._1364712868_next;
-            this.bntAvancar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.bntAvancar.Location = new System.Drawing.Point(10, 205);
-            this.bntAvancar.Name = "bntAvancar";
-            this.bntAvancar.Size = new System.Drawing.Size(122, 30);
-            this.bntAvancar.TabIndex = 6;
-            this.bntAvancar.Text = "Avançar";
-            this.bntAvancar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bntAvancar.Click += new System.EventHandler(this.bntAvancar_Click);
             // 
             // txtPorta
             // 
@@ -187,15 +165,6 @@ namespace DataDrain.ORM.Generator
             this.label6.Size = new System.Drawing.Size(35, 13);
             this.label6.TabIndex = 8;
             this.label6.Text = "Porta:";
-            // 
-            // pbLogo
-            // 
-            this.pbLogo.Location = new System.Drawing.Point(432, 35);
-            this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(200, 200);
-            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbLogo.TabIndex = 6;
-            this.pbLogo.TabStop = false;
             // 
             // txtSenha
             // 
@@ -222,7 +191,7 @@ namespace DataDrain.ORM.Generator
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(160, 20);
             this.txtUsuario.TabIndex = 1;
-            this.txtUsuario.Text = "master";
+            this.txtUsuario.Text = "";
             this.txtUsuario.Leave += new System.EventHandler(this.txtUsuario_Leave);
             this.txtUsuario.Validating += new System.ComponentModel.CancelEventHandler(this.txtUsuario_Validating);
             // 
@@ -256,6 +225,7 @@ namespace DataDrain.ORM.Generator
             // 
             // tpBancoDados
             // 
+            this.tpBancoDados.Controls.Add(this.bntMapConsulta);
             this.tpBancoDados.Controls.Add(this.label8);
             this.tpBancoDados.Controls.Add(this.txtBuscar);
             this.tpBancoDados.Controls.Add(this.pbAcao);
@@ -269,7 +239,7 @@ namespace DataDrain.ORM.Generator
             this.tpBancoDados.Location = new System.Drawing.Point(4, 23);
             this.tpBancoDados.Name = "tpBancoDados";
             this.tpBancoDados.Padding = new System.Windows.Forms.Padding(3);
-            this.tpBancoDados.Size = new System.Drawing.Size(638, 248);
+            this.tpBancoDados.Size = new System.Drawing.Size(638, 259);
             this.tpBancoDados.TabIndex = 1;
             this.tpBancoDados.Text = "Bancos de Dados";
             this.tpBancoDados.UseVisualStyleBackColor = true;
@@ -293,20 +263,11 @@ namespace DataDrain.ORM.Generator
             // 
             // pbAcao
             // 
-            this.pbAcao.Location = new System.Drawing.Point(222, 223);
+            this.pbAcao.Location = new System.Drawing.Point(10, 231);
             this.pbAcao.Name = "pbAcao";
-            this.pbAcao.Size = new System.Drawing.Size(250, 19);
+            this.pbAcao.Size = new System.Drawing.Size(336, 17);
             this.pbAcao.TabIndex = 5;
             this.pbAcao.Visible = false;
-            // 
-            // bntRefreshDatabase
-            // 
-            this.bntRefreshDatabase.Image = global::DataDrain.ORM.Generator.Properties.Resources._1373099491_sync;
-            this.bntRefreshDatabase.Location = new System.Drawing.Point(258, 34);
-            this.bntRefreshDatabase.Name = "bntRefreshDatabase";
-            this.bntRefreshDatabase.Size = new System.Drawing.Size(25, 23);
-            this.bntRefreshDatabase.TabIndex = 1;
-            this.bntRefreshDatabase.Click += new System.EventHandler(this.bntRefreshDatabase_Click);
             // 
             // cbBancoDados
             // 
@@ -355,22 +316,11 @@ namespace DataDrain.ORM.Generator
             this.ilIcones.Images.SetKeyName(5, "ident.png");
             this.ilIcones.Images.SetKeyName(6, "pk.png");
             this.ilIcones.Images.SetKeyName(7, "cheked");
-            // 
-            // btnMapearSelecionados
-            // 
-            this.btnMapearSelecionados.Image = ((System.Drawing.Image)(resources.GetObject("btnMapearSelecionados.Image")));
-            this.btnMapearSelecionados.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnMapearSelecionados.Location = new System.Drawing.Point(478, 208);
-            this.btnMapearSelecionados.Name = "btnMapearSelecionados";
-            this.btnMapearSelecionados.Size = new System.Drawing.Size(154, 34);
-            this.btnMapearSelecionados.TabIndex = 4;
-            this.btnMapearSelecionados.Text = "Mapear Selecionados";
-            this.btnMapearSelecionados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMapearSelecionados.Click += new System.EventHandler(this.btnMapearSelecionados_Click);
+            this.ilIcones.Images.SetKeyName(8, "query");
             // 
             // chSelecionarTodos
             // 
-            this.chSelecionarTodos.Location = new System.Drawing.Point(10, 223);
+            this.chSelecionarTodos.Location = new System.Drawing.Point(10, 208);
             this.chSelecionarTodos.Name = "chSelecionarTodos";
             this.chSelecionarTodos.Size = new System.Drawing.Size(206, 19);
             this.chSelecionarTodos.TabIndex = 3;
@@ -399,20 +349,10 @@ namespace DataDrain.ORM.Generator
             this.tpMapeamento.Location = new System.Drawing.Point(4, 23);
             this.tpMapeamento.Name = "tpMapeamento";
             this.tpMapeamento.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMapeamento.Size = new System.Drawing.Size(638, 248);
+            this.tpMapeamento.Size = new System.Drawing.Size(638, 259);
             this.tpMapeamento.TabIndex = 3;
             this.tpMapeamento.Text = "Mapeamento";
             this.tpMapeamento.UseVisualStyleBackColor = true;
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(595, 7);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(38, 38);
-            this.simpleButton1.TabIndex = 4;
-            this.simpleButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // groupBox2
             // 
@@ -453,6 +393,7 @@ namespace DataDrain.ORM.Generator
             // chkLog4Net
             // 
             this.chkLog4Net.AutoSize = true;
+            this.chkLog4Net.Enabled = false;
             this.chkLog4Net.Location = new System.Drawing.Point(10, 69);
             this.chkLog4Net.Name = "chkLog4Net";
             this.chkLog4Net.Size = new System.Drawing.Size(167, 17);
@@ -479,17 +420,6 @@ namespace DataDrain.ORM.Generator
             this.chkGeraAppConfig.Text = "Gerar App.config";
             this.chkGeraAppConfig.CheckedChanged += new System.EventHandler(this.chkOpcao_CheckedChanged);
             // 
-            // btnMapear
-            // 
-            this.btnMapear.Image = ((System.Drawing.Image)(resources.GetObject("btnMapear.Image")));
-            this.btnMapear.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnMapear.Location = new System.Drawing.Point(477, 208);
-            this.btnMapear.Name = "btnMapear";
-            this.btnMapear.Size = new System.Drawing.Size(155, 34);
-            this.btnMapear.TabIndex = 3;
-            this.btnMapear.Text = "Mapear";
-            this.btnMapear.Click += new System.EventHandler(this.btnMapear_Click);
-            // 
             // lvObjetosSelecionados
             // 
             listViewGroup4.Header = "Tabela";
@@ -498,10 +428,13 @@ namespace DataDrain.ORM.Generator
             listViewGroup5.Name = "View";
             listViewGroup6.Header = "Procedure";
             listViewGroup6.Name = "Procedure";
+            listViewGroup7.Header = "Query";
+            listViewGroup7.Name = "Query";
             this.lvObjetosSelecionados.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup4,
             listViewGroup5,
-            listViewGroup6});
+            listViewGroup6,
+            listViewGroup7});
             this.lvObjetosSelecionados.Location = new System.Drawing.Point(10, 26);
             this.lvObjetosSelecionados.Name = "lvObjetosSelecionados";
             this.lvObjetosSelecionados.Size = new System.Drawing.Size(181, 161);
@@ -555,7 +488,7 @@ namespace DataDrain.ORM.Generator
             // 
             this.lblVersao.AutoSize = true;
             this.lblVersao.Enabled = false;
-            this.lblVersao.Location = new System.Drawing.Point(536, 291);
+            this.lblVersao.Location = new System.Drawing.Point(535, 301);
             this.lblVersao.Name = "lblVersao";
             this.lblVersao.Size = new System.Drawing.Size(79, 13);
             this.lblVersao.TabIndex = 1;
@@ -576,11 +509,99 @@ namespace DataDrain.ORM.Generator
             this.bwDadosBanco.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bwDadosBanco_ProgressChanged);
             this.bwDadosBanco.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwDadosBanco_RunWorkerCompleted);
             // 
+            // bntTestarConexao
+            // 
+            this.bntTestarConexao.Image = ((System.Drawing.Image)(resources.GetObject("bntTestarConexao.Image")));
+            this.bntTestarConexao.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bntTestarConexao.Location = new System.Drawing.Point(10, 167);
+            this.bntTestarConexao.Name = "bntTestarConexao";
+            this.bntTestarConexao.Size = new System.Drawing.Size(122, 32);
+            this.bntTestarConexao.TabIndex = 5;
+            this.bntTestarConexao.Text = "Testar Conexão";
+            this.bntTestarConexao.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bntTestarConexao.Click += new System.EventHandler(this.bntTestarConexao_Click);
+            // 
+            // bntAvancar
+            // 
+            this.bntAvancar.Image = global::DataDrain.ORM.Generator.Properties.Resources._1364712868_next;
+            this.bntAvancar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bntAvancar.Location = new System.Drawing.Point(10, 205);
+            this.bntAvancar.Name = "bntAvancar";
+            this.bntAvancar.Size = new System.Drawing.Size(122, 30);
+            this.bntAvancar.TabIndex = 6;
+            this.bntAvancar.Text = "Avançar";
+            this.bntAvancar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bntAvancar.Click += new System.EventHandler(this.bntAvancar_Click);
+            // 
+            // pbLogo
+            // 
+            this.pbLogo.Location = new System.Drawing.Point(432, 35);
+            this.pbLogo.Name = "pbLogo";
+            this.pbLogo.Size = new System.Drawing.Size(200, 200);
+            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbLogo.TabIndex = 6;
+            this.pbLogo.TabStop = false;
+            // 
+            // bntMapConsulta
+            // 
+            this.bntMapConsulta.Image = global::DataDrain.ORM.Generator.Properties.Resources._1454543275_icon_89_document_file_sql;
+            this.bntMapConsulta.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bntMapConsulta.Location = new System.Drawing.Point(396, 208);
+            this.bntMapConsulta.Name = "bntMapConsulta";
+            this.bntMapConsulta.Size = new System.Drawing.Size(120, 40);
+            this.bntMapConsulta.TabIndex = 4;
+            this.bntMapConsulta.Text = "Mapear \r\nSQL";
+            this.bntMapConsulta.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bntMapConsulta.UseVisualStyleBackColor = true;
+            this.bntMapConsulta.Click += new System.EventHandler(this.bntMapConsulta_Click);
+            // 
+            // bntRefreshDatabase
+            // 
+            this.bntRefreshDatabase.Image = global::DataDrain.ORM.Generator.Properties.Resources._1373099491_sync;
+            this.bntRefreshDatabase.Location = new System.Drawing.Point(258, 34);
+            this.bntRefreshDatabase.Name = "bntRefreshDatabase";
+            this.bntRefreshDatabase.Size = new System.Drawing.Size(25, 23);
+            this.bntRefreshDatabase.TabIndex = 1;
+            this.bntRefreshDatabase.Click += new System.EventHandler(this.bntRefreshDatabase_Click);
+            // 
+            // btnMapearSelecionados
+            // 
+            this.btnMapearSelecionados.Image = ((System.Drawing.Image)(resources.GetObject("btnMapearSelecionados.Image")));
+            this.btnMapearSelecionados.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMapearSelecionados.Location = new System.Drawing.Point(522, 208);
+            this.btnMapearSelecionados.Name = "btnMapearSelecionados";
+            this.btnMapearSelecionados.Size = new System.Drawing.Size(110, 40);
+            this.btnMapearSelecionados.TabIndex = 5;
+            this.btnMapearSelecionados.Text = "Mapear \r\nSelecionados";
+            this.btnMapearSelecionados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMapearSelecionados.Click += new System.EventHandler(this.btnMapearSelecionados_Click);
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
+            this.simpleButton1.Location = new System.Drawing.Point(595, 7);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(38, 38);
+            this.simpleButton1.TabIndex = 4;
+            this.simpleButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // btnMapear
+            // 
+            this.btnMapear.Image = ((System.Drawing.Image)(resources.GetObject("btnMapear.Image")));
+            this.btnMapear.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMapear.Location = new System.Drawing.Point(477, 208);
+            this.btnMapear.Name = "btnMapear";
+            this.btnMapear.Size = new System.Drawing.Size(155, 34);
+            this.btnMapear.TabIndex = 3;
+            this.btnMapear.Text = "Mapear";
+            this.btnMapear.Click += new System.EventHandler(this.btnMapear_Click);
+            // 
             // frmGerador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 310);
+            this.ClientSize = new System.Drawing.Size(671, 318);
             this.Controls.Add(this.lblVersao);
             this.Controls.Add(this.tbPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -593,7 +614,6 @@ namespace DataDrain.ORM.Generator
             this.tbPrincipal.ResumeLayout(false);
             this.tpConexao.ResumeLayout(false);
             this.tpConexao.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.tpBancoDados.ResumeLayout(false);
             this.tpBancoDados.PerformLayout();
             this.tpMapeamento.ResumeLayout(false);
@@ -601,6 +621,7 @@ namespace DataDrain.ORM.Generator
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errPadrao)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -652,5 +673,6 @@ namespace DataDrain.ORM.Generator
         private Label label8;
         private TextBox txtBuscar;
         private Button simpleButton1;
+        private Button bntMapConsulta;
     }
 }

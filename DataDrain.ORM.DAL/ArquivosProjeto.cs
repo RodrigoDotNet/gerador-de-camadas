@@ -39,7 +39,16 @@ namespace DataDrain.ORM.DAL
             GeraProjetoTo(parametros, guidProjTO, guidProjInterface, arquivosTO, templateAssembly);
             GeraProjetoDal(parametros, provider, guidProjDal, guidProjInterface, guidProjTO, arquivosDal, sbLog4Net, templateAssembly);
             GeraProjetoBll(parametros, guidProjBll, guidProjInterface, guidProjTO, guidProjDal, arquivosBll, sbLog4Net, templateAssembly);
-            GeraProjetoWcf(parametros, guidProjWcf);
+            
+            if (parametros.MapWcf)
+            {
+                GeraProjetoWcf(parametros, guidProjWcf);
+            }
+            else
+            {
+                guidProjWcf = null;
+            }
+            
             GeraSoluction(parametros, guidProjTO, guidProjDal, guidProjInterface, guidProjBll, guidProjWcf);
 
             Directory.Move(string.Format("{0}\\TO", parametros.CaminhoDestino), string.Format("{0}\\{1}TO", parametros.CaminhoDestino, parametros.NameSpace.Replace(".", "")));
@@ -101,16 +110,13 @@ namespace DataDrain.ORM.DAL
                 {"[guidTO]", guidProjTO},
                 {"[guidDAL]", guidProjDAL},
                 {"[arquivos]", string.Join("\n", arquivosBLL.ToArray())},
-                {"[log]", !string.IsNullOrWhiteSpace(parametros.XmlLog4Net) ? sbLog4Net.ToString() : ""}
             };
 
             var projBLL = Gerador.RetornaTextoBase("LLBetalpmet");
             projBLL = trocasBLL.Cast<DictionaryEntry>().Aggregate(projBLL, (current, entry) => current.Replace(entry.Key.ToString(), entry.Value.ToString()));
             projBLL = projBLL.Replace("[versao]", parametros.VersaoFramework);
 
-            var assemblyBLL = templateAssembly.Replace("[camada]", "bll").Replace("[log]", !string.IsNullOrWhiteSpace(parametros.XmlLog4Net) ? "[assembly: log4net.Config.XmlConfigurator(Watch = true)]" : "");
-            ;
-            ;
+            var assemblyBLL = templateAssembly.Replace("[camada]", "bll").Replace("[log]", "");
             assemblyBLL = assemblyBLL.Replace("[namespace]", parametros.NameSpace);
             assemblyBLL = assemblyBLL.Replace("[guid]", guidProjBLL);
 
@@ -129,7 +135,6 @@ namespace DataDrain.ORM.DAL
                 {"[guidTO]", guidProjTO},
                 {"[provider]", string.Format("<Compile Include=\"DataDrain\\Factories\\{0}.cs\" />", provider)},
                 {"[arquivos]", string.Join("\n", arquivosDAL.ToArray())},
-                {"[log]", !string.IsNullOrWhiteSpace(parametros.XmlLog4Net) ? sbLog4Net.ToString() : ""},
             };
 
             var projDAL = Gerador.RetornaTextoBase("LADetalpmet");
@@ -139,8 +144,8 @@ namespace DataDrain.ORM.DAL
             projDAL = projDAL.Replace("[versao]", parametros.VersaoFramework);
 
 
-            var assemblyDAL = templateAssembly.Replace("[camada]", "DAL").Replace("[log]", !string.IsNullOrWhiteSpace(parametros.XmlLog4Net) ? "[assembly: log4net.Config.XmlConfigurator(Watch = true)]" : "");
-            ;
+            var assemblyDAL = templateAssembly.Replace("[camada]", "DAL").Replace("[log]", "");
+            
             assemblyDAL = assemblyDAL.Replace("[namespace]", parametros.NameSpace);
             assemblyDAL = assemblyDAL.Replace("[guid]", guidProjDAL);
 
@@ -159,7 +164,7 @@ namespace DataDrain.ORM.DAL
                 {"[arquivos]", string.Join("\n", arquivosTO.ToArray())}
             };
 
-            var projTO = Gerador.RetornaTextoBase("ofnIylbmessA");
+            var projTO = Gerador.RetornaTextoBase("OTetalpmet");
             projTO = trocasTo.Cast<DictionaryEntry>().Aggregate(projTO, (current, entry) => current.Replace(entry.Key.ToString(), entry.Value.ToString()));
             projTO = projTO.Replace("[versao]", parametros.VersaoFramework);
 
@@ -224,7 +229,7 @@ namespace DataDrain.ORM.DAL
             var corpoProjetoWcf = Gerador.RetornaTextoBase("corpoProjetoWcf").Replace("{namespace}", parametros.NameSpace)
                 .Replace("{servicos}", string.Join("\n", servicos))
                 .Replace("{servicosCode}", string.Join("\n", servicosCode))
-                .Replace("[guid]",guidProjWcf)
+                .Replace("[guid]", guidProjWcf)
                 .Replace("{servicosInterface}", string.Join("\n", servicosInterface));
 
             File.WriteAllText(string.Format("{0}\\{1}Wcf\\{2}Wcf.csproj", parametros.CaminhoDestino, parametros.NameSpace, parametros.NameSpace), corpoProjetoWcf);
