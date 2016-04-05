@@ -71,11 +71,16 @@ namespace DataDrain.ORM.Generator.Formularios
 
                 foreach (var posicao in possicoes)
                 {
-                    _parametros.Add(new DadosStoredProceduresParameters
+                    var nomeParametro = consulta.Substring(posicao, RetornaPosicaoFinalNomeParametro((posicao + 1), consulta));
+
+                    if (_parametros.Count(p => p.ParameterName == nomeParametro)==0)
                     {
-                        ParameterName = consulta.Substring(posicao + 1, RetornaPosicaoFinalNomeParametro((posicao + 1), consulta)),
-                        DefineNull = true
-                    });
+                        _parametros.Add(new DadosStoredProceduresParameters
+                        {
+                            ParameterName = nomeParametro,
+                            DefineNull = true
+                        });                        
+                    }
                 }
             }
             CarregaGridViewParametros();

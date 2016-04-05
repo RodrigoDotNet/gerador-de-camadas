@@ -58,7 +58,7 @@ namespace DataDrain.ORM.DAL.SqlServer.InformationSchema
             {
                 using (var cnn = Conexao.RetornaConexaoBase(usr))
                 {
-                    var cmd = new SqlCommand("SELECT @@VERSION AS 'SQL Server Version;", cnn);
+                    var cmd = new SqlCommand("SELECT @@VERSION AS 'SQL Server Version';", cnn);
                     cnn.Open();
                     return new KeyValuePair<bool, string>(true, cmd.ExecuteScalar().ToString());
                 }

@@ -91,13 +91,14 @@ namespace DataDrain.ORM.Generator.Apoio.Base
         /// <returns></returns>
         public string RetornaSenhaLogins(string nomeServidor, string usuario, string nomeProvedor)
         {
+            var sha= new GeraHashSha1();
             var servidores = CarregaConexoes(nomeProvedor);
 
             var senha = "";
 
             foreach (var serv in servidores.Where(s => s.Servidor == nomeServidor && s.Usuario == usuario))
             {
-                senha = serv.Senha;
+                senha = sha.Descriptografa(serv.Senha);
             }
             return senha;
         }

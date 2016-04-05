@@ -110,18 +110,18 @@ namespace DataDrain.ORM.Generator
                         TrustedConnection = chkTrustedConnection.Checked
                     };
 
-                try
+                var retornoTeste = Gerador.TestarConexao(dl);
+
+                if (retornoTeste.Key)
                 {
-                    MessageBox.Show(string.Format("Conexão realizada com sucesso.\nVersão: {0}", Gerador.TestarConexao(dl)), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(string.Format("Conexão realizada com sucesso.\nVersão: {0}", retornoTeste.Value), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(string.Format("Erro ao efetuar a conexão:\n{0}", ex.Message), ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Erro ao efetuar a conexão", "ATENÇÃO", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                finally
-                {
-                    Cursor = Cursors.Default;
-                }
+
+                Cursor = Cursors.Default;
             }
             else
             {
@@ -173,7 +173,6 @@ namespace DataDrain.ORM.Generator
                 }
             }
 
-            //Apenas tipo tabela e view podem ter multiplas seleções
             if (nomesTiposObjetos.Count(o => o.TipoObjeto == TipoObjetoBanco.ETipoObjeto.Procedure) > 1)
             {
                 foreach (var objetoBanco in nomesTiposObjetos)
@@ -225,8 +224,6 @@ namespace DataDrain.ORM.Generator
                                 MapLinq = chkMapLinq.Checked,
                                 TiposObjetosAcaoBanco = Gerador.TiposObjetosAcaoBanco
                             });
-
-                            CopiaDllLog(fb.SelectedPath);
 
                             MessageBox.Show("Mapeamento dos objetos realizado com sucesso", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Process.Start("explorer.exe", fb.SelectedPath);
@@ -444,13 +441,11 @@ namespace DataDrain.ORM.Generator
                                     _objetosSelecionados.Add(frm.ObjetosSelecionado);
                                 }
                                 break;
-                            case DialogResult.No:
+                            default:
                                 _objetosSelecionados = _objetosSelecionados.Where(o => o.Key.NomeObjeto != retorno.Item.Text).ToList();
                                 _imgObjetosMapeados = _imgObjetosMapeados.Where(o => o.Key != retorno.Item.Text).ToList();
                                 lvObjetosBanco.Items[retorno.Item.Index].Checked = false;
                                 break;
-                            default:
-                                throw new ArgumentOutOfRangeException();
                         }
                     }
                 }
@@ -491,9 +486,10 @@ namespace DataDrain.ORM.Generator
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            var frm = new frmSobre();
-
-            frm.ShowDialog(this);
+            using (var frm = new frmSobre())
+            {
+                frm.ShowDialog(this);
+            }
         }
 
         private void chkTrustedConnection_CheckedChanged(object sender, EventArgs e)
@@ -533,7 +529,7 @@ namespace DataDrain.ORM.Generator
 
         private void txtUsuario_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtUsuario.Text))
+            if (!string.IsNullOrWhiteSpace(txtUsuario.Text))
             {
                 txtSenha.Text = Historico.RetornaSenhaLogins(txtServidor.Text, txtUsuario.Text, Gerador.GetType().FullName);
             }
@@ -635,21 +631,6 @@ namespace DataDrain.ORM.Generator
 
         #region Métodos
 
-        private void CopiaDllLog(string diretorio)
-        {
-            if (chkLog4Net.Checked)
-            {
-                var asbl = GetType().Assembly.GetReferencedAssemblies().FirstOrDefault(a => a.FullName.ToLower().Contains("log4net"));
-
-                if (asbl != null)
-                {
-                    var arquivo = Assembly.ReflectionOnlyLoad(asbl.FullName).Location;
-
-                    File.Copy(arquivo, string.Format("{0}\\{1}", diretorio, Path.GetFileName(arquivo)));
-                }
-            }
-        }
-
         private void ConfiguraAutoComplete()
         {
             txtServidor.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -662,7 +643,6 @@ namespace DataDrain.ORM.Generator
         {
             chkGeraAppConfig.Checked = RegistroWindows.RecuperaValor("chkGeraAppConfig", "false") == "true";
             chkGeraSN.Checked = RegistroWindows.RecuperaValor("chkGeraSN", "false") == "true";
-            chkLog4Net.Checked = RegistroWindows.RecuperaValor("chkLog4Net", "false") == "true";
             chkMapLinq.Checked = RegistroWindows.RecuperaValor("chkMapLinq", "false") == "true";
             chkMapWcf.Checked = RegistroWindows.RecuperaValor("chkMapWcf", "false") == "true";
         }
@@ -969,6 +949,8 @@ namespace DataDrain.ORM.Generator
             tbPrincipal.SelectTab(2);
             txtNameSpace.Focus();
         }
+
+
 
 
     }

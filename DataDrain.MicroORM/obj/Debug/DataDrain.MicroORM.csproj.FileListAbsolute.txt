@@ -7,3 +7,4 @@ C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.MicroORM\bin\De
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.MicroORM\bin\Debug\DataDrain.MicroORM.pdb
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.MicroORM\obj\Debug\DataDrain.MicroORM.dll
 C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.MicroORM\obj\Debug\DataDrain.MicroORM.pdb
+C:\Users\roliveira\Documents\GitHub\gerador-de-camadas\DataDrain.MicroORM\obj\Debug\DataDrain.MicroORM.csprojResolveAssemblyReference.cache
