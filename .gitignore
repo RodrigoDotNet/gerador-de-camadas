@@ -1,0 +1,12 @@
+/DataDrain.MicroORM/obj
+/DataDrain.MicroORM/bin
+/DataDrain.ORM.DAL/obj
+/DataDrain.ORM.DAL/bin
+/DataDrain.ORM.DAL.MySQL/obj
+/DataDrain.ORM.DAL.MySQL/bin
+/DataDrain.ORM.DAL.SqlServer/obj
+/DataDrain.ORM.DAL.SqlServer/bin
+/DataDrain.ORM.Generator/obj
+/DataDrain.ORM.Generator/bin
+/DataDrain.ORM.Interfaces/obj
+/DataDrain.ORM.Interfaces/bin

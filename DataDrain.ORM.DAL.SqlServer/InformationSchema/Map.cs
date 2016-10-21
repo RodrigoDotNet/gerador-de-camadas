@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -113,8 +114,8 @@ namespace DataDrain.ORM.DAL.SqlServer.InformationSchema
             {
                 return new Dictionary<string, string>
             {
-                {"{IDbConnection}", "SqlConnection"}, 
-                {"{IDbTransaction}", "SqlTransaction"}, 
+                {"{IDbConnection}", "SqlConnection"},
+                {"{IDbTransaction}", "SqlTransaction"},
                 {"IDbCommand", "SqlCommand"},
                 {"IDbDataParameter", "SqlParameter"},
                 {"usingIDb","System.Data.SqlClient"}
@@ -151,8 +152,8 @@ namespace DataDrain.ORM.DAL.SqlServer.InformationSchema
                                  select new DadosColunas
                                  {
                                      Coluna = row["ColumnName"].ToString(),
-                                     Pk = (bool)row["IsKey"],
-                                     AceitaNull = (bool)row["AllowDBNull"],
+                                     Pk = row["IsKey"] != DBNull.Value && (bool)row["IsKey"],
+                                     AceitaNull = row["AllowDBNull"] != DBNull.Value && (bool)row["AllowDBNull"],
                                      Tipo = row["DataType"].ToString().Replace("System.", "").Replace("U", ""),
                                      TipoSync = DadosColunas.ETipoSync.Never
                                  });
