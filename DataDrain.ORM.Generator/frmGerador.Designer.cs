@@ -454,6 +454,8 @@ namespace DataDrain.ORM.Generator
             // chkMapLinq
             // 
             this.chkMapLinq.AutoSize = true;
+            this.chkMapLinq.Checked = true;
+            this.chkMapLinq.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMapLinq.Location = new System.Drawing.Point(10, 66);
             this.chkMapLinq.Name = "chkMapLinq";
             this.chkMapLinq.Size = new System.Drawing.Size(153, 17);
@@ -464,6 +466,8 @@ namespace DataDrain.ORM.Generator
             // 
             // chkGeraSN
             // 
+            this.chkGeraSN.Checked = true;
+            this.chkGeraSN.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkGeraSN.Location = new System.Drawing.Point(10, 44);
             this.chkGeraSN.Name = "chkGeraSN";
             this.chkGeraSN.Size = new System.Drawing.Size(202, 19);
@@ -473,6 +477,8 @@ namespace DataDrain.ORM.Generator
             // 
             // chkGeraAppConfig
             // 
+            this.chkGeraAppConfig.Checked = true;
+            this.chkGeraAppConfig.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkGeraAppConfig.Location = new System.Drawing.Point(10, 21);
             this.chkGeraAppConfig.Name = "chkGeraAppConfig";
             this.chkGeraAppConfig.Size = new System.Drawing.Size(108, 19);

@@ -112,7 +112,7 @@ namespace DataDrain.ORM.DAL
                 {"[arquivos]", string.Join("\n", arquivosBLL.ToArray())},
             };
 
-            var projBLL = Gerador.RetornaTextoBase("LLBetalpmet");
+            var projBLL = Gerador.RetornaTextoBase("LLBetalpmet").Replace("[log]", "");
             projBLL = trocasBLL.Cast<DictionaryEntry>().Aggregate(projBLL, (current, entry) => current.Replace(entry.Key.ToString(), entry.Value.ToString()));
             projBLL = projBLL.Replace("[versao]", parametros.VersaoFramework);
 
@@ -137,8 +137,7 @@ namespace DataDrain.ORM.DAL
                 {"[arquivos]", string.Join("\n", arquivosDAL.ToArray())},
             };
 
-            var projDAL = Gerador.RetornaTextoBase("LADetalpmet");
-
+            var projDAL = Gerador.RetornaTextoBase("SSLADetalpmet").Replace("[log]", "");
 
             projDAL = trocasDAL.Cast<DictionaryEntry>().Aggregate(projDAL, (current, entry) => current.Replace(entry.Key.ToString(), entry.Value.ToString()));
             projDAL = projDAL.Replace("[versao]", parametros.VersaoFramework);

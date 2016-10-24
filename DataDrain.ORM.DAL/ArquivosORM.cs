@@ -48,7 +48,7 @@ namespace DataDrain.ORM.DAL
             var crudBaseBll = Template.RetornaValor("CrudBaseBLL");
 
             File.WriteAllText(string.Format("{0}\\BLL\\Validacao\\Validar.cs", caminho), validar.Value.Replace("TesteBLL.Validacao", string.Format("{0}BLL.Validacao", strNamespace)));
-            File.WriteAllText(string.Format("{0}\\BLL\\Base\\CrudBaseBLL.cs", caminho), crudBaseBll.Value.Replace("Corp", strNamespace));
+            File.WriteAllText(string.Format("{0}\\BLL\\Base\\CrudBaseBLL.cs", caminho), crudBaseBll.Value.Replace("{namespace}", strNamespace));
         }
 
         private static void GeraArquivosLINQ(ParametrosCriarProjetos parametro, string nomeProvider)
@@ -67,13 +67,22 @@ namespace DataDrain.ORM.DAL
             var ISqlFormatter = Template.RetornaValor("ISqlFormatter").Value;
             var provider = Template.RetornaValor(nomeProvider).Value;
 
-            var funcoesCrud = parametro.TiposObjetosAcaoBanco.Aggregate(Template.RetornaValor("FuncoesCrud").Value, (current, param) => current.Replace(param.Key, param.Value));
+            string funcoesCrud;
+
+            if (nomeProvider.StartsWith("MySql"))
+            {
+                funcoesCrud = parametro.TiposObjetosAcaoBanco.Aggregate(Template.RetornaValor("FuncoesCrud").Value, (current, param) => current.Replace(param.Key, param.Value)).Replace("{namespace}",parametro.NameSpace);
+            }
+            else
+            {
+                funcoesCrud = parametro.TiposObjetosAcaoBanco.Aggregate(Template.RetornaValor("SSFuncoesCrud").Value, (current, param) => current.Replace(param.Key, param.Value)).Replace("{namespace}", parametro.NameSpace);
+            }
 
             var sqlLanguage = Template.RetornaValor("SqlLanguage").Value;
 
             var crudBase = parametro.TiposObjetosAcaoBanco.Aggregate(Template.RetornaValor("CrudBase").Value, (current, param) => current.Replace(param.Key, param.Value));
             var singleton = parametro.TiposObjetosAcaoBanco.Aggregate(Template.RetornaValor("Singleton").Value, (current, param) => current.Replace(param.Key, param.Value));
-            
+
             var eTipoConsulta = Template.RetornaValor("ETipoConsulta").Value;
             var cmdMap = parametro.TiposObjetosAcaoBanco.Aggregate(Template.RetornaValor("CmdMap").Value, (current, param) => current.Replace(param.Key, param.Value));
             var transaction = parametro.TiposObjetosAcaoBanco.Aggregate(Template.RetornaValor("Transaction").Value, (current, param) => current.Replace(param.Key, param.Value));

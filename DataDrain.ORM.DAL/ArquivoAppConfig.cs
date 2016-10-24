@@ -16,7 +16,10 @@ namespace DataDrain.ORM.DAL
             sbAppConfig.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
             sbAppConfig.AppendLine("<configuration>");
             sbAppConfig.AppendLine("<connectionStrings>");
-            sbAppConfig.AppendLine(string.Format("<add name=\"STRING_CONNECTION\" connectionString=\"server={0};User Id={1};database={2};Password={3};Allow Zero Datetime=True;Allow User Variables=True;Convert Zero Datetime=True;Treat Blobs As UTF8=True;\" providerName=\"MySql.Data.MySqlClient\" />", parametros.DadosConexao.Servidor, parametros.DadosConexao.Usuario, parametros.DadosConexao.DataBase, parametros.DadosConexao.Senha));
+            sbAppConfig.AppendLine(string.Format("<add name=\"STRING_CONNECTION\" connectionString=\"Data Source = {0}; Initial Catalog = {2}; " +
+                                                 "Persist Security Info = True; User ID = {1}; Password = {3}; " +
+                                                 "\" providerName=\"System.Data.SqlClient\" />", parametros.DadosConexao.Servidor, 
+                                                 parametros.DadosConexao.Usuario, parametros.DadosConexao.DataBase, parametros.DadosConexao.Senha));
             sbAppConfig.AppendLine("</connectionStrings>");
             sbAppConfig.AppendLine("</configuration>");
 

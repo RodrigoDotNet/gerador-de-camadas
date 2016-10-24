@@ -51,9 +51,6 @@ namespace DataDrain.ORM.DAL.SqlServer.InformationSchema
                 case "double":
                     return "Double";
 
-                case "xml":
-                    return "System.Xml.Linq.XElement";
-
                 case "datetimeoffset":
                     return "System.DateTimeOffset";
 
@@ -122,7 +119,7 @@ namespace DataDrain.ORM.DAL.SqlServer.InformationSchema
             DiretoriosBase.Criar(parametros.CaminhoDestino);
             ArquivosORM.GravaArquivosBaseOrm(parametros, "SqlServerFormatter");
             ArquivosObjetos.Gerar(parametros);
-            ArquivosProjeto.Gerar(parametros, "MySqlFormatter");
+            ArquivosProjeto.Gerar(parametros, "SqlServerFormatter");
             ArquivoAppConfig.Gerar(parametros);
         }
     }
