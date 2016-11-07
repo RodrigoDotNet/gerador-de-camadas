@@ -1,0 +1,5 @@
+C:\Projetos\gerador-de-camadas\2.0\DataDrain\DataDrain.Library\bin\Debug\DataDrain.Library.dll
+C:\Projetos\gerador-de-camadas\2.0\DataDrain\DataDrain.Library\bin\Debug\DataDrain.Library.pdb
+C:\Projetos\gerador-de-camadas\2.0\DataDrain\DataDrain.Library\obj\Debug\DataDrain.Library.csprojResolveAssemblyReference.cache
+C:\Projetos\gerador-de-camadas\2.0\DataDrain\DataDrain.Library\obj\Debug\DataDrain.Library.dll
+C:\Projetos\gerador-de-camadas\2.0\DataDrain\DataDrain.Library\obj\Debug\DataDrain.Library.pdb
