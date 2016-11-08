@@ -4,6 +4,7 @@ using System.Deployment.Application;
 using System.Reflection;
 using System.Windows.Forms;
 using DataDrain.BusinessLayer;
+using DataDrain.Library.Helpers;
 using DataDrain.Rules.SuportObjects;
 
 
@@ -39,14 +40,7 @@ namespace DataDrain.UI.WinForm
                 rptProviders_ItemTemplate_DoubleClick(rptProviders, EventArgs.Empty);
             }
 
-            labelControl1.Text = RetornaVersao();
-        }
-
-        private static string RetornaVersao()
-        {
-            return string.Format("Versão: {0}", ApplicationDeployment.IsNetworkDeployed
-                ? ApplicationDeployment.CurrentDeployment.CurrentVersion :
-                Assembly.GetExecutingAssembly().GetName().Version);
+            labelControl1.Text = AssemblyHelper.RetornaVersao();
         }
 
         void pbLogo_DoubleClick(object sender, EventArgs e)

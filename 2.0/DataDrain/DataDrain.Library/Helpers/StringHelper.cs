@@ -26,5 +26,16 @@ namespace DataDrain.Library.Helpers
             }
             return strTextoOk;
         }
+
+        public static int ToInt32(this string input)
+        {
+            if (!string.IsNullOrWhiteSpace(input))
+            {
+                int saida;
+                int.TryParse(input, out saida);
+                return saida;
+            }
+            return 0;
+        }
     }
 }

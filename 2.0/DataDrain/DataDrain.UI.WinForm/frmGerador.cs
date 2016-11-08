@@ -9,6 +9,9 @@ using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using DataDrain.BusinessLayer.History;
+using DataDrain.Library.Helpers;
+using DataDrain.Library.Registry;
 using DataDrain.Rules.Interfaces;
 using DataDrain.Rules.SuportObjects;
 
@@ -40,7 +43,7 @@ namespace DataDrain.UI.WinForm
 
         private string BancoSelecionado { get; set; }
 
-        private HistoricoBase Historico { get; set; }
+        private BaseHistory Historico { get; set; }
 
         private List<DatabaseObjectMap> _dadosObjetos = new List<DatabaseObjectMap>();
 
@@ -56,7 +59,7 @@ namespace DataDrain.UI.WinForm
         {
             InitializeComponent();
 
-            Historico = new HistoricoSqlite();
+            Historico = new XmlHistory();
 
             _lvwColumnSorter = new ListViewColumnSorter();
             lvObjetosBanco.ListViewItemSorter = _lvwColumnSorter;
@@ -64,9 +67,8 @@ namespace DataDrain.UI.WinForm
 
         private void frmGerador_Load(object sender, EventArgs e)
         {
-            ProcessaIdComputador();
 
-            txtPorta.Text = Gerador.InfoConexao.PortaPadrao.ToString();
+            txtPorta.Text = Gerador.InfoConnection.DefaultPort.ToString();
             pbLogo.Image = Logo;
 
             lvObjetosBanco.CheckBoxes = true;
@@ -74,9 +76,9 @@ namespace DataDrain.UI.WinForm
             CarregaConfiguracoes();
             ConfiguraAutoComplete();
 
-            lblVersao.Text = Versao.RetornaVersao();
+            lblVersao.Text = AssemblyHelper.RetornaVersao();
 
-            chkTrustedConnection.Visible = Gerador.InfoConexao.TrustedConnection;
+            chkTrustedConnection.Visible = Gerador.InfoConnection.IsTrustedConnection;
 
             toolTip1.SetToolTip(bntRefreshDatabase, "Carregar objetos do banco");
         }
@@ -94,13 +96,13 @@ namespace DataDrain.UI.WinForm
             if (!errPadrao.HasErrors(tpConexao))
             {
                 Cursor = Cursors.WaitCursor;
-                var dl = new DadosUsuario
+                var dl = new DatabaseUser
                     {
-                        Servidor = txtServidor.Text.Trim(),
-                        Usuario = txtUsuario.Text.Trim(),
-                        Senha = txtSenha.Text.Trim(),
-                        Porta = txtPorta.Text.ToInt32(),
-                        TrustedConnection = chkTrustedConnection.Checked
+                        ServerAddress = txtServidor.Text.Trim(),
+                        UserName = txtUsuario.Text.Trim(),
+                        Password = txtSenha.Text.Trim(),
+                        Port = txtPorta.Text.ToInt32(),
+                        IsTrustedConnection = chkTrustedConnection.Checked
                     };
 
                 var retornoTeste = Gerador.TestarConexao(dl);
@@ -126,14 +128,14 @@ namespace DataDrain.UI.WinForm
         {
             if (!errPadrao.HasErrors(tpConexao))
             {
-                User = new DadosUsuario
+                User = new DatabaseUser
                 {
-                    Servidor = txtServidor.Text.Trim(),
-                    Usuario = txtUsuario.Text.Trim(),
-                    Senha = txtSenha.Text.Trim(),
-                    Porta = txtPorta.Text.ToInt32(),
-                    MaquinaID = IdComputador,
-                    TrustedConnection = chkTrustedConnection.Checked,
+                    ServerAddress = txtServidor.Text.Trim(),
+                    UserName = txtUsuario.Text.Trim(),
+                    Password = txtSenha.Text.Trim(),
+                    Port = txtPorta.Text.ToInt32(),
+                    MachineId = IdComputador,
+                    IsTrustedConnection = chkTrustedConnection.Checked,
                     NomeProvedor = Gerador.GetType().FullName
                 };
 
@@ -253,14 +255,14 @@ namespace DataDrain.UI.WinForm
                         }
                         else
                         {
-                            User = new DadosUsuario
+                            User = new DatabaseUser
                             {
-                                Servidor = txtServidor.Text.Trim(),
-                                Usuario = txtUsuario.Text.Trim(),
-                                Senha = txtSenha.Text.Trim(),
-                                Porta = txtPorta.Text.ToInt32(),
-                                MaquinaID = IdComputador,
-                                TrustedConnection = chkTrustedConnection.Checked,
+                                ServerAddress = txtServidor.Text.Trim(),
+                                UserName = txtUsuario.Text.Trim(),
+                                Password = txtSenha.Text.Trim(),
+                                Port = txtPorta.Text.ToInt32(),
+                                MachineId = IdComputador,
+                                IsTrustedConnection = chkTrustedConnection.Checked,
                                 NomeProvedor = Gerador.GetType().FullName
                             };
 
@@ -454,7 +456,7 @@ namespace DataDrain.UI.WinForm
                 if (cbBancoDados.SelectedItem != null)
                 {
                     BancoSelecionado = cbBancoDados.SelectedItem.ToString();
-                    User.DataBase = cbBancoDados.SelectedItem.ToString();
+                    User.DatabaseName = cbBancoDados.SelectedItem.ToString();
 
                     if (!bwDadosBanco.IsBusy)
                     {
@@ -516,7 +518,11 @@ namespace DataDrain.UI.WinForm
             {
                 txtUsuario.AutoCompleteMode = AutoCompleteMode.Suggest;
                 txtUsuario.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                txtUsuario.AutoCompleteCustomSource = Historico.RetornaNomeLogins(txtServidor.Text, Gerador.GetType().FullName);
+
+                var itensAutoComplete = new AutoCompleteStringCollection();
+                itensAutoComplete.AddRange(Historico.RetornaNomeLogins(txtServidor.Text, Gerador.GetType().FullName).ToArray());
+
+                txtUsuario.AutoCompleteCustomSource = itensAutoComplete;
             }
         }
 
@@ -560,7 +566,7 @@ namespace DataDrain.UI.WinForm
                 return;
             }
 
-            var objetos = e.Result as List<DadosObjeto>;
+            var objetos = e.Result as List<DatabaseObjectMap>;
 
             if (objetos == null)
             {
@@ -592,7 +598,7 @@ namespace DataDrain.UI.WinForm
 
         private void txtUsuario_Validating(object sender, CancelEventArgs e)
         {
-            if (!Gerador.InfoConexao.TrustedConnection)
+            if (!Gerador.InfoConnection.IsTrustedConnection)
             {
                 errPadrao.SetErrorWithCount(txtUsuario, string.IsNullOrWhiteSpace(txtServidor.Text) ? "Digite o usuário" : "");
             }
@@ -628,7 +634,11 @@ namespace DataDrain.UI.WinForm
         {
             txtServidor.AutoCompleteMode = AutoCompleteMode.Suggest;
             txtServidor.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            txtServidor.AutoCompleteCustomSource = Historico.RetornaNomeServidores(Gerador.GetType().FullName);
+
+            var itensAutoComplete = new AutoCompleteStringCollection();
+            itensAutoComplete.AddRange(Historico.RetornaListaNomeServidores(Gerador.GetType().FullName).ToArray());
+
+            txtServidor.AutoCompleteCustomSource = itensAutoComplete;
             txtServidor.Focus();
         }
 
@@ -648,13 +658,13 @@ namespace DataDrain.UI.WinForm
 
                 if (User == null)
                 {
-                    User = new DadosUsuario
+                    User = new DatabaseUser
                     {
-                        Servidor = txtServidor.Text.Trim(),
-                        Usuario = txtUsuario.Text.Trim(),
-                        Senha = txtSenha.Text.Trim(),
-                        Porta = txtPorta.Text.ToInt32(),
-                        TrustedConnection = chkTrustedConnection.Checked
+                        ServerAddress = txtServidor.Text.Trim(),
+                        UserName = txtUsuario.Text.Trim(),
+                        Password = txtSenha.Text.Trim(),
+                        Port = txtPorta.Text.ToInt32(),
+                        IsTrustedConnection = chkTrustedConnection.Checked
                     };
                 }
 
@@ -677,27 +687,27 @@ namespace DataDrain.UI.WinForm
                 return;
             }
 
-            var objetos = new List<DadosObjeto>();
+            var objetos = new List<DatabaseObjectMap>();
 
             _imgObjetosMapeados = new List<KeyValuePair<string, Image>>();
 
             bwDadosBanco.ReportProgress(10);
 
-            if (Gerador.CompativelMapeamentoTabela)
+            if (Gerador.IsTableMapping)
             {
-                objetos.AddRange(Gerador.MapeamentoTabela.ListaAllTables(BancoSelecionado, User));
+                objetos.AddRange(Gerador.TableMapping.ListAllTables(BancoSelecionado, User));
                 bwDadosBanco.ReportProgress(30);
             }
 
-            if (Gerador.CompativelMapeamentoView)
+            if (Gerador.IsViewMapping)
             {
-                objetos.AddRange(Gerador.MapeamentoView.ListaAllViews(BancoSelecionado, User));
+                objetos.AddRange(Gerador.ViewMapping.ListAllViews(BancoSelecionado, User));
                 bwDadosBanco.ReportProgress(60);
             }
 
-            if (Gerador.CompativelMapeamentoProcedure)
+            if (Gerador.IsStoredProcedureMapping)
             {
-                objetos.AddRange(Gerador.MapeamentoProcedure.ListaAllStoredProcedures(BancoSelecionado, User));
+                objetos.AddRange(Gerador.StoredProcedureMapping.ListAllStoredProcedures(BancoSelecionado, User));
                 bwDadosBanco.ReportProgress(90);
             }
 
@@ -746,7 +756,7 @@ namespace DataDrain.UI.WinForm
         /// <param name="nomeObjeto">nome do objeto</param>
         /// <param name="tipo">tipo do objeto (tabela,view,procedure)</param>
         /// <param name="retornaDados">REtorna a lista de campos obtidas</param>
-        private List<DadosColunas> CarregaCamposObjeto(string nomeObjeto, TipoObjetoBanco.ETipoObjeto tipo, bool retornaDados = false)
+        private List<DatabaseObjectMap> CarregaCamposObjeto(string nomeObjeto, TipoObjetoBanco.ETipoObjeto tipo, bool retornaDados = false)
         {
             try
             {
@@ -837,29 +847,6 @@ namespace DataDrain.UI.WinForm
                 }
             }
         }
-
-        private void ProcessaIdComputador()
-        {
-            try
-            {
-                const string computerName = "localhost";
-                var scope = new ManagementScope(string.Format("\\\\{0}\\root\\CIMV2", computerName), null);
-                scope.Connect();
-                var query = new ObjectQuery("SELECT UUID FROM Win32_ComputerSystemProduct");
-                var searcher = new ManagementObjectSearcher(scope, query);
-
-                foreach (var wmiObject in searcher.Get().Cast<ManagementObject>())
-                {
-                    IdComputador = wmiObject["UUID"].ToString();
-                }
-            }
-            catch (Exception)
-            {
-
-                IdComputador = Guid.NewGuid().ToString("D").ToUpper();
-            }
-        }
-
 
         private static bool VerificaPermissaoPasta(string caminho)
         {

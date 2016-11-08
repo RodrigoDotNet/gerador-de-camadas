@@ -9,7 +9,7 @@ namespace DataDrain.Rules.SuportObjects
             UserId = Guid.NewGuid().ToString("N");
         }
 
-        public string UserId { get; private set; }
+        public string UserId { get; set; }
 
         public string MachineId { get; set; }
 
