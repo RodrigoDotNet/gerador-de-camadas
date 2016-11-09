@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>1364628355_45282.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -58,6 +61,11 @@
     </Compile>
     <Compile Include="Control\GridView\ReferencedDescriptionAttribute.cs" />
     <Compile Include="Control\ListViewColumnSorter.cs" />
+    <Compile Include="Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
     <Compile Include="SuportForms\frmMapeamentoUnitario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +116,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="SuportForms\frmMapeamentoUnitario.resx">
       <DependentUpon>frmMapeamentoUnitario.cs</DependentUpon>
     </EmbeddedResource>
@@ -167,6 +179,48 @@
       <Project>{e2f9837d-8f33-4d64-9120-f251c7987b28}</Project>
       <Name>DataDrain.Library</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1351387924_tables-relation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1352224904_Help book 3d.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1358193146_Forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1358214303_paper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1364712365_connect_creating.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1364712868_next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1373099491_sync.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1374174060_accept.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1374174076_cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1454543275_icon-89-document-file-sql.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ident.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vazio.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="1364628355_45282.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

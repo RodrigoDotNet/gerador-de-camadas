@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using DataDrain.Library.Helpers;
 using DataDrain.Rules.Interfaces;
 using DataDrain.Rules.SuportObjects;
@@ -28,7 +32,21 @@ namespace DataDrain.BusinessLayer
 
         private static List<IInformationSchema> GetInstallProviders()
         {
-            throw new System.NotImplementedException();
+            var arquivos = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll");
+
+            foreach (var arquivo in arquivos)
+            {
+                Assembly assembly = Assembly.LoadFrom(arquivo);
+
+                if (assembly.GetName().GetPublicKeyToken().Length > 0)
+                {
+                    // file is not signed.
+                }
+
+                //Assembly.LoadFrom(arquivo);
+            }
+
+            return new List<IInformationSchema>();
         }
     }
 }

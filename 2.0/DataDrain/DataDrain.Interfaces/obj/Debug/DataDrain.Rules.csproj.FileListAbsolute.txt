@@ -1,4 +1,0 @@
-C:\Projetos\gerador-de-camadas\2.0\DataDrain\DataDrain.Interfaces\bin\Debug\DataDrain.Rules.dll
-C:\Projetos\gerador-de-camadas\2.0\DataDrain\DataDrain.Interfaces\bin\Debug\DataDrain.Rules.pdb
-C:\Projetos\gerador-de-camadas\2.0\DataDrain\DataDrain.Interfaces\obj\Debug\DataDrain.Rules.dll
-C:\Projetos\gerador-de-camadas\2.0\DataDrain\DataDrain.Interfaces\obj\Debug\DataDrain.Rules.pdb
