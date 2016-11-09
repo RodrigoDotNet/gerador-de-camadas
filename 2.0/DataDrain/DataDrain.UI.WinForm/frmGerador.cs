@@ -10,10 +10,14 @@ using System.Security.Principal;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DataDrain.BusinessLayer.History;
+using DataDrain.Library.ExtensionMethods;
 using DataDrain.Library.Helpers;
 using DataDrain.Library.Registry;
+using DataDrain.Rules.Enuns;
 using DataDrain.Rules.Interfaces;
 using DataDrain.Rules.SuportObjects;
+using DataDrain.UI.WinForm.Control;
+using DataDrain.UI.WinForm.SuportForms;
 
 namespace DataDrain.UI.WinForm
 {
@@ -97,15 +101,15 @@ namespace DataDrain.UI.WinForm
             {
                 Cursor = Cursors.WaitCursor;
                 var dl = new DatabaseUser
-                    {
-                        ServerAddress = txtServidor.Text.Trim(),
-                        UserName = txtUsuario.Text.Trim(),
-                        Password = txtSenha.Text.Trim(),
-                        Port = txtPorta.Text.ToInt32(),
-                        IsTrustedConnection = chkTrustedConnection.Checked
-                    };
+                {
+                    ServerAddress = txtServidor.Text.Trim(),
+                    UserName = txtUsuario.Text.Trim(),
+                    Password = txtSenha.Text.Trim(),
+                    Port = txtPorta.Text.ToInt32(),
+                    IsTrustedConnection = chkTrustedConnection.Checked
+                };
 
-                var retornoTeste = Gerador.TestarConexao(dl);
+                var retornoTeste = Gerador.TestConnection(dl);
 
                 if (retornoTeste.Key)
                 {
@@ -158,28 +162,29 @@ namespace DataDrain.UI.WinForm
 
         private void btnMapearSelecionados_Click(object sender, EventArgs e)
         {
-            var nomesTiposObjetos = new List<TipoObjetoBanco>();
+            var nomesTiposObjetos = new List<DatabaseObjectInfo>();
 
             for (var i = 0; i < lvObjetosBanco.Items.Count; i++)
             {
-                if (lvObjetosBanco.Items[i].Checked && !_selectedObjects.Exists(a => a.Key.NomeObjeto == lvObjetosBanco.Items[i].Text))
+                if (lvObjetosBanco.Items[i].Checked && !_selectedObjects.Exists(a => a.Name == lvObjetosBanco.Items[i].Text))
                 {
-                    nomesTiposObjetos.Add(new TipoObjetoBanco(lvObjetosBanco.Items[i].Text, lvObjetosBanco.Items[i].SubItems[4].Text));
+                    nomesTiposObjetos.Add(new DatabaseObjectInfo(lvObjetosBanco.Items[i].Text,lvObjetosBanco.Items[i].SubItems[4].Text.ConvertToEnum<EDatabaseObjectType>()));
                 }
             }
 
-            if (nomesTiposObjetos.Count(o => o.TipoObjeto == TipoObjetoBanco.ETipoObjeto.Procedure) > 1)
+            if (nomesTiposObjetos.Count(o => o.DatabaseObjectType == EDatabaseObjectType.Procedure) > 1)
             {
                 foreach (var objetoBanco in nomesTiposObjetos)
                 {
-                    _selectedObjects.Add(new KeyValuePair<TipoObjetoBanco, List<DadosColunas>>(objetoBanco, CarregaCamposObjeto(objetoBanco.NomeObjeto, objetoBanco.TipoObjeto, true)));
+                    objetoBanco.Columns = CarregaCamposObjeto(objetoBanco.Name, objetoBanco.DatabaseObjectType, true);
+                    _selectedObjects.Add(objetoBanco);
                 }
             }
             else
             {
                 foreach (var objeto in nomesTiposObjetos)
                 {
-                    CarregaCamposObjeto(objeto.NomeObjeto, objeto.TipoObjeto);
+                    CarregaCamposObjeto(objeto.Name, objeto.DatabaseObjectType);
                 }
             }
 
@@ -202,23 +207,19 @@ namespace DataDrain.UI.WinForm
                     {
                         if (VerificaPermissaoPasta(fb.SelectedPath))
                         {
-                            foreach (var colunas in from objeto in _selectedObjects from colunas in objeto.Value where colunas.RegExp == "sem" select colunas)
-                            {
-                                colunas.RegExp = "";
-                            }
 
-                            Gerador.RotinasApoio.CriarArquivosProjeto(new ParametrosCriarProjetos
+                            Gerador.Support.CreateProjectFiles(new Configuration
                             {
-                                CaminhoDestino = fb.SelectedPath,
-                                DadosConexao = User,
+                                DestinationPath = fb.SelectedPath,
+                                User = User,
                                 ObjetosMapeaveis = _selectedObjects,
                                 NameSpace = txtNameSpace.Text.Trim(),
                                 GerarAppConfig = chkGeraAppConfig.Checked,
                                 AssinarProjeto = chkGeraSN.Checked,
                                 MapWcf = chkMapWcf.Checked,
                                 MapLinq = chkMapLinq.Checked,
-                                TiposObjetosAcaoBanco = Gerador.TiposObjetosAcaoBanco
-                            });
+                                TiposObjetosAcaoBanco = Gerador.AdoNetConnectionObjects
+                            }, Gerador.DictionaryOfTemplates);
 
                             MessageBox.Show("Mapeamento dos objetos realizado com sucesso", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Process.Start("explorer.exe", fb.SelectedPath);
@@ -273,7 +274,7 @@ namespace DataDrain.UI.WinForm
 
                             if (tbPrincipal.SelectedTab == tpBancoDados)
                             {
-                                _selectedObjects = new List<KeyValuePair<TipoObjetoBanco, List<DadosColunas>>>();
+                                _selectedObjects = new List<DatabaseObjectInfo>();
                             }
 
                             CarregaBancosDeDados();
@@ -295,7 +296,7 @@ namespace DataDrain.UI.WinForm
                         {
                             btnMapearSelecionados_Click(btnMapearSelecionados, EventArgs.Empty);
                         }
-                        else if (_selectedObjects.Any(q => q.Key.QuerySql == null))
+                        else if (_selectedObjects.Any(q => q.QuerySql == null))
                         {
                             tbPrincipal.SelectedIndex = 1;
                         }
@@ -317,9 +318,9 @@ namespace DataDrain.UI.WinForm
         {
             if (lvObjetosBanco.Items[e.Index].Group == lvObjetosBanco.Groups["procedure"] && e.NewValue == CheckState.Checked)
             {
-                var nomesTiposObjeto = new TipoObjetoBanco(lvObjetosBanco.Items[e.Index].Text, lvObjetosBanco.Items[e.Index].SubItems[4].Text, new List<DadosStoredProceduresParameters>());
+                var nomesTiposObjeto = new DatabaseObjectInfo(lvObjetosBanco.Items[e.Index].Text, lvObjetosBanco.Items[e.Index].SubItems[4].Text.ConvertToEnum<EDatabaseObjectType>(), new List<StoredProcedureParameter>());
 
-                Parameters = Gerador.MapeamentoProcedure.ListaAllStoredProceduresParameters(BancoSelecionado, User, lvObjetosBanco.Items[e.Index].Text);
+                Parameters = Gerador.StoredProcedureMapping.ListAllStoredProceduresParameters(BancoSelecionado, User, lvObjetosBanco.Items[e.Index].Text);
 
                 if (Parameters.Count > 0)
                 {
@@ -327,7 +328,7 @@ namespace DataDrain.UI.WinForm
 
                     if (frm.ShowDialog(this) == DialogResult.Yes)
                     {
-                        nomesTiposObjeto.Parametros = frm.Parametros;
+                        nomesTiposObjeto.AjustaParametros(frm.Parametros);
                     }
                     else
                     {
@@ -338,12 +339,14 @@ namespace DataDrain.UI.WinForm
                     frm.Dispose();
                 }
                 _imgObjetosMapeados.Add(new KeyValuePair<string, Image>(lvObjetosBanco.Items[e.Index].Text, ilIcones.Images["cheked"]));
-                _selectedObjects.Add(new KeyValuePair<TipoObjetoBanco, List<DadosColunas>>(nomesTiposObjeto, CarregaCamposObjeto(nomesTiposObjeto.NomeObjeto, nomesTiposObjeto.TipoObjeto, true)));
+
+                nomesTiposObjeto.Columns = CarregaCamposObjeto(nomesTiposObjeto.Name, nomesTiposObjeto.DatabaseObjectType, true);
+                _selectedObjects.Add(nomesTiposObjeto);
             }
 
             if (e.NewValue == CheckState.Unchecked)
             {
-                _selectedObjects = _selectedObjects.Where(o => o.Key.NomeObjeto != lvObjetosBanco.Items[e.Index].Text).ToList();
+                _selectedObjects = _selectedObjects.Where(o => o.Name != lvObjetosBanco.Items[e.Index].Text).ToList();
                 _imgObjetosMapeados = _imgObjetosMapeados.Where(o => o.Key != lvObjetosBanco.Items[e.Index].Text).ToList();
             }
         }
@@ -415,29 +418,29 @@ namespace DataDrain.UI.WinForm
                         frm.Parametros = Parameters;
                         frm.IlObjetos = ilObjetos;
                         frm.NomeObjeto = retorno.Item.Text;
-                        frm.TipoObjeto = retorno.SubItem.Text.ConvertToEnum<TipoObjetoBanco.ETipoObjeto>();
+                        frm.TipoObjeto = retorno.SubItem.Text.ConvertToEnum<EDatabaseObjectType>();
 
-                        if (_selectedObjects.Exists(o => o.Key.NomeObjeto == retorno.Item.Text))
+                        if (_selectedObjects.Exists(o => o.Name == retorno.Item.Text))
                         {
-                            frm.ObjetosSelecionado = _selectedObjects.FirstOrDefault(o => o.Key.NomeObjeto == retorno.Item.Text);
+                            frm.ObjetosSelecionado = _selectedObjects.FirstOrDefault(o => o.Name == retorno.Item.Text);
                         }
 
                         switch (frm.ShowDialog(this))
                         {
                             case DialogResult.Yes:
-                                if (!_selectedObjects.Exists(o => o.Key.NomeObjeto == frm.ObjetosSelecionado.Key.NomeObjeto))
+                                if (!_selectedObjects.Exists(o => o.Name == frm.ObjetosSelecionado.Name))
                                 {
                                     _selectedObjects.Add(frm.ObjetosSelecionado);
                                     _imgObjetosMapeados.Add(new KeyValuePair<string, Image>(retorno.Item.Text, ilIcones.Images["cheked"]));
                                 }
                                 else
                                 {
-                                    _selectedObjects = _selectedObjects.Where(o => o.Key.NomeObjeto != retorno.Item.Text).ToList();
+                                    _selectedObjects = _selectedObjects.Where(o => o.Name != retorno.Item.Text).ToList();
                                     _selectedObjects.Add(frm.ObjetosSelecionado);
                                 }
                                 break;
                             default:
-                                _selectedObjects = _selectedObjects.Where(o => o.Key.NomeObjeto != retorno.Item.Text).ToList();
+                                _selectedObjects = _selectedObjects.Where(o => o.Name != retorno.Item.Text).ToList();
                                 _imgObjetosMapeados = _imgObjetosMapeados.Where(o => o.Key != retorno.Item.Text).ToList();
                                 lvObjetosBanco.Items[retorno.Item.Index].Checked = false;
                                 break;
@@ -714,17 +717,17 @@ namespace DataDrain.UI.WinForm
             doWorkEventArgs.Result = objetos;
         }
 
-        private static int RetornaImagem(string tipo)
+        private static int RetornaImagem(EDatabaseObjectType tipo)
         {
-            switch (tipo.ToLower())
+            switch (tipo)
             {
-                case "tabela":
+                case EDatabaseObjectType.Tabela:
                     return 0;
-                case "view":
+                case EDatabaseObjectType.View:
                     return 1;
-                case "procedure":
+                case EDatabaseObjectType.Procedure:
                     return 2;
-                case "query":
+                case EDatabaseObjectType.Query:
                     return 8;
             }
             return 0;
@@ -756,30 +759,30 @@ namespace DataDrain.UI.WinForm
         /// <param name="nomeObjeto">nome do objeto</param>
         /// <param name="tipo">tipo do objeto (tabela,view,procedure)</param>
         /// <param name="retornaDados">REtorna a lista de campos obtidas</param>
-        private List<DatabaseObjectMap> CarregaCamposObjeto(string nomeObjeto, TipoObjetoBanco.ETipoObjeto tipo, bool retornaDados = false)
+        private List<ColumnInfo> CarregaCamposObjeto(string nomeObjeto, EDatabaseObjectType tipo, bool retornaDados = false)
         {
             try
             {
-                var colunasObjeto = new List<DadosColunas>();
+                var colunasObjeto = new List<ColumnInfo>();
 
                 switch (tipo)
                 {
-                    case TipoObjetoBanco.ETipoObjeto.Tabela:
-                        colunasObjeto = Gerador.MapeamentoTabela.ListAllFieldsFromTable(BancoSelecionado, nomeObjeto, User);
+                    case EDatabaseObjectType.Tabela:
+                        colunasObjeto = Gerador.TableMapping.ListAllFieldsFromTable(BancoSelecionado, nomeObjeto, User);
                         break;
 
-                    case TipoObjetoBanco.ETipoObjeto.View:
-                        colunasObjeto = Gerador.MapeamentoView.ListAllFieldsFromViews(BancoSelecionado, nomeObjeto, User);
+                    case EDatabaseObjectType.View:
+                        colunasObjeto = Gerador.ViewMapping.ListAllFieldsFromViews(BancoSelecionado, nomeObjeto, User);
                         break;
 
-                    case TipoObjetoBanco.ETipoObjeto.Procedure:
+                    case EDatabaseObjectType.Procedure:
                         if (MessageBox.Show(string.Format("Algumas procedures podem desencadear uma sequencia de insert's, update's e delete's.\nExecute apenas procedures que você conheça o funcionamento e que retornem dados.\nDeseja executar a procedure '{0}' ?", nomeObjeto), "ATENÇÃO", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                         {
-                            colunasObjeto = Gerador.MapeamentoProcedure.ListAllFieldsFromStoredProcedure(BancoSelecionado, nomeObjeto, Parameters, User);
+                            colunasObjeto = Gerador.StoredProcedureMapping.ListAllFieldsFromStoredProcedure(BancoSelecionado, nomeObjeto, Parameters, User);
                         }
                         else
                         {
-                            return retornaDados ? colunasObjeto : new List<DadosColunas>();
+                            return retornaDados ? colunasObjeto : new List<ColumnInfo>();
                         }
 
                         break;
@@ -796,17 +799,16 @@ namespace DataDrain.UI.WinForm
 
                 if (_selectedObjects == null)
                 {
-                    _selectedObjects = new List<KeyValuePair<TipoObjetoBanco, List<DadosColunas>>>();
+                    return new List<ColumnInfo>();
                 }
 
-                _selectedObjects.Add(new KeyValuePair<TipoObjetoBanco, List<DadosColunas>>(new TipoObjetoBanco(nomeObjeto, tipo.ToString(), Parameters), colunasObjeto));
+                return colunasObjeto;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(string.Format("Erro:\n{0}", ex.Message), ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-            return null;
         }
 
 
@@ -819,31 +821,33 @@ namespace DataDrain.UI.WinForm
 
             lvObjetosSelecionados.Columns.Add("Nome", lvObjetosSelecionados.Width - 30);
 
-            if (_selectedObjects != null && _selectedObjects.Count(o => o.Key != null) > 0)
+            if (_selectedObjects != null && _selectedObjects.Count(o => o != null) > 0)
             {
                 foreach (var objeto in _selectedObjects)
                 {
                     lvObjetosSelecionados.Items.Add(new ListViewItem
                     {
-                        Text = objeto.Key.NomeObjeto,
-                        ImageIndex = RetornaImagem(objeto.Key.TipoObjeto.ToString()),
-                        Group = lvObjetosSelecionados.Groups[objeto.Key.TipoObjeto.ToString()]
+                        Text = objeto.Name,
+                        ImageIndex = RetornaImagem(objeto.DatabaseObjectType),
+                        Group = lvObjetosSelecionados.Groups[objeto.DatabaseObjectType.ToString()]
                     });
                 }
 
                 //Ajusta o cabeçario dos grupos
-                var totalGrupo = _selectedObjects.GroupBy(t => new { TipoObjeto = t.Key.TipoObjeto.ToString(), Qtd = _selectedObjects.Count(o => o.Key.TipoObjeto == t.Key.TipoObjeto) }).ToList();
+                var totalGrupo = _selectedObjects.GroupBy(t => new { TipoObjeto = t.DatabaseObjectType, Qtd = _selectedObjects.Count(o => o.DatabaseObjectType == t.DatabaseObjectType) }).ToList();
 
                 foreach (var grupo in totalGrupo)
                 {
-                    var nomePadrao = lvObjetosSelecionados.Groups[grupo.Key.TipoObjeto].Header.Contains(" ") ? lvObjetosSelecionados.Groups[grupo.Key.TipoObjeto].Header.Split(' ')[0] : lvObjetosSelecionados.Groups[grupo.Key.TipoObjeto].Header;
+                    var nomePadrao = lvObjetosSelecionados.Groups[grupo.Key.TipoObjeto.ToString()].Header.Contains(" ") 
+                        ? lvObjetosSelecionados.Groups[grupo.Key.TipoObjeto.ToString()].Header.Split(' ')[0] 
+                        : lvObjetosSelecionados.Groups[grupo.Key.TipoObjeto.ToString()].Header;
 
                     if (nomePadrao.EndsWith("s"))
                     {
                         nomePadrao = nomePadrao.Substring(0, nomePadrao.Length - 1);
                     }
 
-                    lvObjetosSelecionados.Groups[grupo.Key.TipoObjeto].Header = string.Format("{0}{1} ({2})", nomePadrao, grupo.Key.Qtd > 1 ? "s" : "", grupo.Key.Qtd);
+                    lvObjetosSelecionados.Groups[grupo.Key.TipoObjeto.ToString()].Header = string.Format("{0}{1} ({2})", nomePadrao, grupo.Key.Qtd > 1 ? "s" : "", grupo.Key.Qtd);
                 }
             }
         }
@@ -879,31 +883,31 @@ namespace DataDrain.UI.WinForm
             lvObjetosBanco.Columns.Add("Qtd. Registros", 100, HorizontalAlignment.Center);
             lvObjetosBanco.Columns.Add("Avançado", 79, HorizontalAlignment.Center);
 
-            var dadosFiltrados = string.IsNullOrWhiteSpace(busca) ? _dadosObjetos : _dadosObjetos.Where(d => d.Nome.ToLower().StartsWith(busca.ToLower().Trim())).ToList();
+            var dadosFiltrados = string.IsNullOrWhiteSpace(busca) ? _dadosObjetos : _dadosObjetos.Where(d => d.Name.ToLower().StartsWith(busca.ToLower().Trim())).ToList();
 
-            foreach (var item in dadosFiltrados.OrderBy(o => o.Nome).Select(objeto => new ListViewItem
+            foreach (var item in dadosFiltrados.OrderBy(o => o.Name).Select(objeto => new ListViewItem
             {
-                Text = objeto.Nome,
-                ImageIndex = RetornaImagem(objeto.Tipo),
-                Group = lvObjetosBanco.Groups[objeto.Tipo],
-                SubItems = { objeto.DataCriacao.ToShortDateString(), objeto.DataAlteracao.ToShortDateString(), objeto.QtdRegistros.ToString(), objeto.Tipo.PrimeiraLetraMaiuscula() }
+                Text = objeto.Name,
+                ImageIndex = RetornaImagem(objeto.Type),
+                Group = lvObjetosBanco.Groups[objeto.Type.ToString()],
+                SubItems = { objeto.CreationDate.ToShortDateString(), objeto.ChangeDate.Value.ToShortDateString(), objeto.Records.ToString(), objeto.Type.ToString().PrimeiraLetraMaiuscula() }
             }))
             {
                 lvObjetosBanco.Items.Add(item);
             }
 
-            var totalGrupo = dadosFiltrados.GroupBy(t => new { t.Tipo, Qtd = dadosFiltrados.Count(o => o.Tipo == t.Tipo) }).ToList();
+            var totalGrupo = dadosFiltrados.GroupBy(t => new { t.Type, Qtd = dadosFiltrados.Count(o => o.Type == t.Type) }).ToList();
 
             foreach (var grupo in totalGrupo)
             {
-                var nomePadrao = lvObjetosBanco.Groups[grupo.Key.Tipo].Header.Split(' ')[0];
+                var nomePadrao = lvObjetosBanco.Groups[grupo.Key.Type.ToString()].Header.Split(' ')[0];
 
                 if (nomePadrao.EndsWith("s"))
                 {
                     nomePadrao = nomePadrao.Substring(0, nomePadrao.Length - 1);
                 }
 
-                lvObjetosBanco.Groups[grupo.Key.Tipo].Header = string.Format("{0}{1} ({2})", nomePadrao, grupo.Key.Qtd > 1 ? "s" : "", grupo.Key.Qtd);
+                lvObjetosBanco.Groups[grupo.Key.Type.ToString()].Header = string.Format("{0}{1} ({2})", nomePadrao, grupo.Key.Qtd > 1 ? "s" : "", grupo.Key.Qtd);
             }
         }
 
@@ -915,7 +919,7 @@ namespace DataDrain.UI.WinForm
             {
                 frm.ShowDialog();
 
-                if (frm.ObjetoSelecionado.Key != null)
+                if (frm.ObjetoSelecionado != null)
                 {
                     _selectedObjects.Add(frm.ObjetoSelecionado);
                 }

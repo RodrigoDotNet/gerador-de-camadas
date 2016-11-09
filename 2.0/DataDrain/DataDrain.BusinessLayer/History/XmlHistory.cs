@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
 using DataDrain.Library.Cryptography;
+using DataDrain.Library.ExtensionMethods;
 using DataDrain.Library.Helpers;
 using DataDrain.Rules.SuportObjects;
 

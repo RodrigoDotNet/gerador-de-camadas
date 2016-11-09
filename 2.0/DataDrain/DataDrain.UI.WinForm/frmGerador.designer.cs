@@ -158,7 +158,6 @@ namespace DataDrain.UI.WinForm
             // 
             // bntAvancar
             // 
-            this.bntAvancar.Image = global::DataDrain.ORM.Generator.Properties.Resources._1364712868_next;
             this.bntAvancar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bntAvancar.Location = new System.Drawing.Point(10, 205);
             this.bntAvancar.Name = "bntAvancar";
@@ -273,7 +272,6 @@ namespace DataDrain.UI.WinForm
             // 
             // bntMapConsulta
             // 
-            this.bntMapConsulta.Image = global::DataDrain.ORM.Generator.Properties.Resources._1454543275_icon_89_document_file_sql;
             this.bntMapConsulta.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bntMapConsulta.Location = new System.Drawing.Point(396, 208);
             this.bntMapConsulta.Name = "bntMapConsulta";
@@ -311,7 +309,6 @@ namespace DataDrain.UI.WinForm
             // 
             // bntRefreshDatabase
             // 
-            this.bntRefreshDatabase.Image = global::DataDrain.ORM.Generator.Properties.Resources._1373099491_sync;
             this.bntRefreshDatabase.Location = new System.Drawing.Point(258, 34);
             this.bntRefreshDatabase.Name = "bntRefreshDatabase";
             this.bntRefreshDatabase.Size = new System.Drawing.Size(25, 23);

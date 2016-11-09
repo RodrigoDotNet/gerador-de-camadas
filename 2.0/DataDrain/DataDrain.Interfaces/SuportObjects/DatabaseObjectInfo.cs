@@ -24,5 +24,13 @@ namespace DataDrain.Rules.SuportObjects
         public string QuerySql { get; private set; }
 
         public List<ColumnInfo> Columns { get; set; }
+
+        public void AjustaParametros(List<StoredProcedureParameter> parametros)
+        {
+            if (parametros != null && parametros.Count > 0)
+            {
+                StoredProcedureParameters = parametros;
+            }
+        }
     }
 }

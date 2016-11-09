@@ -35,7 +35,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft Visual Basic 2005 Power Packs\3.0\Microsoft.VisualBasic.PowerPacks.dll</HintPath>
+      <HintPath>..\packages\Microsoft Visual Basic 2005 Power Packs\3.0\Microsoft.VisualBasic.PowerPacks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -50,6 +50,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\GridView.cs" />
+    <Compile Include="Control\GridView\DataGridViewMaskedTextCell.cs" />
+    <Compile Include="Control\GridView\DataGridViewMaskedTextColumn.cs" />
+    <Compile Include="Control\GridView\DataGridViewMaskedTextControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Control\GridView\ReferencedDescriptionAttribute.cs" />
+    <Compile Include="Control\ListViewColumnSorter.cs" />
+    <Compile Include="SuportForms\frmMapeamentoUnitario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuportForms\frmMapeamentoUnitario.Designer.cs">
+      <DependentUpon>frmMapeamentoUnitario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SuportForms\frmParametros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuportForms\frmParametros.designer.cs">
+      <DependentUpon>frmParametros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SuportForms\frmPesquisaManual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuportForms\frmPesquisaManual.Designer.cs">
+      <DependentUpon>frmPesquisaManual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SuportForms\frmRegExpHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuportForms\frmRegExpHelp.designer.cs">
+      <DependentUpon>frmRegExpHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SuportForms\frmRegExpression.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuportForms\frmRegExpression.designer.cs">
+      <DependentUpon>frmRegExpression.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SuportForms\frmSobre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuportForms\frmSobre.Designer.cs">
+      <DependentUpon>frmSobre.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmGerador.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +108,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="SuportForms\frmMapeamentoUnitario.resx">
+      <DependentUpon>frmMapeamentoUnitario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SuportForms\frmParametros.resx">
+      <DependentUpon>frmParametros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SuportForms\frmPesquisaManual.resx">
+      <DependentUpon>frmPesquisaManual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SuportForms\frmRegExpHelp.resx">
+      <DependentUpon>frmRegExpHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SuportForms\frmRegExpression.resx">
+      <DependentUpon>frmRegExpression.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SuportForms\frmSobre.resx">
+      <DependentUpon>frmSobre.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmGerador.resx">
       <DependentUpon>frmGerador.cs</DependentUpon>
     </EmbeddedResource>

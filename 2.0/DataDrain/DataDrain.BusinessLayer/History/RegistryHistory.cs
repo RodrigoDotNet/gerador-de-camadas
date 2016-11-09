@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataDrain.Library.Cryptography;
+using DataDrain.Library.ExtensionMethods;
 using DataDrain.Library.Registry;
 using DataDrain.Rules.SuportObjects;
 using DataDrain.Library.Helpers;
