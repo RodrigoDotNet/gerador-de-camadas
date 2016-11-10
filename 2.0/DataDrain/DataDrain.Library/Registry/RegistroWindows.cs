@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
+using DataDrain.Library.Helpers;
 using Microsoft.Win32;
 
 namespace DataDrain.Library.Registry
@@ -54,7 +56,13 @@ namespace DataDrain.Library.Registry
         /// <param name="valor">valor a ser guardado</param>
         public static void GravaValor(string chave, string valor)
         {
-            GravaValor(Key, chave, valor);
+            var perm1 = new RegistryPermission(RegistryPermissionAccess.Write, Key);
+
+
+            if (perm1.CanWriteKey(Key))
+            {
+                GravaValor(Key, chave, valor);
+            }
         }
 
         /// <summary>
@@ -78,7 +86,12 @@ namespace DataDrain.Library.Registry
                     throw new ArgumentNullException("chave", "O parâmetro  chave não pode ser nulo");
                 }
 
-                return Microsoft.Win32.Registry.GetValue(keyPath, chave, "").ToString();
+                var perm1 = new RegistryPermission(RegistryPermissionAccess.Read, Key);
+
+
+                return perm1.CanReadKey(Key)
+                    ? Microsoft.Win32.Registry.GetValue(keyPath, chave, "").ToString()
+                    : valorPadrao;
             }
             catch (Exception)
             {

@@ -31,7 +31,7 @@ namespace DataDrain.UI.WinForm
 
         private List<KeyValuePair<string, Image>> _imgObjetosMapeados;
 
-        internal static string IdComputador;
+        private static bool _carregado;
 
         #endregion
 
@@ -138,7 +138,6 @@ namespace DataDrain.UI.WinForm
                     UserName = txtUsuario.Text.Trim(),
                     Password = txtSenha.Text.Trim(),
                     Port = txtPorta.Text.ToInt32(),
-                    MachineId = IdComputador,
                     IsTrustedConnection = chkTrustedConnection.Checked,
                     NomeProvedor = Gerador.GetType().FullName
                 };
@@ -262,7 +261,6 @@ namespace DataDrain.UI.WinForm
                                 UserName = txtUsuario.Text.Trim(),
                                 Password = txtSenha.Text.Trim(),
                                 Port = txtPorta.Text.ToInt32(),
-                                MachineId = IdComputador,
                                 IsTrustedConnection = chkTrustedConnection.Checked,
                                 NomeProvedor = Gerador.GetType().FullName
                             };
@@ -541,7 +539,7 @@ namespace DataDrain.UI.WinForm
         {
             var chk = sender as CheckBox;
 
-            if (chk != null)
+            if (chk != null && _carregado)
             {
                 RegistroWindows.GravaValor(chk.Name, chk.Checked.ToString());
             }
@@ -651,6 +649,8 @@ namespace DataDrain.UI.WinForm
             chkGeraSN.Checked = RegistroWindows.RecuperaValor("chkGeraSN", "false") == "true";
             chkMapLinq.Checked = RegistroWindows.RecuperaValor("chkMapLinq", "false") == "true";
             chkMapWcf.Checked = RegistroWindows.RecuperaValor("chkMapWcf", "false") == "true";
+
+            _carregado = true;
         }
 
         private void CarregaBancosDeDados()

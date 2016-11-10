@@ -61,11 +61,12 @@ namespace DataDrain.UI.WinForm
 
             if (imgLogo == null) return;
 
-            var frm = new frmGerador { Gerador = _providers[rptProviders.CurrentItemIndex].Provider, Logo = imgLogo.Image };
-            Hide();
-            frm.Closed += (s, args) => Close();
-            frm.ShowDialog();
-            frm.Dispose();
+            using (var frm = new frmGerador { Gerador = _providers[rptProviders.CurrentItemIndex].Provider, Logo = imgLogo.Image })
+            {
+                Hide();
+                frm.Closed += (s, args) => Close();
+                frm.ShowDialog();
+            }
         }
 
         private void bntSelecionar_Click(object sender, EventArgs e)
