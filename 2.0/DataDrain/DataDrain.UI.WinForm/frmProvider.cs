@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Deployment.Application;
-using System.Reflection;
 using System.Windows.Forms;
 using DataDrain.BusinessLayer;
 using DataDrain.Library.Helpers;
@@ -25,13 +23,13 @@ namespace DataDrain.UI.WinForm
         {
             _providers = InformationSchemaBL.GetAllProviders();
 
-            pbLogo.DataBindings.Add("Image", "", "Logo");
+            pbLogo.DataBindings.Add("Image", "", "ImageLogo");
             pbLogo.DoubleClick += pbLogo_DoubleClick;
-            lblVersao.DataBindings.Add("Text", "", "Versao");
-            lblBDMinimo.DataBindings.Add("Text", "", "BancoMinimo");
-            lblTabela.DataBindings.Add("Text", "", "MapeamentoTabela");
-            lblView.DataBindings.Add("Text", "", "MapeamentoView");
-            lblProcedure.DataBindings.Add("Text", "", "MapeamentoProcedure");
+            lblVersao.DataBindings.Add("Text", "", "ProviderVersion");
+            lblBDMinimo.DataBindings.Add("Text", "", "MinimalDatabaseVersion");
+            lblTabela.DataBindings.Add("Text", "", "TableMapping");
+            lblView.DataBindings.Add("Text", "", "ViewMapping");
+            lblProcedure.DataBindings.Add("Text", "", "StoredProcedureMapping");
 
             rptProviders.DataSource = _providers;
 

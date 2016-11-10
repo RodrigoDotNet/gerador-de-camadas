@@ -1,0 +1,16 @@
+bin
+obj
+/2.0/DataDrain/DataDrain.BusinessLayer/obj
+/2.0/DataDrain/DataDrain.BusinessLayer/bin
+/2.0/DataDrain/DataDrain.Databases.MySql/obj
+/2.0/DataDrain/DataDrain.Databases.MySql/bin
+/2.0/DataDrain/DataDrain.Databases.SqlServer/obj
+/2.0/DataDrain/DataDrain.Databases.SqlServer/bin
+/2.0/DataDrain/DataDrain.Interfaces/obj
+/2.0/DataDrain/DataDrain.Interfaces/bin
+/2.0/DataDrain/DataDrain.IO/obj
+/2.0/DataDrain/DataDrain.IO/bin
+/2.0/DataDrain/DataDrain.Library/obj
+/2.0/DataDrain/DataDrain.Library/bin
+/2.0/DataDrain/DataDrain.UI.WinForm/obj
+/2.0/DataDrain/DataDrain.UI.WinForm/bin
