@@ -100,16 +100,15 @@ namespace DataDrain.UI.WinForm
             if (!errPadrao.HasErrors(tpConexao))
             {
                 Cursor = Cursors.WaitCursor;
-                var dl = new DatabaseUser
-                {
-                    ServerAddress = txtServidor.Text.Trim(),
-                    UserName = txtUsuario.Text.Trim(),
-                    Password = txtSenha.Text.Trim(),
-                    Port = txtPorta.Text.ToInt32(),
-                    IsTrustedConnection = chkTrustedConnection.Checked
-                };
 
-                var retornoTeste = Gerador.TestConnection(dl);
+                var retornoTeste = Gerador.TestConnection(new DatabaseUser
+                                        {
+                                            ServerAddress = txtServidor.Text.Trim(),
+                                            UserName = txtUsuario.Text.Trim(),
+                                            Password = txtSenha.Text.Trim(),
+                                            Port = txtPorta.Text.ToInt32(),
+                                            IsTrustedConnection = chkTrustedConnection.Checked
+                                        });
 
                 if (retornoTeste.Key)
                 {
@@ -167,7 +166,7 @@ namespace DataDrain.UI.WinForm
             {
                 if (lvObjetosBanco.Items[i].Checked && !_selectedObjects.Exists(a => a.Name == lvObjetosBanco.Items[i].Text))
                 {
-                    nomesTiposObjetos.Add(new DatabaseObjectInfo(lvObjetosBanco.Items[i].Text,lvObjetosBanco.Items[i].SubItems[4].Text.ConvertToEnum<EDatabaseObjectType>()));
+                    nomesTiposObjetos.Add(new DatabaseObjectInfo(lvObjetosBanco.Items[i].Text, lvObjetosBanco.Items[i].SubItems[4].Text.ConvertToEnum<EDatabaseObjectType>()));
                 }
             }
 
@@ -838,8 +837,8 @@ namespace DataDrain.UI.WinForm
 
                 foreach (var grupo in totalGrupo)
                 {
-                    var nomePadrao = lvObjetosSelecionados.Groups[grupo.Key.TipoObjeto.ToString()].Header.Contains(" ") 
-                        ? lvObjetosSelecionados.Groups[grupo.Key.TipoObjeto.ToString()].Header.Split(' ')[0] 
+                    var nomePadrao = lvObjetosSelecionados.Groups[grupo.Key.TipoObjeto.ToString()].Header.Contains(" ")
+                        ? lvObjetosSelecionados.Groups[grupo.Key.TipoObjeto.ToString()].Header.Split(' ')[0]
                         : lvObjetosSelecionados.Groups[grupo.Key.TipoObjeto.ToString()].Header;
 
                     if (nomePadrao.EndsWith("s"))

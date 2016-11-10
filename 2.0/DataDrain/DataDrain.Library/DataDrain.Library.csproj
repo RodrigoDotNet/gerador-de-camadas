@@ -57,6 +57,7 @@
     <Compile Include="ExtensionMethods\ExErrorProvider.cs" />
     <Compile Include="Helpers\AssemblyHelper.cs" />
     <Compile Include="Helpers\IoHelper.cs" />
+    <Compile Include="Helpers\RegistryHelper.cs" />
     <Compile Include="Helpers\SerializerHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="ORM\Caching\CachingMannager.cs" />
