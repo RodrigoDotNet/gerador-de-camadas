@@ -8,10 +8,10 @@ namespace DataDrain.Library.ExtensionMethods
     {
         public static int ToInt32(this string input)
         {
-            if (!String.IsNullOrWhiteSpace(input))
+            if (!string.IsNullOrWhiteSpace(input))
             {
                 int saida;
-                Int32.TryParse(input, out saida);
+                int.TryParse(input, out saida);
                 return saida;
             }
             return 0;
@@ -66,7 +66,7 @@ namespace DataDrain.Library.ExtensionMethods
 
         public static IEnumerable<int> AllIndexesOf(this string str, string value)
         {
-            if (String.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
                 throw new ArgumentException("the string to find may not be empty", "value");
             for (int index = 0; ; index += value.Length)
             {
@@ -86,6 +86,16 @@ namespace DataDrain.Library.ExtensionMethods
 
             var culture = new CultureInfo("pt-BR");
             return culture.CompareInfo.IndexOf(texto, palavra, CompareOptions.IgnoreCase) > -1;
+        }
+
+        public static bool ContainsCaseInsensitive(this string texto, string textoProcurado)
+        {
+            if (string.IsNullOrWhiteSpace(texto) || string.IsNullOrWhiteSpace(textoProcurado))
+            {
+                return false;
+            }
+
+            return new CultureInfo("pt-BR").CompareInfo.IndexOf(texto, textoProcurado.Trim(), CompareOptions.IgnoreCase) >= 0;
         }
     }
 }

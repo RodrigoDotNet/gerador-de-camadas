@@ -66,16 +66,11 @@ namespace DataDrain.BusinessLayer.History
         /// <returns></returns>
         public string RetornaSenhaLogins(string nomeServidor, string usuario, string nomeProvedor)
         {
-            var sha = new HashSha1();
             var servidores = CarregaConexoes(nomeProvedor);
 
-            var senha = "";
+            var login = servidores.FirstOrDefault(s => s.ServerAddress == nomeServidor && s.UserName == usuario);
 
-            foreach (var serv in servidores.Where(s => s.ServerAddress == nomeServidor && s.UserName == usuario))
-            {
-                senha = sha.Descriptografa(serv.Password);
-            }
-            return senha;
+            return login != null ? login.Password : "";
         }
     }
 }

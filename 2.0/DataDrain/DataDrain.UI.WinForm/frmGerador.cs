@@ -102,13 +102,13 @@ namespace DataDrain.UI.WinForm
                 Cursor = Cursors.WaitCursor;
 
                 var retornoTeste = Gerador.TestConnection(new DatabaseUser
-                                        {
-                                            ServerAddress = txtServidor.Text.Trim(),
-                                            UserName = txtUsuario.Text.Trim(),
-                                            Password = txtSenha.Text.Trim(),
-                                            Port = txtPorta.Text.ToInt32(),
-                                            IsTrustedConnection = chkTrustedConnection.Checked
-                                        });
+                {
+                    ServerAddress = txtServidor.Text.Trim(),
+                    UserName = txtUsuario.Text.Trim(),
+                    Password = txtSenha.Text.Trim(),
+                    Port = txtPorta.Text.ToInt32(),
+                    IsTrustedConnection = chkTrustedConnection.Checked
+                });
 
                 if (retornoTeste.Key)
                 {
@@ -141,7 +141,13 @@ namespace DataDrain.UI.WinForm
                     NomeProvedor = Gerador.GetType().FullName
                 };
 
+                Historico.SalvaConexao(User);
+
                 tbPrincipal.SelectTab(tpBancoDados);
+
+                _selectedObjects = new List<DatabaseObjectInfo>();
+
+                CarregaBancosDeDados();
             }
             else
             {
@@ -236,69 +242,6 @@ namespace DataDrain.UI.WinForm
                 finally
                 {
                     Cursor = Cursors.Default;
-                }
-            }
-        }
-
-        private void tbPrincipal_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tbPrincipal.SelectedIndex <= 2)
-            {
-                switch (tbPrincipal.SelectedIndex)
-                {
-                    case 0:
-                    case 1:
-                        if (errPadrao.HasErrors(tpConexao))
-                        {
-                            tbPrincipal.SelectTab(tpConexao);
-                        }
-                        else
-                        {
-                            User = new DatabaseUser
-                            {
-                                ServerAddress = txtServidor.Text.Trim(),
-                                UserName = txtUsuario.Text.Trim(),
-                                Password = txtSenha.Text.Trim(),
-                                Port = txtPorta.Text.ToInt32(),
-                                IsTrustedConnection = chkTrustedConnection.Checked,
-                                NomeProvedor = Gerador.GetType().FullName
-                            };
-
-                            if (PreviousTab == tpConexao)
-                            {
-                                Historico.SalvaConexao(User);
-                            }
-
-                            if (tbPrincipal.SelectedTab == tpBancoDados)
-                            {
-                                _selectedObjects = new List<DatabaseObjectInfo>();
-                            }
-
-                            CarregaBancosDeDados();
-                        }
-                        break;
-                    case 2:
-                        bool itemChecado = false;
-
-                        for (int i = 0; i < lvObjetosBanco.Items.Count; i++)
-                        {
-                            if (lvObjetosBanco.Items[i].Checked)
-                            {
-                                itemChecado = true;
-                                break;
-                            }
-                        }
-
-                        if (itemChecado)
-                        {
-                            btnMapearSelecionados_Click(btnMapearSelecionados, EventArgs.Empty);
-                        }
-                        else if (_selectedObjects.Any(q => q.QuerySql == null))
-                        {
-                            tbPrincipal.SelectedIndex = 1;
-                        }
-
-                        break;
                 }
             }
         }
@@ -498,16 +441,6 @@ namespace DataDrain.UI.WinForm
             CarregaListaObjetos(txtBuscar.Text);
         }
 
-        private void tbPrincipal_Deselected(object sender, TabControlEventArgs e)
-        {
-            PreviousTab = e.TabPage;
-        }
-
-        private void tbPrincipal_Selected(object sender, TabControlEventArgs e)
-        {
-            CurrentTab = e.TabPage;
-        }
-
         #endregion
 
         #region AutoComplete
@@ -657,18 +590,6 @@ namespace DataDrain.UI.WinForm
             try
             {
                 Cursor = Cursors.WaitCursor;
-
-                if (User == null)
-                {
-                    User = new DatabaseUser
-                    {
-                        ServerAddress = txtServidor.Text.Trim(),
-                        UserName = txtUsuario.Text.Trim(),
-                        Password = txtSenha.Text.Trim(),
-                        Port = txtPorta.Text.ToInt32(),
-                        IsTrustedConnection = chkTrustedConnection.Checked
-                    };
-                }
 
                 cbBancoDados.DataSource = Gerador.ListAllDatabases(User);
             }
@@ -882,7 +803,7 @@ namespace DataDrain.UI.WinForm
             lvObjetosBanco.Columns.Add("Qtd. Registros", 100, HorizontalAlignment.Center);
             lvObjetosBanco.Columns.Add("Avançado", 79, HorizontalAlignment.Center);
 
-            var dadosFiltrados = string.IsNullOrWhiteSpace(busca) ? _dadosObjetos : _dadosObjetos.Where(d => d.Name.ToLower().StartsWith(busca.ToLower().Trim())).ToList();
+            var dadosFiltrados = string.IsNullOrWhiteSpace(busca) ? _dadosObjetos : _dadosObjetos.Where(d => d.Name.ContainsCaseInsensitive(busca.Trim())).ToList();
 
             foreach (var item in dadosFiltrados.OrderBy(o => o.Name).Select(objeto => new ListViewItem
             {

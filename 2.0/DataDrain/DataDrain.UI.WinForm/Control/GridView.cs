@@ -132,7 +132,7 @@ namespace DataDrain.UI.WinForm.Control
                     celulas.Add(new DataGridViewTextBoxCell { Value = coluna.IsNullability });
                     celulas.Add(new DataGridViewTextBoxCell { Value = coluna.DefaultValue });
                     celulas.Add(new DataGridViewTextBoxCell { Value = "T" });
-                    celulas.Add(new DataGridViewComboBoxCell { DataSource = RegExpression.RetornaRegularExpressions(), DisplayMember = "Nome", ValueMember = "Expression", Value = "sem" });
+                    celulas.Add(new DataGridViewComboBoxCell { DataSource = RegExpression.RetornaRegularExpressions(), DisplayMember = "Nome", ValueMember = "Expression", Value = coluna.RegularExpression });
                     celulas.Add(new DataGridViewComboBoxCell { DataSource = TipoSyncCollumn.ToKeyPar(), DisplayMember = "Value", ValueMember = "Key", Value = 0 });
 
                     row.Cells.AddRange(celulas.ToArray());

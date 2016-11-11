@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMapeamentoUnitario));
             this.gvColunasObjeto = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.btnAvancar2 = new System.Windows.Forms.Button();
@@ -53,9 +54,9 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.DialogResult = System.Windows.Forms.DialogResult.No;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.Location = new System.Drawing.Point(721, 224);
+            this.button1.Location = new System.Drawing.Point(721, 219);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(142, 34);
+            this.button1.Size = new System.Drawing.Size(142, 40);
             this.button1.TabIndex = 2;
             this.button1.Text = "Cancelar Mapeamento";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -65,12 +66,14 @@
             // 
             this.btnAvancar2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAvancar2.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.btnAvancar2.Image = ((System.Drawing.Image)(resources.GetObject("btnAvancar2.Image")));
             this.btnAvancar2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAvancar2.Location = new System.Drawing.Point(581, 224);
+            this.btnAvancar2.Location = new System.Drawing.Point(581, 219);
             this.btnAvancar2.Name = "btnAvancar2";
-            this.btnAvancar2.Size = new System.Drawing.Size(134, 34);
+            this.btnAvancar2.Size = new System.Drawing.Size(134, 40);
             this.btnAvancar2.TabIndex = 1;
             this.btnAvancar2.Text = "Mapear";
+            this.btnAvancar2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAvancar2.Click += new System.EventHandler(this.btnAvancar2_Click);
             // 
             // frmMapeamentoUnitario

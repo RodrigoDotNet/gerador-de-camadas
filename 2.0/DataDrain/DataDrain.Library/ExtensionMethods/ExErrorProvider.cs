@@ -58,16 +58,16 @@ namespace DataDrain.Library.ExtensionMethods
             {
                 Clear(ep);
 
+                var mi = typeof(Control).GetMethod("NotifyValidating", BindingFlags.Instance | BindingFlags.NonPublic);
+
+                if (mi == null)
+                {
+                    return false;
+                }
+
                 foreach (Control c in ctrl.Controls)
                 {
-
-                    var mi = typeof(Control).GetMethod("NotifyValidating", BindingFlags.Instance | BindingFlags.NonPublic);
-
-
-                    if (mi != null)
-                    {
-                        mi.Invoke(c, null);
-                    }
+                    mi.Invoke(c, null);
                 }
 
                 return _count != 0;

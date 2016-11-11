@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using DataDrain.UI.WinForm.Control;
 
 namespace DataDrain.UI.WinForm
 {
@@ -39,7 +40,14 @@ namespace DataDrain.UI.WinForm
             System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("View", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("Procedure", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("Query", System.Windows.Forms.HorizontalAlignment.Left);
-            this.tbPrincipal = new System.Windows.Forms.TabControl();
+            this.ilIcones = new System.Windows.Forms.ImageList(this.components);
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.errPadrao = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblVersao = new System.Windows.Forms.Label();
+            this.ilObjetos = new System.Windows.Forms.ImageList(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.bwDadosBanco = new System.ComponentModel.BackgroundWorker();
+            this.tbPrincipal = new DataDrain.UI.WinForm.Control.TabControlWithoutHeader();
             this.tpConexao = new System.Windows.Forms.TabPage();
             this.chkTrustedConnection = new System.Windows.Forms.CheckBox();
             this.bntTestarConexao = new System.Windows.Forms.Button();
@@ -61,7 +69,6 @@ namespace DataDrain.UI.WinForm
             this.bntRefreshDatabase = new System.Windows.Forms.Button();
             this.cbBancoDados = new System.Windows.Forms.ComboBox();
             this.lvObjetosBanco = new System.Windows.Forms.ListView();
-            this.ilIcones = new System.Windows.Forms.ImageList(this.components);
             this.btnMapearSelecionados = new System.Windows.Forms.Button();
             this.chSelecionarTodos = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -77,20 +84,67 @@ namespace DataDrain.UI.WinForm
             this.txtNameSpace = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.errPadrao = new System.Windows.Forms.ErrorProvider(this.components);
-            this.lblVersao = new System.Windows.Forms.Label();
-            this.ilObjetos = new System.Windows.Forms.ImageList(this.components);
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.bwDadosBanco = new System.ComponentModel.BackgroundWorker();
+            ((System.ComponentModel.ISupportInitialize)(this.errPadrao)).BeginInit();
             this.tbPrincipal.SuspendLayout();
             this.tpConexao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.tpBancoDados.SuspendLayout();
             this.tpMapeamento.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errPadrao)).BeginInit();
             this.SuspendLayout();
+            // 
+            // ilIcones
+            // 
+            this.ilIcones.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilIcones.ImageStream")));
+            this.ilIcones.TransparentColor = System.Drawing.Color.Transparent;
+            this.ilIcones.Images.SetKeyName(0, "tabela");
+            this.ilIcones.Images.SetKeyName(1, "view");
+            this.ilIcones.Images.SetKeyName(2, "procedure");
+            this.ilIcones.Images.SetKeyName(3, "csharpfile");
+            this.ilIcones.Images.SetKeyName(4, "uncheked");
+            this.ilIcones.Images.SetKeyName(5, "ident.png");
+            this.ilIcones.Images.SetKeyName(6, "pk.png");
+            this.ilIcones.Images.SetKeyName(7, "cheked");
+            this.ilIcones.Images.SetKeyName(8, "query");
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "banco");
+            this.imageList1.Images.SetKeyName(1, "tabela");
+            this.imageList1.Images.SetKeyName(2, "objeto");
+            this.imageList1.Images.SetKeyName(3, "gerar");
+            this.imageList1.Images.SetKeyName(4, "opcoes");
+            // 
+            // errPadrao
+            // 
+            this.errPadrao.ContainerControl = this;
+            // 
+            // lblVersao
+            // 
+            this.lblVersao.AutoSize = true;
+            this.lblVersao.Enabled = false;
+            this.lblVersao.Location = new System.Drawing.Point(576, 300);
+            this.lblVersao.Name = "lblVersao";
+            this.lblVersao.Size = new System.Drawing.Size(79, 13);
+            this.lblVersao.TabIndex = 1;
+            this.lblVersao.Text = "Versão: 1.0.0.0";
+            // 
+            // ilObjetos
+            // 
+            this.ilObjetos.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilObjetos.ImageStream")));
+            this.ilObjetos.TransparentColor = System.Drawing.Color.Transparent;
+            this.ilObjetos.Images.SetKeyName(0, "pk");
+            this.ilObjetos.Images.SetKeyName(1, "ident");
+            this.ilObjetos.Images.SetKeyName(2, "vazio");
+            // 
+            // bwDadosBanco
+            // 
+            this.bwDadosBanco.WorkerReportsProgress = true;
+            this.bwDadosBanco.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwDadosBanco_DoWork);
+            this.bwDadosBanco.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bwDadosBanco_ProgressChanged);
+            this.bwDadosBanco.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwDadosBanco_RunWorkerCompleted);
             // 
             // tbPrincipal
             // 
@@ -106,9 +160,6 @@ namespace DataDrain.UI.WinForm
             this.tbPrincipal.SelectedIndex = 0;
             this.tbPrincipal.Size = new System.Drawing.Size(646, 286);
             this.tbPrincipal.TabIndex = 0;
-            this.tbPrincipal.SelectedIndexChanged += new System.EventHandler(this.tbPrincipal_SelectedIndexChanged);
-            this.tbPrincipal.Selected += new System.Windows.Forms.TabControlEventHandler(this.tbPrincipal_Selected);
-            this.tbPrincipal.Deselected += new System.Windows.Forms.TabControlEventHandler(this.tbPrincipal_Deselected);
             // 
             // tpConexao
             // 
@@ -148,9 +199,9 @@ namespace DataDrain.UI.WinForm
             // 
             this.bntTestarConexao.Image = ((System.Drawing.Image)(resources.GetObject("bntTestarConexao.Image")));
             this.bntTestarConexao.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.bntTestarConexao.Location = new System.Drawing.Point(10, 167);
+            this.bntTestarConexao.Location = new System.Drawing.Point(10, 203);
             this.bntTestarConexao.Name = "bntTestarConexao";
-            this.bntTestarConexao.Size = new System.Drawing.Size(122, 32);
+            this.bntTestarConexao.Size = new System.Drawing.Size(110, 40);
             this.bntTestarConexao.TabIndex = 5;
             this.bntTestarConexao.Text = "Testar Conexão";
             this.bntTestarConexao.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -158,10 +209,11 @@ namespace DataDrain.UI.WinForm
             // 
             // bntAvancar
             // 
+            this.bntAvancar.Image = ((System.Drawing.Image)(resources.GetObject("bntAvancar.Image")));
             this.bntAvancar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.bntAvancar.Location = new System.Drawing.Point(10, 205);
+            this.bntAvancar.Location = new System.Drawing.Point(244, 203);
             this.bntAvancar.Name = "bntAvancar";
-            this.bntAvancar.Size = new System.Drawing.Size(122, 30);
+            this.bntAvancar.Size = new System.Drawing.Size(110, 40);
             this.bntAvancar.TabIndex = 6;
             this.bntAvancar.Text = "Avançar";
             this.bntAvancar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -272,6 +324,7 @@ namespace DataDrain.UI.WinForm
             // 
             // bntMapConsulta
             // 
+            this.bntMapConsulta.Image = ((System.Drawing.Image)(resources.GetObject("bntMapConsulta.Image")));
             this.bntMapConsulta.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bntMapConsulta.Location = new System.Drawing.Point(396, 208);
             this.bntMapConsulta.Name = "bntMapConsulta";
@@ -309,7 +362,10 @@ namespace DataDrain.UI.WinForm
             // 
             // bntRefreshDatabase
             // 
-            this.bntRefreshDatabase.Location = new System.Drawing.Point(258, 34);
+            this.bntRefreshDatabase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bntRefreshDatabase.ForeColor = System.Drawing.SystemColors.Control;
+            this.bntRefreshDatabase.Image = ((System.Drawing.Image)(resources.GetObject("bntRefreshDatabase.Image")));
+            this.bntRefreshDatabase.Location = new System.Drawing.Point(259, 34);
             this.bntRefreshDatabase.Name = "bntRefreshDatabase";
             this.bntRefreshDatabase.Size = new System.Drawing.Size(25, 23);
             this.bntRefreshDatabase.TabIndex = 1;
@@ -317,6 +373,9 @@ namespace DataDrain.UI.WinForm
             // 
             // cbBancoDados
             // 
+            this.cbBancoDados.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbBancoDados.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbBancoDados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBancoDados.Location = new System.Drawing.Point(10, 35);
             this.cbBancoDados.Name = "cbBancoDados";
             this.cbBancoDados.Size = new System.Drawing.Size(249, 21);
@@ -326,11 +385,11 @@ namespace DataDrain.UI.WinForm
             // 
             this.lvObjetosBanco.FullRowSelect = true;
             listViewGroup1.Header = "Tabela";
-            listViewGroup1.Name = "tabela";
+            listViewGroup1.Name = "Tabela";
             listViewGroup2.Header = "View";
-            listViewGroup2.Name = "view";
+            listViewGroup2.Name = "View";
             listViewGroup3.Header = "Procedure";
-            listViewGroup3.Name = "procedure";
+            listViewGroup3.Name = "Procedure";
             this.lvObjetosBanco.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup1,
             listViewGroup2,
@@ -350,20 +409,6 @@ namespace DataDrain.UI.WinForm
             this.lvObjetosBanco.SelectedIndexChanged += new System.EventHandler(this.lvObjetosBanco_SelectedIndexChanged);
             this.lvObjetosBanco.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvObjetosBanco_MouseClick);
             // 
-            // ilIcones
-            // 
-            this.ilIcones.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilIcones.ImageStream")));
-            this.ilIcones.TransparentColor = System.Drawing.Color.Transparent;
-            this.ilIcones.Images.SetKeyName(0, "tabela");
-            this.ilIcones.Images.SetKeyName(1, "view");
-            this.ilIcones.Images.SetKeyName(2, "procedure");
-            this.ilIcones.Images.SetKeyName(3, "csharpfile");
-            this.ilIcones.Images.SetKeyName(4, "uncheked");
-            this.ilIcones.Images.SetKeyName(5, "ident.png");
-            this.ilIcones.Images.SetKeyName(6, "pk.png");
-            this.ilIcones.Images.SetKeyName(7, "cheked");
-            this.ilIcones.Images.SetKeyName(8, "query");
-            // 
             // btnMapearSelecionados
             // 
             this.btnMapearSelecionados.Image = ((System.Drawing.Image)(resources.GetObject("btnMapearSelecionados.Image")));
@@ -372,7 +417,7 @@ namespace DataDrain.UI.WinForm
             this.btnMapearSelecionados.Name = "btnMapearSelecionados";
             this.btnMapearSelecionados.Size = new System.Drawing.Size(110, 40);
             this.btnMapearSelecionados.TabIndex = 5;
-            this.btnMapearSelecionados.Text = "Mapear \r\nSelecionados";
+            this.btnMapearSelecionados.Text = "Avançar";
             this.btnMapearSelecionados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMapearSelecionados.Click += new System.EventHandler(this.btnMapearSelecionados_Click);
             // 
@@ -485,9 +530,9 @@ namespace DataDrain.UI.WinForm
             // 
             this.btnMapear.Image = ((System.Drawing.Image)(resources.GetObject("btnMapear.Image")));
             this.btnMapear.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnMapear.Location = new System.Drawing.Point(477, 208);
+            this.btnMapear.Location = new System.Drawing.Point(512, 213);
             this.btnMapear.Name = "btnMapear";
-            this.btnMapear.Size = new System.Drawing.Size(155, 34);
+            this.btnMapear.Size = new System.Drawing.Size(120, 40);
             this.btnMapear.TabIndex = 3;
             this.btnMapear.Text = "Mapear";
             this.btnMapear.Click += new System.EventHandler(this.btnMapear_Click);
@@ -541,45 +586,6 @@ namespace DataDrain.UI.WinForm
             this.label5.TabIndex = 1;
             this.label5.Text = "Objetos Selecionados";
             // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "banco");
-            this.imageList1.Images.SetKeyName(1, "tabela");
-            this.imageList1.Images.SetKeyName(2, "objeto");
-            this.imageList1.Images.SetKeyName(3, "gerar");
-            this.imageList1.Images.SetKeyName(4, "opcoes");
-            // 
-            // errPadrao
-            // 
-            this.errPadrao.ContainerControl = this;
-            // 
-            // lblVersao
-            // 
-            this.lblVersao.AutoSize = true;
-            this.lblVersao.Enabled = false;
-            this.lblVersao.Location = new System.Drawing.Point(535, 301);
-            this.lblVersao.Name = "lblVersao";
-            this.lblVersao.Size = new System.Drawing.Size(79, 13);
-            this.lblVersao.TabIndex = 1;
-            this.lblVersao.Text = "Versão: 1.0.0.0";
-            // 
-            // ilObjetos
-            // 
-            this.ilObjetos.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilObjetos.ImageStream")));
-            this.ilObjetos.TransparentColor = System.Drawing.Color.Transparent;
-            this.ilObjetos.Images.SetKeyName(0, "pk");
-            this.ilObjetos.Images.SetKeyName(1, "ident");
-            this.ilObjetos.Images.SetKeyName(2, "vazio");
-            // 
-            // bwDadosBanco
-            // 
-            this.bwDadosBanco.WorkerReportsProgress = true;
-            this.bwDadosBanco.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwDadosBanco_DoWork);
-            this.bwDadosBanco.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bwDadosBanco_ProgressChanged);
-            this.bwDadosBanco.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwDadosBanco_RunWorkerCompleted);
-            // 
             // frmGerador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -594,6 +600,7 @@ namespace DataDrain.UI.WinForm
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Data Drain ORM";
             this.Load += new System.EventHandler(this.frmGerador_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errPadrao)).EndInit();
             this.tbPrincipal.ResumeLayout(false);
             this.tpConexao.ResumeLayout(false);
             this.tpConexao.PerformLayout();
@@ -604,7 +611,6 @@ namespace DataDrain.UI.WinForm
             this.tpMapeamento.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errPadrao)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -612,7 +618,7 @@ namespace DataDrain.UI.WinForm
 
         #endregion
 
-        private System.Windows.Forms.TabControl tbPrincipal;
+        private TabControlWithoutHeader tbPrincipal;
         private System.Windows.Forms.TabPage tpConexao;
         private TextBox txtSenha;
         private Label label3;
