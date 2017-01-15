@@ -1,0 +1,98 @@
+<<<<<<< .mine
+﻿Versão 3.5.1.33 [09-09-2013]:
+*Correção nos métodos de Insert/Update e Delete em Lista, ocorria um erro ao processar uma lista vazia;
+
+
+Versão 3.5.1.32 [05-08-2013]:
+=======
+﻿Versão 3.5.1.34 [27-09-2013]:
+* Correção no mapeamento de objetos;
+
+Versão 3.5.1.33 [19-09-2013]:
+* Correção nos métodos de Insert/Update e Delete em Lista, ocorria um erro ao processar uma lista vazia;
+* Correção na nameclatura do assembly de Interfaces;
+* Otimização no mapeamento dos objetos em 63%;
+
+
+Versão 3.5.1.32 [05-08-2013]:
+>>>>>>> .r182
+* Correção no mapeamento de View (Todos os providers);
+* Correção no mapeamento de Procedure (MySQL e SQL Server);
+
+
+Versão 3.5.1.31 [03-08-2013]:
+* Implantação do sistema de Log4Net ao projeto;
+* Exportação do .NET Data Provider usados no mapeamento para a pasta do projeto;
+* Otimização no relançando de Exception;
+
+Versão 3.5.1.30 [01-08-2013]:
+* BETA;
+
+Versão 3.5.1.29 [30-07-2013]:
+* Inclusão do provider para SQLite;
+
+Versão 3.5.1.28 [30-07-2013]:
+* BETA;
+
+Versão 3.5.1.27 [27-07-2013]:
+* Inclusão do framework 4.5 aos projetos de saida;
+* Correção no mapeamento de colunas com auto imcremeto no Firebird;
+* Correção no mapeamento avançado de objetos;
+* Correção na validação de atributos com Regular Expression;
+* Correção no mapeamento de parametros para os comando em List<T> (Insert/Update/Delete);
+
+Versão 3.5.1.26 [27-07-2013]:
+* BETA;
+
+Versão 3.5.1.25 [27-07-2013]:
+* BETA;
+
+Versão 3.5.1.24 [27-07-2013]:
+* Correção de erro na execução da aplicação;
+
+Versão 3.5.1.23 [27-07-2013]:
+* Correção de erro na execução de Insert, Update e Delete em List (Todos os providers);
+
+Versão 3.5.1.22 [25-07-2013]:
+* Correção de erro no AutoComplete;
+* Subistituição do método SelectByID pelo método SelectFirstOrDefault;
+* Correção dos providers Access e Postgress;
+
+Versão 3.5.1.21 [21-07-2013]:
+* Inclusão do método 'Quantidade de Registros' para todos os providers;
+* Inclusão do mapeamento de procedures para todos os providers;
+* Inclusão dos métodos de paginação para o provider MySQL e SQL Server;
+
+Versão 3.5.1.20 [19-07-2013]:
+* Correção no update manual;
+
+Versão 3.5.1.19 [19-07-2013]:
+* Inclusão da opção de update manual;
+* Correção no método de conexão Trusted Connection;
+
+Versão 3.5.1.18 [18-07-2013]:
+* Correções no mapeamento avançado;
+
+Versão 3.5.1.17 [18-07-2013]:
+* Corrigido erro no mapeamento de view (Todos os Providers);
+* Inclusão da seleção de framework ao gerar um projeto;
+* Inclusão do mapeamento avançado de objetos, possibilitando aplicar validações as propriedades;
+* Otimização de desempenho ao carregar os providers;
+
+Versão 3.5.1.16 [14-07-2013]:
+* Correções no provider do Firebird;
+
+Versão 3.5.1.15 [13-07-2013]:
+* Implementação da conexão de tipo Trusted Connection para SQL Server;
+* Finalização do Provider PostgreSQL;
+
+Versão 3.5.1.14 [11-07-2013]:
+* Correção no provider PostgreSQL;
+* Remoção do framework DevExpress;
+
+Versão 3.5.1.12 [09-07-2013]:
+* Foi corrigido um erro no mapeamento de objetos;
+* Foi adicionado o provider Beta para PostgreSQL; 
+
+Versão 3.5.1.11 [07-07-2013]: 
+* Foi corrigido um erro ao gerar a camada de acesso DAL;

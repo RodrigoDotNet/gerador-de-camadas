@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8DDD932D-3ACB-49EF-81A8-67E851631D00}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataDrain.ORM.Generator</RootNamespace>
+    <AssemblyName>DataDrain.ORM.Generator</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>C:\Users\Rodrigo\Desktop\Gerador\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>true</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://www.rrimagine.com.br/gerador/</InstallUrl>
+    <SupportUrl>http://www.rrimagine.com.br/</SupportUrl>
+    <ProductName>DataDrain ORM Generator</ProductName>
+    <PublisherName>DataDrain ORM Generator</PublisherName>
+    <SuiteName>DataDrain ORM</SuiteName>
+    <MinimumRequiredVersion>3.5.1.32</MinimumRequiredVersion>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>34</ApplicationRevision>
+    <ApplicationVersion>3.5.1.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>116ced9a</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>1364628355_45282.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>5F2DDB5638CBB3186A4138E0B076CC395DA21F5C</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>DataDrain.ORM.Generator_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>teste.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs">
+      <HintPath>..\packages\Microsoft.VisualBasic.PowerPacks.Vs.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.99.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.99.0\lib\net40\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Apoio\Arquivo.cs" />
+    <Compile Include="Apoio\Configura\GridView.cs" />
+    <Compile Include="Apoio\DadosRegExpression.cs" />
+    <Compile Include="Apoio\emSerialize.cs" />
+    <Compile Include="Apoio\GeraHashSha1.cs" />
+    <Compile Include="Apoio\HistoricosConexao\HistoricoSqlite.cs" />
+    <Compile Include="Apoio\HistoricosConexao\HistoricoXml.cs" />
+    <Compile Include="Apoio\Base\HistoricoBase.cs" />
+    <Compile Include="Apoio\HistoricosConexao\HistoricoRegistro.cs" />
+    <Compile Include="Apoio\ListViewColumnSorter.cs" />
+    <Compile Include="Apoio\Providers.cs" />
+    <Compile Include="Apoio\RegExpression.cs" />
+    <Compile Include="Apoio\RegistroWindows.cs" />
+    <Compile Include="Apoio\ValidarSmtpHost.cs" />
+    <Compile Include="Apoio\Versao.cs" />
+    <Compile Include="Controles\DataGridViewMaskedTextCell.cs" />
+    <Compile Include="Controles\DataGridViewMaskedTextColumn.cs" />
+    <Compile Include="Controles\DataGridViewMaskedTextControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controles\ReferencedDescriptionAttribute.cs" />
+    <Compile Include="ExtensionMethods\DocumentExtensions.cs" />
+    <Compile Include="ExtensionMethods\EmEnum.cs" />
+    <Compile Include="ExtensionMethods\EmErrorProvider.cs" />
+    <Compile Include="ExtensionMethods\EmString.cs" />
+    <Compile Include="Formularios\frmMapeamentoUnitario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmMapeamentoUnitario.Designer.cs">
+      <DependentUpon>frmMapeamentoUnitario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmParametros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmParametros.designer.cs">
+      <DependentUpon>frmParametros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmPesquisaManual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmPesquisaManual.Designer.cs">
+      <DependentUpon>frmPesquisaManual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmRegExpHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmRegExpHelp.designer.cs">
+      <DependentUpon>frmRegExpHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmRegExpression.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmRegExpression.designer.cs">
+      <DependentUpon>frmRegExpression.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmSobre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmSobre.Designer.cs">
+      <DependentUpon>frmSobre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGerador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGerador.Designer.cs">
+      <DependentUpon>frmGerador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProvider.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProvider.Designer.cs">
+      <DependentUpon>frmProvider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Formularios\frmMapeamentoUnitario.resx">
+      <DependentUpon>frmMapeamentoUnitario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmParametros.resx">
+      <DependentUpon>frmParametros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmPesquisaManual.resx">
+      <DependentUpon>frmPesquisaManual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmRegExpHelp.resx">
+      <DependentUpon>frmRegExpHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmRegExpression.resx">
+      <DependentUpon>frmRegExpression.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmSobre.resx">
+      <DependentUpon>frmSobre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGerador.resx">
+      <DependentUpon>frmGerador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProvider.resx">
+      <DependentUpon>frmProvider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="DataDrain.ORM.Generator_TemporaryKey.pfx" />
+    <None Include="DataDrain.ORM.snk" />
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="1364628355_45282.ico" />
+    <None Include="Resources\1352224904_Help book 3d.png" />
+    <None Include="Resources\ident.png" />
+    <None Include="Resources\pk.png" />
+    <None Include="Resources\vazio.jpg" />
+    <None Include="Resources\1358193146_Forward.png" />
+    <None Include="Resources\1373099491_sync.png" />
+    <None Include="Resources\1374174060_accept.png" />
+    <None Include="Resources\1374174076_cancel.png" />
+    <None Include="teste.snk" />
+    <None Include="TextFile1.txt" />
+    <None Include="Resources\1454543275_icon-89-document-file-sql.png" />
+    <Content Include="xmlRegExp.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\1358214303_paper.png" />
+    <None Include="Resources\1351387924_tables-relation.png" />
+    <None Include="Resources\1364712868_next.png" />
+    <None Include="Resources\1364712365_connect_creating.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataDrain.MicroORM\DataDrain.MicroORM.csproj">
+      <Project>{cc6d47b8-143a-4f7f-b9f8-44a046e84b95}</Project>
+      <Name>DataDrain.MicroORM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataDrain.ORM.DAL.MySQL\DataDrain.ORM.DAL.MySQL.csproj">
+      <Project>{b6345f63-2008-44c1-9dc8-ad6ac3f20009}</Project>
+      <Name>DataDrain.ORM.DAL.MySQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataDrain.ORM.DAL.SqlServer\DataDrain.ORM.DAL.SqlServer.csproj">
+      <Project>{7273b748-8edf-4d3f-a617-1cc12e66bdd2}</Project>
+      <Name>DataDrain.ORM.DAL.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataDrain.ORM.Interfaces\DataDrain.ORM.Interfaces.csproj">
+      <Project>{5C237444-36E4-4B22-AAF9-87331F429AE4}</Project>
+      <Name>DataDrain.ORM.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Suporte\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="DataDrain.ORM.DAL.MySQL">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="xmlRegExp.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <UsingTask TaskName="SmartAssembly.MSBuild.Tasks.Build" AssemblyName="SmartAssembly.MSBuild.Tasks, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7f465a1c156d4d57" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <Target Name="BeforeBuild" Condition=" '$(Configuration)' == 'Release' ">
+    <CreateProperty Value="true">
+      <Output TaskParameter="Value" PropertyName="RunSmartAssembly" />
+    </CreateProperty>
+  </Target>
+  <Target Name="AfterCompile" Condition=" '$(RunSmartAssembly)' != '' ">
+    <SmartAssembly.MSBuild.Tasks.Build ProjectFile="$(SolutionDir)SmartAssemblyGenerator.saproj" OverwriteAssembly="True" />
+  </Target>
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.99.0\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net40\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net40\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.99.0\build\net40\System.Data.SQLite.Core.targets'))" />
+  </Target>
+</Project>
